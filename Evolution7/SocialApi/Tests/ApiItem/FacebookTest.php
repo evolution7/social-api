@@ -59,5 +59,4 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
         $facebook = new Facebook();
         $facebook->getOriginalJSON();
     }
-
 }

@@ -29,5 +29,4 @@ class Facebook implements ApiInterface
     {
         throw new NotImplementedException();
     }
-
 }
