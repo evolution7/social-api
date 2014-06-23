@@ -18,6 +18,15 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
      */
+    public function testSearchForTagSince()
+    {
+        $facebook = new Facebook();
+        $facebook->searchForTagSince('testvalue', new \DateTime());
+    }
+
+    /**
+     * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
+     */
     public function testComment()
     {
         $facebook = new Facebook();

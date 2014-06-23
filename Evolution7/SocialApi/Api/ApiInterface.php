@@ -9,9 +9,20 @@ interface ApiInterface
      * @param string $searchTerm
      * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
      * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
-     * @return array of ApiObjectInterface instances
+     * @return array of ApiItemInterface instances
      */
     public function search($searchTerm);
+
+    /**
+     * Searches for instances of a specific tag after the provided time
+     *
+     * @param string $tag
+     * @param \DateTime $since
+     * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
+     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
+     * @return array of ApiItemInterface instances
+     */
+    public function searchForTagSince($tag, \DateTime $since);
 
     /**
      * Post a comment on a provided object

@@ -10,6 +10,11 @@ class Facebook implements ApiInterface
         throw new NotImplementedException();
     }
 
+    public function searchForTagSince($tag, \DateTime $since)
+    {
+        throw new NotImplementedException();
+    }
+
     public function comment($objectId, $objectType, $message)
     {
         throw new NotImplementedException();
