@@ -13,7 +13,7 @@ Through Composer.
         }
     ]
     "require": {
-        "evolution7/bloodmoon-bundle": "dev-master"
+        "evolution7/social-api": "dev-master"
     }
 ```
 
