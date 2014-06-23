@@ -27,11 +27,14 @@
       <log type="junit" target="build/logs/junit.xml" logIncompleteSkipped="false"/>
     </logging>
 
-    <!--
-    <php>
-        <server name="KERNEL_DIR" value="/path/to/your/app/" />
-    </php>
-    -->
+    <filter>
+        <whitelist>
+            <directory>Evolution7</directory>
+            <exclude>
+                <directory>Evolution7/**/Tests</directory>
+            </exclude>
+        </whitelist>
+    </filter>
 
    <!-- <selenium>
       <browser name="Firefox on localhost"
