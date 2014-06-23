@@ -1,0 +1,13 @@
+{
+    "name": "evolution7/social_api",
+    "description": "API for integrating with various social networks",
+    "authors": [
+        {
+            "name": "Arjen Schwarz",
+            "email": "arjen@evolution7.com.au"
+        }
+    ],
+    "require": {
+
+    }
+}
