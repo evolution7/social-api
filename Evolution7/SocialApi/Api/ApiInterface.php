@@ -1,5 +1,5 @@
 <?php
-namespace Evolution7\SocialApi\Interface;
+namespace Evolution7\SocialApi\Api;
 
 interface ApiInterface
 {

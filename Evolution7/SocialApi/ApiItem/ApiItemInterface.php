@@ -1,7 +1,7 @@
 <?php
-namespace Evolution7\SocialApi\Interface;
+namespace Evolution7\SocialApi\ApiItem;
 
-interface ApiObjectInterface
+interface ApiItemInterface
 {
     /**
      * Returns the unique identifier
