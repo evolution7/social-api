@@ -15,10 +15,12 @@ class Factory
     public static function create($apiType)
     {
         switch ($apiType) {
-            case 'facebook':
-                return new \Evolution7\SocialApi\Api\Facebook();
+            case 'instagram':
+                return new \Evolution7\SocialApi\Api\Instagram();
                 break;
-
+            case 'twitter':
+                return new \Evolution7\SocialApi\Api\Twitter();
+                break;
             default:
                 throw new \InvalidArgumentException('API type does not exist');
         }

@@ -19,8 +19,6 @@ Through Composer.
 
 # Supported Social networks
 
-## Facebook
-
 ## Twitter
 
 ## Instagram

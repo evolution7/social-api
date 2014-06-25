@@ -1,36 +1,31 @@
 <?php
-namespace Evolution7\SocialApi\ApiItem;
+namespace Evolution7\SocialApi\Api;
 
 use Evolution7\SocialApi\Exception\NotImplementedException;
 
-class Facebook implements ApiItemInterface
+class Instagram implements ApiInterface
 {
-    public function getIdentifier()
+    public function search($searchTerm)
     {
         throw new NotImplementedException();
     }
 
-    public function getUri()
+    public function searchForTagSince($tag, \DateTime $since)
     {
         throw new NotImplementedException();
     }
 
-    public function getMediaUri()
+    public function comment($objectId, $objectType, $message)
     {
         throw new NotImplementedException();
     }
 
-    public function comment($message)
+    public function message($userId, $message)
     {
         throw new NotImplementedException();
     }
 
-    public function getOriginalObject()
-    {
-        throw new NotImplementedException();
-    }
-
-    public function getOriginalJSON()
+    public function getOriginalApi()
     {
         throw new NotImplementedException();
     }

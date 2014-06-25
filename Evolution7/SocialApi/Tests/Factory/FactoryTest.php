@@ -9,8 +9,10 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCreate()
     {
-        $result = Factory::create('facebook');
-        $this->assertInstanceOf('Evolution7\SocialApi\Api\Facebook', $result);
+        $result = Factory::create('instagram');
+        $this->assertInstanceOf('Evolution7\SocialApi\Api\Instagram', $result);
+        $result = Factory::create('twitter');
+        $this->assertInstanceOf('Evolution7\SocialApi\Api\Twitter', $result);
     }
 
     /**

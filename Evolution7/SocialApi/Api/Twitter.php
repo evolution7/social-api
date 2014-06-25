@@ -3,7 +3,7 @@ namespace Evolution7\SocialApi\Api;
 
 use Evolution7\SocialApi\Exception\NotImplementedException;
 
-class Facebook implements ApiInterface
+class Instagram implements ApiInterface
 {
     public function search($searchTerm)
     {

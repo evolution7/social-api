@@ -2,17 +2,17 @@
 
 namespace Evolution7\SocialApi\Tests\ApiItem;
 
-use Evolution7\SocialApi\ApiItem\Facebook;
+use Evolution7\SocialApi\ApiItem\Twitter;
 
-class FacebookTest extends \PHPUnit_Framework_TestCase
+class TwitterTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
      */
     public function testGetIdentifier()
     {
-        $facebook = new Facebook();
-        $facebook->getIdentifier();
+        $twitter = new Twitter();
+        $twitter->getIdentifier();
     }
 
     /**
@@ -20,8 +20,8 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetUri()
     {
-        $facebook = new Facebook();
-        $facebook->getUri();
+        $twitter = new Twitter();
+        $twitter->getUri();
     }
 
     /**
@@ -29,8 +29,8 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetMediaUri()
     {
-        $facebook = new Facebook();
-        $facebook->getMediaUri();
+        $twitter = new Twitter();
+        $twitter->getMediaUri();
     }
 
     /**
@@ -38,8 +38,8 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
      */
     public function testComment()
     {
-        $facebook = new Facebook();
-        $facebook->comment('message');
+        $twitter = new Twitter();
+        $twitter->comment('message');
     }
 
     /**
@@ -47,8 +47,8 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetOriginalObject()
     {
-        $facebook = new Facebook();
-        $facebook->getOriginalObject();
+        $twitter = new Twitter();
+        $twitter->getOriginalObject();
     }
 
     /**
@@ -56,7 +56,7 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetOriginalJSON()
     {
-        $facebook = new Facebook();
-        $facebook->getOriginalJSON();
+        $twitter = new Twitter();
+        $twitter->getOriginalJSON();
     }
 }
