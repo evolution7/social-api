@@ -2,17 +2,17 @@
 
 namespace Evolution7\SocialApi\Tests\Api;
 
-use Evolution7\SocialApi\Api\Facebook;
+use Evolution7\SocialApi\Api\Twitter;
 
-class FacebookTest extends \PHPUnit_Framework_TestCase
+class TwitterTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
      */
     public function testSearch()
     {
-        $facebook = new Facebook();
-        $facebook->search('testvalue');
+        $twitter = new Twitter();
+        $twitter->search('testvalue');
     }
 
     /**
@@ -20,8 +20,8 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
      */
     public function testSearchForTagSince()
     {
-        $facebook = new Facebook();
-        $facebook->searchForTagSince('testvalue', new \DateTime());
+        $twitter = new Twitter();
+        $twitter->searchForTagSince('testvalue', new \DateTime());
     }
 
     /**
@@ -29,23 +29,23 @@ class FacebookTest extends \PHPUnit_Framework_TestCase
      */
     public function testComment()
     {
-        $facebook = new Facebook();
-        $facebook->comment('id', 'type', 'message');
+        $twitter = new Twitter();
+        $twitter->comment('id', 'type', 'message');
     }
     /**
      * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
      */
     public function testMessage()
     {
-        $facebook = new Facebook();
-        $facebook->message('id', 'message');
+        $twitter = new Twitter();
+        $twitter->message('id', 'message');
     }
     /**
      * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
      */
     public function testGetOriginalApi()
     {
-        $facebook = new Facebook();
-        $facebook->getOriginalApi();
+        $twitter = new Twitter();
+        $twitter->getOriginalApi();
     }
 }

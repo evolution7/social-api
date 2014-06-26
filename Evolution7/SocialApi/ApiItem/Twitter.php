@@ -3,7 +3,7 @@ namespace Evolution7\SocialApi\ApiItem;
 
 use Evolution7\SocialApi\Exception\NotImplementedException;
 
-class Instagram implements ApiItemInterface
+class Twitter implements ApiItemInterface
 {
     public function getIdentifier()
     {
