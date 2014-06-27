@@ -12,6 +12,6 @@ interface RequestTokenInterface
    * @param $secret
    * @param $redirectUrl
    */
-  public function __construct($token, $secret, $redirectUrl);
+  public function __construct($token, $secret, $redirectUrl = null);
   
 }
