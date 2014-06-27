@@ -5,9 +5,6 @@ namespace Evolution7\SocialApi\Service;
 use Evolution7\SocialApi\Config\ConfigInterface;
 use Evolution7\SocialApi\Token\RequestToken;
 use Evolution7\SocialApi\Token\AccessToken;
-use OAuth\Common\Consumer\Credentials as OAuthCredentials;
-use OAuth\Common\Storage\Memory as OAuthStorageMemory;
-use OAuth\ServiceFactory as OAuthServiceFactory;
 
 class Service implements ServiceInterface
 {
@@ -31,13 +28,13 @@ class Service implements ServiceInterface
     $config = $this->getConfig();
 
     // Build new OAuth library service instance
-    $credentials = new OAuthCredentials(
+    $credentials = new \OAuth\Common\Consumer\Credentials(
       $config->getApiKey(),
       $config->getApiSecret(),
       $config->getReturnUrl()
     );
-    $storage = new OAuthStorageMemory();
-    $oauthServiceFactory = new OAuthServiceFactory();
+    $storage = new \OAuth\Common\Storage\Memory();
+    $oauthServiceFactory = new \OAuth\ServiceFactory();
     $oauthService = $oauthServiceFactory->createService(
       $config->getPlatform(),
       $credentials,
