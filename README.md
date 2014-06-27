@@ -1,6 +1,16 @@
-# API classes for integrating with social networks
+# Social API Abstraction Library
 
-This project is meant to provide API access through standardised objects/classes to various social networks.
+This library provide an abstracted API for accessing various social networks.
+
+Platforms:
+
+* Twitter
+* Instagram
+
+Functionality:
+
+* Social Login
+* *API Search (pending)*
 
 # Installation
 
@@ -17,11 +27,11 @@ Through Composer.
     }
 ```
 
-# Supported Social networks
+# Setup
 
 ## Twitter
 
-To get Twitter integration working:
+To setup Twitter integration:
 
 1. Click `Create New App` [here](https://apps.twitter.com/)
 2. Make sure:
@@ -37,7 +47,7 @@ To get Twitter integration working:
 
 ## Instagram
 
-To get the Instagram integration working:
+To setup Instagram integration:
 
 1. Click `Register a New Client` [here](http://instagram.com/developer/clients/manage/).
 2. Make sure:
