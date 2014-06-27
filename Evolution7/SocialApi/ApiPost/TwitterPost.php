@@ -1,10 +1,18 @@
 <?php
-namespace Evolution7\SocialApi\ApiItem;
 
+namespace Evolution7\SocialApi\ApiPost;
+
+use Evolution7\SocialApi\ApiItem\ApiItem;
 use Evolution7\SocialApi\Exception\NotImplementedException;
 
-class Instagram implements ApiItemInterface
+class TwitterPost extends ApiItem implements ApiPostInterface
 {
+
+    public function getBody()
+    {
+        throw new NotImplementedException();
+    }
+
     public function getIdentifier()
     {
         throw new NotImplementedException();
@@ -34,4 +42,5 @@ class Instagram implements ApiItemInterface
     {
         throw new NotImplementedException();
     }
+    
 }

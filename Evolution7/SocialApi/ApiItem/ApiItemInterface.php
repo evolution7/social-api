@@ -1,57 +1,41 @@
 <?php
+
 namespace Evolution7\SocialApi\ApiItem;
 
 interface ApiItemInterface
 {
+
     /**
-     * Returns the unique identifier
+     * Get item ID
      *
-     * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
-     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
+     * @throws NotImplementedException;
+     * @throws NotSupportedByAPIException;
      * @return string
      */
-    public function getIdentifier();
+    public function getId();
 
     /**
+     * Get item URL
      *
-     * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
-     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
+     * @throws NotImplementedException;
+     * @throws NotSupportedByAPIException;
      */
-    public function getUri();
+    public function getUrl();
 
     /**
+     * Get original API response for item
      *
-     * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
-     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
-     */
-    public function getMediaUri();
-
-    /**
-     * Comment on the object
-     *
-     * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
-     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
-     * @param string $message
-     */
-    public function comment($message);
-
-    /**
-     * Returns the official API object instance
-     *
-     * This method should be used as sparingly as possible, but sometimes
-     * a functionality might be needed that is specific to a service.
-     * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
+     * @throws NotImplementedException;
      * @return \Object
      */
-    public function getOriginalObject();
+    public function getRaw();
 
     /**
-     * Returns the original API result as a JSON object
+     * Get API response parsed into an array
      *
-     * This method should be used as sparingly as possible, but sometimes
-     * a functionality might be needed that is specific to a service.
-     * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
+     * @throws NotImplementedException;
      * @return string json
      */
-    public function getOriginalJSON();
+    public function getArray();
+
 }
