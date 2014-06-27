@@ -7,7 +7,7 @@ use Evolution7\SocialApi\Token\RequestToken;
 use Evolution7\SocialApi\Token\AccessToken;
 use OAuth\Common\Consumer\Credentials as OAuthCredentials;
 use OAuth\Common\Storage\Memory as OAuthStorageMemory;
-use OAuth\Common\Service\ServiceFactory as OAuthServiceFactory;
+use OAuth\ServiceFactory as OAuthServiceFactory;
 
 class Service implements ServiceInterface
 {
@@ -90,7 +90,7 @@ class Service implements ServiceInterface
     // Determine OAuth version
     if (!empty($oauthVerifier) && empty($code)) {
       $version = 1;
-    } else if (!empty($oauthVerifier) && empty($code)) {
+    } else if (empty($oauthVerifier) && !empty($code)) {
       $version = 2;
     } else {
       throw new \Exception('$oauthToken and $code are mutually exclusive.');
