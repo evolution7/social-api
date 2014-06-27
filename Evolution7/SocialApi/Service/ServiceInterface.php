@@ -2,8 +2,46 @@
 
 namespace Evolution7\SocialApi\Service;
 
+use Evolution7\SocialApi\Config\ConfigInterface;
+
 interface ServiceInterface
 {
+
+    /**
+     * Constructor
+     *
+     * @param ConfigInterface $config
+     */
+    public function __construct(ConfigInterface $config);
+
+    /**
+     * Get OAuth request token
+     *
+     * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
+     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
+     *
+     * @return RequestToken
+     */
+    public function getAuthRequest();
+
+    /**
+     * Get OAuth access token
+     *
+     * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
+     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
+     *
+     * @return AccessToken
+     */
+    public function getAuthAccess();
+
+
+
+
+
+
+
+
+
 
     /**
      * Search for a value through the API

@@ -4,7 +4,7 @@ namespace Evolution7\SocialApi\Service;
 
 use Evolution7\SocialApi\Exception\NotImplementedException;
 
-class Twitter implements ServiceInterface
+class Twitter extends Service implements ServiceInterface
 {
 
     public function search($searchTerm)

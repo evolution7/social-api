@@ -23,10 +23,10 @@ class ServiceFactory
         $platform = $config->getPlatform();
         switch ($platform) {
             case Config::PLATFORM_INSTAGRAM:
-                return new Service\Instagram();
+                return new Service\Instagram($config);
                 break;
             case Config::PLATFORM_TWITTER:
-                return new Service\Twitter();
+                return new Service\Twitter($config);
                 break;
             default:
                 throw new \InvalidArgumentException(

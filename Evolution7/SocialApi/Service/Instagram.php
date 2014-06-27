@@ -4,7 +4,7 @@ namespace Evolution7\SocialApi\Service;
 
 use Evolution7\SocialApi\Exception\NotImplementedException;
 
-class Instagram implements ServiceInterface
+class Instagram extends Service implements ServiceInterface
 {
     
     public function search($searchTerm)
