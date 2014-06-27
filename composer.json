@@ -1,6 +1,6 @@
 {
     "name": "evolution7/social-api",
-    "description": "API for integrating with various social networks",
+    "description": "Social Network API Abstraction Library",
     "authors": [
         {
             "name": "Evolution 7",
@@ -9,7 +9,8 @@
     ],
     "require": {
         "php": ">=5.4",
-        "guzzlehttp/guzzle": "~4.0"
+        "guzzlehttp/guzzle": "~4.0",
+        "lusitanian/oauth": "~0.3"
     },
     "require-dev": {
         "phpunit/phpunit": "4.*"

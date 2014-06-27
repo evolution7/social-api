@@ -1,4 +1,4 @@
-# Social API Abstraction Library
+# Social Network API Abstraction Library
 
 This library provide an abstracted API for accessing various social networks.
 
@@ -9,8 +9,8 @@ Platforms:
 
 Functionality:
 
-* Social Login
-* *API Search (pending)*
+* *Social Login (pending)*
+* *Post Search/Retrieval (pending)*
 
 # Installation
 
