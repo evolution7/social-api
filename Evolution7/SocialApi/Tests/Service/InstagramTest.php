@@ -7,12 +7,21 @@ use Evolution7\SocialApi\Service\Instagram;
 class InstagramTest extends \PHPUnit_Framework_TestCase
 {
 
+    private function getConfigMock()
+    {
+        $config = $this->getMock('Evolution7\SocialApi\Config\ConfigInterface');
+        $config->expects($this->any())
+               ->method('getPlatform')
+               ->will($this->returnValue('instagram'));
+        return $config;
+    }
+
     /**
      * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
      */
     public function testSearch()
     {
-        $instagram = new Instagram();
+        $instagram = new Instagram($this->getConfigMock());
         $instagram->search('testvalue');
     }
 
@@ -21,7 +30,7 @@ class InstagramTest extends \PHPUnit_Framework_TestCase
      */
     public function testSearchForTagSince()
     {
-        $instagram = new Instagram();
+        $instagram = new Instagram($this->getConfigMock());
         $instagram->searchForTagSince('testvalue', new \DateTime());
     }
 
@@ -30,7 +39,7 @@ class InstagramTest extends \PHPUnit_Framework_TestCase
      */
     public function testComment()
     {
-        $instagram = new Instagram();
+        $instagram = new Instagram($this->getConfigMock());
         $instagram->comment('id', 'type', 'message');
     }
 
@@ -39,7 +48,7 @@ class InstagramTest extends \PHPUnit_Framework_TestCase
      */
     public function testMessage()
     {
-        $instagram = new Instagram();
+        $instagram = new Instagram($this->getConfigMock());
         $instagram->message('id', 'message');
     }
 
@@ -48,7 +57,7 @@ class InstagramTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetOriginalApi()
     {
-        $instagram = new Instagram();
+        $instagram = new Instagram($this->getConfigMock());
         $instagram->getOriginalApi();
     }
 

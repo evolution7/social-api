@@ -6,6 +6,7 @@ use Evolution7\SocialApi\ApiPost\TwitterPost;
 
 class TwitterPostTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * @expectedException Evolution7\SocialApi\Exception\NotImplementedException
      */
@@ -59,4 +60,5 @@ class TwitterPostTest extends \PHPUnit_Framework_TestCase
         $twitter = new TwitterPost();
         $twitter->getOriginalJSON();
     }
+    
 }

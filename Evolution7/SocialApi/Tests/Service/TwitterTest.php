@@ -7,12 +7,21 @@ use Evolution7\SocialApi\Service\Twitter;
 class TwitterTest extends \PHPUnit_Framework_TestCase
 {
 
+    private function getConfigMock()
+    {
+        $config = $this->getMock('Evolution7\SocialApi\Config\ConfigInterface');
+        $config->expects($this->any())
+               ->method('getPlatform')
+               ->will($this->returnValue('twitter'));
+        return $config;
+    }
+
     /**
      * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
      */
     public function testSearch()
     {
-        $twitter = new Twitter();
+        $twitter = new Twitter($this->getConfigMock());
         $twitter->search('testvalue');
     }
 
@@ -21,7 +30,7 @@ class TwitterTest extends \PHPUnit_Framework_TestCase
      */
     public function testSearchForTagSince()
     {
-        $twitter = new Twitter();
+        $twitter = new Twitter($this->getConfigMock());
         $twitter->searchForTagSince('testvalue', new \DateTime());
     }
 
@@ -30,7 +39,7 @@ class TwitterTest extends \PHPUnit_Framework_TestCase
      */
     public function testComment()
     {
-        $twitter = new Twitter();
+        $twitter = new Twitter($this->getConfigMock());
         $twitter->comment('id', 'type', 'message');
     }
 
@@ -39,7 +48,7 @@ class TwitterTest extends \PHPUnit_Framework_TestCase
      */
     public function testMessage()
     {
-        $twitter = new Twitter();
+        $twitter = new Twitter($this->getConfigMock());
         $twitter->message('id', 'message');
     }
 
@@ -48,7 +57,7 @@ class TwitterTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetOriginalApi()
     {
-        $twitter = new Twitter();
+        $twitter = new Twitter($this->getConfigMock());
         $twitter->getOriginalApi();
     }
     

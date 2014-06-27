@@ -6,6 +6,7 @@ use Evolution7\SocialApi\ApiPost\InstagramPost;
 
 class InstagramPostTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * @expectedException Evolution7\SocialApi\Exception\NotImplementedException
      */
@@ -59,4 +60,5 @@ class InstagramPostTest extends \PHPUnit_Framework_TestCase
         $instagram = new InstagramPost();
         $instagram->getOriginalJSON();
     }
+    
 }

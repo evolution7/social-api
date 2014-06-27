@@ -2,6 +2,10 @@
 
 namespace Evolution7\SocialApi\Service;
 
+use Evolution7\SocialApi\Config\ConfigInterface;
+use Evolution7\SocialApi\Token\RequestToken;
+use Evolution7\SocialApi\Token\AccessToken;
+
 class Service implements ServiceInterface
 {
 

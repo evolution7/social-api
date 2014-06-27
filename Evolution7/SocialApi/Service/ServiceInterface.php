@@ -51,7 +51,7 @@ interface ServiceInterface
      * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
      * @return array of ApiItemInterface instances
      */
-    public function search($searchTerm);
+    //public function search($searchTerm);
 
     /**
      * Searches for instances of a specific tag after the provided time
@@ -62,7 +62,7 @@ interface ServiceInterface
      * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
      * @return array of ApiItemInterface instances
      */
-    public function searchForTagSince($tag, \DateTime $since);
+    //public function searchForTagSince($tag, \DateTime $since);
 
     /**
      * Post a comment on a provided object
@@ -74,7 +74,7 @@ interface ServiceInterface
      * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
      * @return boolean
      */
-    public function comment($objectId, $objectType, $message);
+    //public function comment($objectId, $objectType, $message);
 
     /**
      * Sends a message to a user
@@ -85,7 +85,7 @@ interface ServiceInterface
      * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
      * @return boolean
      */
-    public function message($userId, $message);
+    //public function message($userId, $message);
 
     /**
      * Returns the official API interface instance
@@ -95,6 +95,6 @@ interface ServiceInterface
      * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
      * @return \Object
      */
-    public function getOriginalApi();
+    //public function getOriginalApi();
     
 }
