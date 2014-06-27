@@ -3,6 +3,7 @@
 namespace Evolution7\SocialApi\Service;
 
 use Evolution7\SocialApi\Config\ConfigInterface;
+use OAuth\Common\Service\Service;
 
 interface ServiceInterface
 {
@@ -13,6 +14,20 @@ interface ServiceInterface
      * @param ConfigInterface $config
      */
     public function __construct(ConfigInterface $config);
+
+    /**
+     * Get instance Config object
+     *
+     * @return ConfigInterface
+     */
+    protected function getConfig();
+
+    /**
+     * Create instance of Service
+     *
+     * @return Service
+     */
+    protected function getService();
 
     /**
      * Get OAuth request token
@@ -30,9 +45,14 @@ interface ServiceInterface
      * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
      * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
      *
+     * @param RequestToken $requestToken
+     * @param string       $oauthToken      - e.g. $_GET['oauth_token']
+     * @param string       $oauthVerifier   - e.g. $_GET['oauth_verifier']
+     * @param string       $code            - e.g. $_GET['code']
+     *
      * @return AccessToken
      */
-    public function getAuthAccess();
+    public function getAuthAccess(RequestToken $requestToken, $oauthToken, $oauthVerifier, $code);
 
 
 
