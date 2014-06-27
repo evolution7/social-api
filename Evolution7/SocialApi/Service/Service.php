@@ -5,7 +5,9 @@ namespace Evolution7\SocialApi\Service;
 use Evolution7\SocialApi\Config\ConfigInterface;
 use Evolution7\SocialApi\Token\RequestToken;
 use Evolution7\SocialApi\Token\AccessToken;
-use OAuth\Common\Service\Service;
+use OAuth\Common\Storage\Consumer\Credentials as OAuthCredentials;
+use OAuth\Common\Storage\Memory as OAuthStorageMemory;
+use OAuth\Common\Service\ServiceFactory as OAuthServiceFactory;
 
 class Service implements ServiceInterface
 {
@@ -17,58 +19,58 @@ class Service implements ServiceInterface
     $this->config = $config;
   }
 
-  protected function getConfig()
+  public function getConfig()
   {
     return $this->config;
   }
 
-  protected function getService()
+  public function getService()
   {
 
     // Get config
     $config = $this->getConfig();
 
-    // Build new service
-    $credentials = new Credentials(
+    // Build new OAuth library service instance
+    $credentials = new OAuthCredentials(
       $config->getApiKey(),
       $config->getApiSecret(),
       $config->getReturnUrl()
     );
-    $storage = new Session();
-    $serviceFactory = new ServiceFactory();
-    $service = $serviceFactory->createService(
+    $storage = new OAuthStorageMemory();
+    $oauthServiceFactory = new OAuthServiceFactory();
+    $oauthService = $oauthServiceFactory->createService(
       $config->getPlatform(),
       $credentials,
       $storage,
       $config->getApiScopes()
     );
-    return $service;
+    return $oauthService;
 
   }
 
   public function getAuthRequest()
   {
 
-    // Get service
-    $service = $this->getService();
+    // Get OAuth libray Service instance
+    $oauthService = $this->getService();
 
     // Check if OAuth1
-    if (method_exists($service, 'requestRequestToken')) {
+    if (method_exists($oauthService, 'requestRequestToken')) {
 
       // Generate request token via service provider API
-      $token = $service->requestRequestToken(); // OAuth V1 Only
+      $token = $oauthService->requestRequestToken(); // OAuth V1 Only
       $requestToken = $token->getRequestToken();
       $requestSecret = $token->getRequestTokenSecret();
 
       // Generate url
-      $url = $service->getAuthorizationUri(
+      $url = $oauthService->getAuthorizationUri(
         array('oauth_token' => $requestToken) // OAuth V1 Only
         );  
 
     } else {
       
       // Generate url
-      $url = $service->getAuthorizationUri();
+      $url = $oauthService->getAuthorizationUri();
       $requestToken = null;
       $requestSecret = null;
 
@@ -82,8 +84,8 @@ class Service implements ServiceInterface
   public function getAuthAccess(RequestToken $requestToken, $oauthToken, $oauthVerifier, $code)
   {
 
-    // Get service
-    $service = $this->getService();
+    // Get OAuth libray Service instance
+    $oauthService = $this->getService();
 
     // Determine OAuth version
     if (!empty($oauthVerifier) && empty($code)) {
@@ -101,9 +103,9 @@ class Service implements ServiceInterface
 
     // Retrieve access token from service provider API
     if ($version == 1) {
-      $accessToken = $service->requestAccessToken($oauthToken, $oauthVerifier);
+      $accessToken = $oauthService->requestAccessToken($oauthToken, $oauthVerifier);
     } else {
-      $accessToken = $service->requestAccessToken($code);
+      $accessToken = $oauthService->requestAccessToken($code);
     }
 
     // Build AccessToken and return

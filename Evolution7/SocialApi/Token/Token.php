@@ -5,8 +5,8 @@ namespace Evolution7\SocialApi\Token;
 class Token implements TokenInterface
 {
   
-  $token;
-  $secret;
+  protected $token;
+  protected $secret;
 
   public function getToken()
   {

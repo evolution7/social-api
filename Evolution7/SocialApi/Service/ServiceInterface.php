@@ -3,7 +3,8 @@
 namespace Evolution7\SocialApi\Service;
 
 use Evolution7\SocialApi\Config\ConfigInterface;
-use OAuth\Common\Service\Service;
+use Evolution7\SocialApi\Token\RequestToken;
+use OAuth\Common\Service\ServiceInterface as OAuthServiceInterface;
 
 interface ServiceInterface
 {
@@ -20,14 +21,14 @@ interface ServiceInterface
      *
      * @return ConfigInterface
      */
-    protected function getConfig();
+    public function getConfig();
 
     /**
-     * Create instance of Service
+     * Create instance of OAuth library Service
      *
-     * @return Service
+     * @return OAuthServiceInterface
      */
-    protected function getService();
+    public function getService();
 
     /**
      * Get OAuth request token
