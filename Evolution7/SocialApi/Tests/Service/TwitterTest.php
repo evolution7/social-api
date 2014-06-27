@@ -1,11 +1,12 @@
 <?php
 
-namespace Evolution7\SocialApi\Tests\Api;
+namespace Evolution7\SocialApi\Tests\Service;
 
-use Evolution7\SocialApi\Api\Twitter;
+use Evolution7\SocialApi\Service\Twitter;
 
 class TwitterTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
      */
@@ -32,6 +33,7 @@ class TwitterTest extends \PHPUnit_Framework_TestCase
         $twitter = new Twitter();
         $twitter->comment('id', 'type', 'message');
     }
+
     /**
      * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
      */
@@ -40,6 +42,7 @@ class TwitterTest extends \PHPUnit_Framework_TestCase
         $twitter = new Twitter();
         $twitter->message('id', 'message');
     }
+
     /**
      * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
      */
@@ -48,4 +51,5 @@ class TwitterTest extends \PHPUnit_Framework_TestCase
         $twitter = new Twitter();
         $twitter->getOriginalApi();
     }
+    
 }

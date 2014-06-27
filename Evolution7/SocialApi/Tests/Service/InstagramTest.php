@@ -1,11 +1,12 @@
 <?php
 
-namespace Evolution7\SocialApi\Tests\Api;
+namespace Evolution7\SocialApi\Tests\Service;
 
-use Evolution7\SocialApi\Api\Instagram;
+use Evolution7\SocialApi\Service\Instagram;
 
 class InstagramTest extends \PHPUnit_Framework_TestCase
 {
+
     /**
      * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
      */
@@ -32,6 +33,7 @@ class InstagramTest extends \PHPUnit_Framework_TestCase
         $instagram = new Instagram();
         $instagram->comment('id', 'type', 'message');
     }
+
     /**
      * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
      */
@@ -40,6 +42,7 @@ class InstagramTest extends \PHPUnit_Framework_TestCase
         $instagram = new Instagram();
         $instagram->message('id', 'message');
     }
+
     /**
      * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
      */
@@ -48,4 +51,5 @@ class InstagramTest extends \PHPUnit_Framework_TestCase
         $instagram = new Instagram();
         $instagram->getOriginalApi();
     }
+
 }

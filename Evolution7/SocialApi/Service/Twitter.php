@@ -1,10 +1,12 @@
 <?php
-namespace Evolution7\SocialApi\Api;
+
+namespace Evolution7\SocialApi\Service;
 
 use Evolution7\SocialApi\Exception\NotImplementedException;
 
-class Instagram implements ApiInterface
+class Twitter implements ServiceInterface
 {
+
     public function search($searchTerm)
     {
         throw new NotImplementedException();
@@ -29,4 +31,5 @@ class Instagram implements ApiInterface
     {
         throw new NotImplementedException();
     }
+
 }

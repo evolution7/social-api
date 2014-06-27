@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of the Evolution7BugsnagBundle.
+ * This file is part of the SocialApi library.
  *
  * (c) Evolution 7 <http://www.evolution7.com.au>
  *

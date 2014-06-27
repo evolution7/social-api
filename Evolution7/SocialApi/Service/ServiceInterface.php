@@ -1,8 +1,10 @@
 <?php
-namespace Evolution7\SocialApi\Api;
 
-interface ApiInterface
+namespace Evolution7\SocialApi\Service;
+
+interface ServiceInterface
 {
+
     /**
      * Search for a value through the API
      *
@@ -56,4 +58,5 @@ interface ApiInterface
      * @return \Object
      */
     public function getOriginalApi();
+    
 }

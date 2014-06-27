@@ -1,4 +1,5 @@
 <?php
+
 namespace Evolution7\SocialApi\Exception;
 
 /**
