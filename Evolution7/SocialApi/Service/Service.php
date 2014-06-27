@@ -5,7 +5,7 @@ namespace Evolution7\SocialApi\Service;
 use Evolution7\SocialApi\Config\ConfigInterface;
 use Evolution7\SocialApi\Token\RequestToken;
 use Evolution7\SocialApi\Token\AccessToken;
-use OAuth\Common\Storage\Consumer\Credentials as OAuthCredentials;
+use OAuth\Common\Consumer\Credentials as OAuthCredentials;
 use OAuth\Common\Storage\Memory as OAuthStorageMemory;
 use OAuth\Common\Service\ServiceFactory as OAuthServiceFactory;
 
