@@ -48,7 +48,7 @@ class TwitterPostTest extends \PHPUnit_Framework_TestCase
     public function testGetUser()
     {
         $post = new TwitterPost($this->getTestRaw());
-        $this->assertEquals('Evolution_7', $post->getUser()->getHandle());
+        $this->assertInstanceOf('\Evolution7\SocialApi\ApiUser\TwitterUser', $post->getUser());
     }
     
 }
