@@ -8,10 +8,30 @@ use Evolution7\SocialApi\Exception\NotImplementedException;
 class InstagramPost extends ApiItem implements ApiPostInterface
 {
 
+    public function getId()
+    {
+        throw new NotImplementedException();
+    }
+
+    public function getUrl()
+    {
+        throw new NotImplementedException();
+    }
+
     public function getBody()
     {
         throw new NotImplementedException();
     }
+
+
+
+
+
+
+
+
+
+
 
     public function getIdentifier()
     {

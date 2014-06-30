@@ -6,35 +6,34 @@ interface ApiItemInterface
 {
 
     /**
-     * Get item ID
+     * Constructor
      *
-     * @throws NotImplementedException;
-     * @throws NotSupportedByAPIException;
-     * @return string
+     * @param string $raw    - unprocessed API response
+     * @param string $format - json by default
      */
-    public function getId();
-
-    /**
-     * Get item URL
-     *
-     * @throws NotImplementedException;
-     * @throws NotSupportedByAPIException;
-     */
-    public function getUrl();
+    public function __construct($raw, $format = 'json');
 
     /**
      * Get original API response for item
      *
      * @throws NotImplementedException;
-     * @return \Object
+     * @return string
      */
     public function getRaw();
+
+    /**
+     * Get original API format for item
+     *
+     * @throws NotImplementedException;
+     * @return string
+     */
+    public function getFormat();
 
     /**
      * Get API response parsed into an array
      *
      * @throws NotImplementedException;
-     * @return string json
+     * @return array
      */
     public function getArray();
 
