@@ -4,9 +4,8 @@ namespace Evolution7\SocialApi\ApiUser;
 
 use Evolution7\SocialApi\ApiResponse\ApiResponseInterface;
 
-interface ApiUserInterface extends ApiResponseInterface 
+interface ApiUserInterface extends ApiResponseInterface
 {
-
     /**
      * Get user ID
      *
@@ -42,5 +41,4 @@ interface ApiUserInterface extends ApiResponseInterface
      * @return string
      */
     public function getName();
-
 }

@@ -6,7 +6,6 @@ use Evolution7\SocialApi\ApiPost\TwitterPost;
 
 class TwitterPostTest extends \PHPUnit_Framework_TestCase
 {
-
     private function getTestRaw()
     {
         return '{
@@ -50,5 +49,4 @@ class TwitterPostTest extends \PHPUnit_Framework_TestCase
         $post = new TwitterPost($this->getTestRaw());
         $this->assertInstanceOf('\Evolution7\SocialApi\ApiUser\TwitterUser', $post->getUser());
     }
-    
 }

@@ -4,7 +4,6 @@ namespace Evolution7\SocialApi\Config;
 
 class Config implements ConfigInterface
 {
-
     const PLATFORM_INSTAGRAM = 'instagram';
     const PLATFORM_TWITTER = 'twitter';
 
@@ -78,5 +77,4 @@ class Config implements ConfigInterface
     {
         $this->returnUrl = $returnUrl;
     }
-
 }

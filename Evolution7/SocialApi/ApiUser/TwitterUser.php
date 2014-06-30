@@ -7,7 +7,6 @@ use Evolution7\SocialApi\Exception\NotImplementedException;
 
 class TwitterUser extends ApiResponse implements ApiUserInterface
 {
-
     /**
      * {@inheritdoc}
      */
@@ -44,5 +43,4 @@ class TwitterUser extends ApiResponse implements ApiUserInterface
     {
         return $this->getArrayValue('name');
     }
-    
 }

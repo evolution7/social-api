@@ -6,7 +6,6 @@ use Evolution7\SocialApi\ApiUser\TwitterUser;
 
 class TwitterUserTest extends \PHPUnit_Framework_TestCase
 {
-
     private function getTestRaw()
     {
         return '{
@@ -39,5 +38,4 @@ class TwitterUserTest extends \PHPUnit_Framework_TestCase
         $post = new TwitterUser($this->getTestRaw());
         $this->assertEquals('Evolution 7', $post->getName());
     }
-    
 }

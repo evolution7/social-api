@@ -6,7 +6,6 @@ use Evolution7\SocialApi\Exception\NotImplementedException;
 
 class ApiResponse implements ApiResponseInterface
 {
-
     private $raw;
     private $format;
     private $array;
@@ -25,7 +24,7 @@ class ApiResponse implements ApiResponseInterface
      */
     public function getRaw()
     {
-        return $this->raw;   
+        return $this->raw;
     }
 
     /**
@@ -101,5 +100,4 @@ class ApiResponse implements ApiResponseInterface
         return $iArray;
 
     }
-
 }

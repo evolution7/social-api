@@ -8,7 +8,6 @@ use Evolution7\SocialApi\ApiUser\TwitterUser;
 
 class TwitterPost extends ApiResponse implements ApiPostInterface
 {
-
     private $user;
 
     /**
@@ -63,5 +62,4 @@ class TwitterPost extends ApiResponse implements ApiPostInterface
         }
         return $this->user;
     }
-
 }

@@ -4,7 +4,6 @@ namespace Evolution7\SocialApi\ApiResponse;
 
 interface ApiResponseInterface
 {
-
     /**
      * Constructor
      *
@@ -40,5 +39,4 @@ interface ApiResponseInterface
      * @return array
      */
     public function getArray();
-
 }

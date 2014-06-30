@@ -7,7 +7,6 @@ use Evolution7\SocialApi\Config\ConfigInterface;
 
 class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
 {
-
     private function getConfigMock($platform)
     {
         $config = $this->getMock('Evolution7\SocialApi\Config\ConfigInterface');
@@ -32,5 +31,4 @@ class ServiceFactoryTest extends \PHPUnit_Framework_TestCase
     {
         ServiceFactory::get($this->getConfigMock('notexist'));
     }
-    
 }

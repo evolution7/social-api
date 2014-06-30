@@ -4,7 +4,6 @@ namespace Evolution7\SocialApi\Config;
 
 interface ConfigInterface
 {
-
     /**
      * Constructor
      *
@@ -85,5 +84,4 @@ interface ConfigInterface
      * @param string $returnUrl
      */
     public function setReturnUrl($returnUrl);
-
 }

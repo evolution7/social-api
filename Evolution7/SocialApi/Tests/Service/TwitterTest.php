@@ -6,7 +6,6 @@ use Evolution7\SocialApi\Service\Twitter;
 
 class TwitterTest extends \PHPUnit_Framework_TestCase
 {
-
     private function getConfigMock()
     {
         $config = $this->getMock('Evolution7\SocialApi\Config\ConfigInterface');
@@ -60,5 +59,4 @@ class TwitterTest extends \PHPUnit_Framework_TestCase
         $twitter = new Twitter($this->getConfigMock());
         $twitter->getOriginalApi();
     }
-    
 }

@@ -6,7 +6,6 @@ use Evolution7\SocialApi\Exception\NotImplementedException;
 
 class Instagram extends Service implements ServiceInterface
 {
-    
     public function search($searchTerm)
     {
         throw new NotImplementedException();
@@ -31,5 +30,4 @@ class Instagram extends Service implements ServiceInterface
     {
         throw new NotImplementedException();
     }
-
 }

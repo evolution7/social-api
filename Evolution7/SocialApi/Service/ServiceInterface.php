@@ -10,7 +10,6 @@ use OAuth\Common\Service\ServiceInterface as OAuthServiceInterface;
 
 interface ServiceInterface
 {
-
     /**
      * Constructor
      *
@@ -141,5 +140,4 @@ interface ServiceInterface
      * @return \Object
      */
     //public function getOriginalApi();
-    
 }

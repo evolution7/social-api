@@ -7,7 +7,6 @@ use Evolution7\SocialApi\Exception\NotImplementedException;
 
 class InstagramUser extends ApiResponse implements ApiUserInterface
 {
-
     /**
      * {@inheritdoc}
      */
@@ -39,5 +38,4 @@ class InstagramUser extends ApiResponse implements ApiUserInterface
     {
         throw new NotImplementedException();
     }
-    
 }

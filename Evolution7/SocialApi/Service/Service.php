@@ -10,163 +10,162 @@ use Evolution7\SocialApi\Token\AccessTokenInterface;
 
 class Service implements ServiceInterface
 {
+    private $config;
+    private $accessToken;
+    private $libService;
 
-  private $config;
-  private $accessToken;
-  private $libService;
-
-  public function __construct(ConfigInterface $config, AccessTokenInterface $accessToken = null)
-  {
-    $this->setConfig($config);
-    if (!is_null($accessToken)) {
-      $this->setAccessToken($accessToken);
+    public function __construct(ConfigInterface $config, AccessTokenInterface $accessToken = null)
+    {
+        $this->setConfig($config);
+        if (!is_null($accessToken)) {
+            $this->setAccessToken($accessToken);
+        }
     }
-  }
 
-  public function getConfig()
-  {
-    return $this->config;
-  }
-
-  public function setConfig(ConfigInterface $config)
-  {
-    $this->config = $config;
-  }
-
-  public function getAccessToken()
-  {
-    return $this->accessToken;
-  }
-
-  public function setAccessToken(AccessTokenInterface $accessToken)
-  {
-
-    $this->accessToken = $accessToken;
-
-    // Get OAuth libray Service instance
-    $libService = $this->getLibService();
-
-    // Create and store Oauth library token using access token
-    $libStorage = $libService->getStorage();
-    if ($libService::OAUTH_VERSION == 1) {
-      $libToken = new \OAuth\OAuth1\Token\StdOAuth1Token();
-      $libToken->setRequestToken($accessToken->getToken());
-      $libToken->setRequestTokenSecret($accessToken->getSecret());
-      $libToken->setAccessTokenSecret($accessToken->getSecret());
-    } else {
-      $libToken = new \OAuth\OAuth2\Token\StdOAuth2Token();
+    public function getConfig()
+    {
+        return $this->config;
     }
-    $libToken->setAccessToken($accessToken->getToken());
-    $libStorage->storeAccessToken($libService->service(), $libToken);
 
-  }
+    public function setConfig(ConfigInterface $config)
+    {
+        $this->config = $config;
+    }
 
-  public function getLibService()
-  {
+    public function getAccessToken()
+    {
+        return $this->accessToken;
+    }
 
-    // Check if lib service does not exist
-    if (is_null($this->libService)) {
+    public function setAccessToken(AccessTokenInterface $accessToken)
+    {
 
-      // Get config
-      $config = $this->getConfig();
+        $this->accessToken = $accessToken;
 
-      // Build new OAuth library service instance
-      $libCredentials = new \OAuth\Common\Consumer\Credentials(
-        $config->getApiKey(),
-        $config->getApiSecret(),
-        $config->getReturnUrl()
-      );
-      $libStorage = new \OAuth\Common\Storage\Memory();
-      $libServiceFactory = new \OAuth\ServiceFactory();
-      $this->libService = $libServiceFactory->createService(
-        $config->getPlatform(),
-        $libCredentials,
-        $libStorage,
-        $config->getApiScopes()
-      );
+        // Get OAuth libray Service instance
+        $libService = $this->getLibService();
+
+        // Create and store Oauth library token using access token
+        $libStorage = $libService->getStorage();
+        if ($libService::OAUTH_VERSION == 1) {
+            $libToken = new \OAuth\OAuth1\Token\StdOAuth1Token();
+            $libToken->setRequestToken($accessToken->getToken());
+            $libToken->setRequestTokenSecret($accessToken->getSecret());
+            $libToken->setAccessTokenSecret($accessToken->getSecret());
+        } else {
+            $libToken = new \OAuth\OAuth2\Token\StdOAuth2Token();
+        }
+        $libToken->setAccessToken($accessToken->getToken());
+        $libStorage->storeAccessToken($libService->service(), $libToken);
 
     }
 
-    return $this->libService;
+    public function getLibService()
+    {
 
-  }
+        // Check if lib service does not exist
+        if (is_null($this->libService)) {
 
-  public function getAuthRequest()
-  {
+            // Get config
+            $config = $this->getConfig();
 
-    // Get OAuth libray Service instance
-    $libService = $this->getLibService();
+            // Build new OAuth library service instance
+            $libCredentials = new \OAuth\Common\Consumer\Credentials(
+                $config->getApiKey(),
+                $config->getApiSecret(),
+                $config->getReturnUrl()
+            );
+            $libStorage = new \OAuth\Common\Storage\Memory();
+            $libServiceFactory = new \OAuth\ServiceFactory();
+            $this->libService = $libServiceFactory->createService(
+                $config->getPlatform(),
+                $libCredentials,
+                $libStorage,
+                $config->getApiScopes()
+            );
 
-    // Check OAuth version
-    if ($libService::OAUTH_VERSION == 1) {
+        }
 
-      // Generate request token via service provider API
-      $libToken = $libService->requestRequestToken();
-      $requestToken = $libToken->getRequestToken();
-      $requestSecret = $libToken->getRequestTokenSecret();
-
-      // Generate url
-      $url = $libService->getAuthorizationUri(array('oauth_token' => $requestToken));
-
-    } else {
-      
-      // Generate url
-      $url = $libService->getAuthorizationUri();
-      $requestToken = null;
-      $requestSecret = null;
+        return $this->libService;
 
     }
 
-    // Build RequestToken and return
-    return new RequestToken($requestToken, $requestSecret, $url->__toString());
+    public function getAuthRequest()
+    {
 
-  }
+        // Get OAuth libray Service instance
+        $libService = $this->getLibService();
 
-  public function getAuthAccess(RequestTokenInterface $requestToken, $token, $verifier, $code)
-  {
+        // Check OAuth version
+        if ($libService::OAUTH_VERSION == 1) {
 
-    // Get OAuth libray Service instance
-    $libService = $this->getLibService();
+            // Generate request token via service provider API
+            $libToken = $libService->requestRequestToken();
+            $requestToken = $libToken->getRequestToken();
+            $requestSecret = $libToken->getRequestTokenSecret();
 
-    // Check OAuth version
-    if ($libService::OAUTH_VERSION == 1) {
+            // Generate url
+            $url = $libService->getAuthorizationUri(array('oauth_token' => $requestToken));
 
-      // Check token paramter is valid
-      if (!empty($token) && $token != $requestToken->getToken()) {
-        throw new \Exception('OAuth token parameter is invalid.');
-      }
+        } else {
+            
+            // Generate url
+            $url = $libService->getAuthorizationUri();
+            $requestToken = null;
+            $requestSecret = null;
 
-      // Create and store Oauth library token using request token
-      $libStorage = $libService->getStorage();
-      $libToken = new \OAuth\OAuth1\Token\StdOAuth1Token();
-      $libToken->setRequestToken($requestToken->getToken());
-      $libToken->setAccessToken($requestToken->getToken());
-      $libToken->setRequestTokenSecret($requestToken->getSecret());
-      $libToken->setAccessTokenSecret($requestToken->getSecret());
-      $libStorage->storeAccessToken($libService->service(), $libToken);
+        }
 
-      // Build access token from token returned by service provider API
-      $oauthAccessToken = $libService->requestAccessToken($token, $verifier);
-      $accessToken = new AccessToken(
-        $oauthAccessToken->getAccessToken(), $oauthAccessToken->getAccessTokenSecret()
-      );
+        // Build RequestToken and return
+        return new RequestToken($requestToken, $requestSecret, $url->__toString());
 
-    } else {
-
-      // Check code parameter is valid
-      if (empty($code)) {
-        throw new \Exception('OAuth code parameter is invalid.');
-      }
-
-      // Build access token from token returned by service provider API
-      $oauthAccessToken = $libService->requestAccessToken($code);
-      $accessToken = new AccessToken($oauthAccessToken->getAccessToken(), null);
-      
     }
 
-    // Build AccessToken and return
-    return $accessToken;
+    public function getAuthAccess(RequestTokenInterface $requestToken, $token, $verifier, $code)
+    {
 
-  }
-  
+        // Get OAuth libray Service instance
+        $libService = $this->getLibService();
+
+        // Check OAuth version
+        if ($libService::OAUTH_VERSION == 1) {
+
+            // Check token paramter is valid
+            if (!empty($token) && $token != $requestToken->getToken()) {
+                throw new \Exception('OAuth token parameter is invalid.');
+            }
+
+            // Create and store Oauth library token using request token
+            $libStorage = $libService->getStorage();
+            $libToken = new \OAuth\OAuth1\Token\StdOAuth1Token();
+            $libToken->setRequestToken($requestToken->getToken());
+            $libToken->setAccessToken($requestToken->getToken());
+            $libToken->setRequestTokenSecret($requestToken->getSecret());
+            $libToken->setAccessTokenSecret($requestToken->getSecret());
+            $libStorage->storeAccessToken($libService->service(), $libToken);
+
+            // Build access token from token returned by service provider API
+            $oauthAccessToken = $libService->requestAccessToken($token, $verifier);
+            $accessToken = new AccessToken(
+                $oauthAccessToken->getAccessToken(),
+                $oauthAccessToken->getAccessTokenSecret()
+            );
+
+        } else {
+
+            // Check code parameter is valid
+            if (empty($code)) {
+                throw new \Exception('OAuth code parameter is invalid.');
+            }
+
+            // Build access token from token returned by service provider API
+            $oauthAccessToken = $libService->requestAccessToken($code);
+            $accessToken = new AccessToken($oauthAccessToken->getAccessToken(), null);
+            
+        }
+
+        // Build AccessToken and return
+        return $accessToken;
+
+    }
 }

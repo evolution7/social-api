@@ -4,9 +4,8 @@ namespace Evolution7\SocialApi\ApiPost;
 
 use Evolution7\SocialApi\ApiResponse\ApiResponseInterface;
 
-interface ApiPostInterface extends ApiResponseInterface 
+interface ApiPostInterface extends ApiResponseInterface
 {
-
     /**
      * Get post ID
      *
@@ -51,5 +50,4 @@ interface ApiPostInterface extends ApiResponseInterface
      * @return ApiUserInterface
      */
     public function getUser();
-
 }
