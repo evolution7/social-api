@@ -30,6 +30,12 @@ class TwitterPostTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Say hello to my little friend', $post->getBody());
     }
 
+    public function testGetUrl()
+    {
+        $post = new TwitterPost($this->getTestRaw());
+        $this->assertEquals('https://twitter.com/Evolution_7/status/1234567890', $post->getUrl());
+    }
+
     public function testGetUsername()
     {
         $post = new TwitterPost($this->getTestRaw());
