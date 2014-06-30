@@ -8,17 +8,26 @@ use Evolution7\SocialApi\Exception\NotImplementedException;
 class TwitterPost extends ApiItem implements ApiPostInterface
 {
 
+    /**
+     * {@inheritdoc}
+     */
     public function getId()
     {
-        $array = $this->getArray();
-        return array_key_exists('id_str', $array) ? trim($array['id_str']) : null;
+        return $this->getArrayValue('id_str');
     }
 
-    public function getUrl()
-    {
-        throw new NotImplementedException();
-    }
+    /**
+     * {@inheritdoc}
+     */
     public function getBody()
+    {
+        return $this->getArrayValue('text');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUrl()
     {
         throw new NotImplementedException();
     }

@@ -7,10 +7,24 @@ use Evolution7\SocialApi\ApiPost\TwitterPost;
 class TwitterPostTest extends \PHPUnit_Framework_TestCase
 {
 
+    private function getTestRaw()
+    {
+        return '{
+            "id_str": "1234567890",
+            "text": "Say hello to my little friend"
+        }';
+    }
+
     public function testGetId()
     {
-        $post = new TwitterPost('{"id_str":"210462857140252672"}');
-        $this->assertEquals('210462857140252672', $post->getId());
+        $post = new TwitterPost($this->getTestRaw());
+        $this->assertEquals('1234567890', $post->getId());
+    }
+
+    public function testGetBody()
+    {
+        $post = new TwitterPost($this->getTestRaw());
+        $this->assertEquals('Say hello to my little friend', $post->getBody());
     }
 
     /**
