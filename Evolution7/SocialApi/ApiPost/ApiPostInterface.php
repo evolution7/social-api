@@ -10,8 +10,8 @@ interface ApiPostInterface extends ApiItemInterface
     /**
      * Get post ID
      *
-     * @throws NotImplementedException;
      * @throws NotSupportedByAPIException;
+     *
      * @return string
      */
     public function getId();
@@ -19,16 +19,17 @@ interface ApiPostInterface extends ApiItemInterface
     /**
      * Get post URL
      *
-     * @throws NotImplementedException;
      * @throws NotSupportedByAPIException;
+     *
+     * @return string
      */
     public function getUrl();
 
     /**
      * Get post body
      *
-     * @throws NotImplementedException;
      * @throws NotSupportedByAPIException;
+     *
      * @return string
      */
     public function getBody();

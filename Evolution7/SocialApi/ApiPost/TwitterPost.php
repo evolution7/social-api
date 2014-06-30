@@ -29,7 +29,21 @@ class TwitterPost extends ApiItem implements ApiPostInterface
      */
     public function getUrl()
     {
-        throw new NotImplementedException();
+        $id = $this->getId();
+        $username = $this->getUsername();
+        if (!is_null($id)) {
+            return 'https://twitter.com/' . $username . '/status/' . $id;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUsername()
+    {
+        return $this->getArrayValue(array('user', 'screen_name'));
     }
 
 

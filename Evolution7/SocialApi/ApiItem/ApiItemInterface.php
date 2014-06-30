@@ -16,7 +16,8 @@ interface ApiItemInterface
     /**
      * Get original API response for item
      *
-     * @throws NotImplementedException;
+     * @throws NotSupportedByAPIException
+     *
      * @return string
      */
     public function getRaw();
@@ -24,7 +25,8 @@ interface ApiItemInterface
     /**
      * Get original API format for item
      *
-     * @throws NotImplementedException;
+     * @throws NotSupportedByAPIException
+     *
      * @return string
      */
     public function getFormat();
@@ -32,7 +34,9 @@ interface ApiItemInterface
     /**
      * Get API response parsed into an array
      *
-     * @throws NotImplementedException;
+     * @throws NotSupportedByAPIException
+     * @throws NotImplementedException
+     *
      * @return array
      */
     public function getArray();

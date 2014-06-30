@@ -11,7 +11,10 @@ class TwitterPostTest extends \PHPUnit_Framework_TestCase
     {
         return '{
             "id_str": "1234567890",
-            "text": "Say hello to my little friend"
+            "text": "Say hello to my little friend",
+            "user": {
+                "screen_name": "Evolution_7"
+            }
         }';
     }
 
@@ -25,6 +28,12 @@ class TwitterPostTest extends \PHPUnit_Framework_TestCase
     {
         $post = new TwitterPost($this->getTestRaw());
         $this->assertEquals('Say hello to my little friend', $post->getBody());
+    }
+
+    public function testGetUsername()
+    {
+        $post = new TwitterPost($this->getTestRaw());
+        $this->assertEquals('Evolution_7', $post->getUsername());
     }
 
     /**
