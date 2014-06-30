@@ -10,7 +10,7 @@ interface ApiPostInterface extends ApiItemInterface
     /**
      * Get post ID
      *
-     * @throws NotSupportedByAPIException;
+     * @throws NotSupportedByAPIException
      *
      * @return string
      */
@@ -19,7 +19,7 @@ interface ApiPostInterface extends ApiItemInterface
     /**
      * Get post URL
      *
-     * @throws NotSupportedByAPIException;
+     * @throws NotSupportedByAPIException
      *
      * @return string
      */
@@ -28,10 +28,28 @@ interface ApiPostInterface extends ApiItemInterface
     /**
      * Get post body
      *
-     * @throws NotSupportedByAPIException;
+     * @throws NotSupportedByAPIException
      *
      * @return string
      */
     public function getBody();
+
+    /**
+     * Get username of poster
+     *
+     * @throws NotSupportedByAPIException
+     *
+     * @return string
+     */
+    public function getUsername();
+
+    /**
+     * Get post media URL
+     *
+     * @throws NotSupportedByAPIException
+     *
+     * @return string
+     */
+    public function getMediaUrl();
 
 }

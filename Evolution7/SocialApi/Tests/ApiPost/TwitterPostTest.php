@@ -14,6 +14,9 @@ class TwitterPostTest extends \PHPUnit_Framework_TestCase
             "text": "Say hello to my little friend",
             "user": {
                 "screen_name": "Evolution_7"
+            },
+            "media": {
+                "media_url": "http:\/\/pbs.twimg.com\/media\/A7EiDWcCYAAZT1D.jpg"
             }
         }';
     }
@@ -41,59 +44,11 @@ class TwitterPostTest extends \PHPUnit_Framework_TestCase
         $post = new TwitterPost($this->getTestRaw());
         $this->assertEquals('Evolution_7', $post->getUsername());
     }
-
-    /**
-     * @expectedException Evolution7\SocialApi\Exception\NotImplementedException
-     */
-    /* public function testGetIdentifier()
+    
+    public function testGetMediaUrl()
     {
-        $twitter = new TwitterPost();
-        $twitter->getIdentifier();
-    } */
-
-    /**
-     * @expectedException Evolution7\SocialApi\Exception\NotImplementedException
-     */
-    /* public function testGetUri()
-    {
-        $twitter = new TwitterPost();
-        $twitter->getUri();
-    } */
-
-    /**
-     * @expectedException Evolution7\SocialApi\Exception\NotImplementedException
-     */
-    /* public function testGetMediaUri()
-    {
-        $twitter = new TwitterPost();
-        $twitter->getMediaUri();
-    } */
-
-    /**
-     * @expectedException Evolution7\SocialApi\Exception\NotImplementedException
-     */
-    /* public function testComment()
-    {
-        $twitter = new TwitterPost();
-        $twitter->comment('message');
-    } */
-
-    /**
-     * @expectedException Evolution7\SocialApi\Exception\NotImplementedException
-     */
-    /* public function testGetOriginalObject()
-    {
-        $twitter = new TwitterPost();
-        $twitter->getOriginalObject();
-    } */
-
-    /**
-     * @expectedException Evolution7\SocialApi\Exception\NotImplementedException
-     */
-    /* public function testGetOriginalJSON()
-    {
-        $twitter = new TwitterPost();
-        $twitter->getOriginalJSON();
-    } */
+        $post = new TwitterPost($this->getTestRaw());
+        $this->assertEquals('http://pbs.twimg.com/media/A7EiDWcCYAAZT1D.jpg', $post->getMediaUrl());
+    }
     
 }

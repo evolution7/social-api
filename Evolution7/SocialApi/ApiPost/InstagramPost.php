@@ -32,44 +32,20 @@ class InstagramPost extends ApiItem implements ApiPostInterface
         throw new NotImplementedException();
     }
 
-
-
-
-
-
-
-
-
-
-
-    public function getIdentifier()
+    /**
+     * {@inheritdoc}
+     */
+    public function getUsername()
     {
         throw new NotImplementedException();
     }
 
-    public function getUri()
+    /**
+     * {@inheritdoc}
+     */
+    public function getMediaUrl()
     {
         throw new NotImplementedException();
     }
 
-    public function getMediaUri()
-    {
-        throw new NotImplementedException();
-    }
-
-    public function comment($message)
-    {
-        throw new NotImplementedException();
-    }
-
-    public function getOriginalObject()
-    {
-        throw new NotImplementedException();
-    }
-
-    public function getOriginalJSON()
-    {
-        throw new NotImplementedException();
-    }
-    
 }

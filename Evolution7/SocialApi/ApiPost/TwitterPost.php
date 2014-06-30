@@ -46,42 +46,14 @@ class TwitterPost extends ApiItem implements ApiPostInterface
         return $this->getArrayValue(array('user', 'screen_name'));
     }
 
-
-
-
-
-
-
-
-
-    public function getIdentifier()
+    /**
+     * {@inheritdoc}
+     *
+     * @see https://dev.twitter.com/docs/entities#tweets
+     */
+    public function getMediaUrl()
     {
-        throw new NotImplementedException();
-    }
-
-    public function getUri()
-    {
-        throw new NotImplementedException();
-    }
-
-    public function getMediaUri()
-    {
-        throw new NotImplementedException();
-    }
-
-    public function comment($message)
-    {
-        throw new NotImplementedException();
-    }
-
-    public function getOriginalObject()
-    {
-        throw new NotImplementedException();
-    }
-
-    public function getOriginalJSON()
-    {
-        throw new NotImplementedException();
+        return $this->getArrayValue(array('media', 'media_url'));
     }
     
 }
