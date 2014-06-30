@@ -4,23 +4,18 @@ namespace Evolution7\SocialApi\ApiPost;
 
 use Evolution7\SocialApi\ApiResponse\ApiResponse;
 use Evolution7\SocialApi\Exception\NotImplementedException;
+use Evolution7\SocialApi\ApiUser\InstagramUser;
 
 class InstagramPost extends ApiResponse implements ApiPostInterface
 {
+    private $user;
+
     /**
      * {@inheritdoc}
      */
     public function getId()
     {
-        throw new NotImplementedException();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUrl()
-    {
-        throw new NotImplementedException();
+        return $this->getArrayValue(array('data', 'id'));
     }
 
     /**
@@ -28,7 +23,15 @@ class InstagramPost extends ApiResponse implements ApiPostInterface
      */
     public function getBody()
     {
-        throw new NotImplementedException();
+        return $this->getArrayValue(array('data', 'caption'));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUrl()
+    {
+        return $this->getArrayValue(array('data', 'link'));
     }
 
     /**
@@ -36,14 +39,19 @@ class InstagramPost extends ApiResponse implements ApiPostInterface
      */
     public function getMediaUrl()
     {
-        throw new NotImplementedException();
+        return $this->getArrayValue(array('data', 'images', 'standard_resolution', 'url'));
     }
-
+    
     /**
      * {@inheritdoc}
+     *
+     * @return InstagramUser
      */
     public function getUser()
     {
-        throw new NotImplementedException();
+        if (is_null($this->user)) {
+            $this->user = new InstagramUser('{"data":'.$this->getRawSubset('user').'}');
+        }
+        return $this->user;
     }
 }

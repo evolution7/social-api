@@ -12,7 +12,6 @@ use Evolution7\SocialApi\Service as Services;
  */
 class ServiceFactory
 {
-
     /**
      * Retrieve an ApiService instance
      *
@@ -37,5 +36,4 @@ class ServiceFactory
                 );
         }
     }
-
 }
