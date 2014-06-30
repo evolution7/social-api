@@ -50,7 +50,7 @@ class InstagramPost extends ApiResponse implements ApiPostInterface
     public function getUser()
     {
         if (is_null($this->user)) {
-            $this->user = new InstagramUser('{"data":'.$this->getRawSubset('user').'}');
+            $this->user = new InstagramUser('{"data":'.$this->getRawSubset(array('data', 'user')).'}');
         }
         return $this->user;
     }

@@ -12,7 +12,7 @@ class InstagramUser extends ApiResponse implements ApiUserInterface
      */
     public function getId()
     {
-        throw new NotImplementedException();
+        return $this->getArrayValue(array('data', 'id'));
     }
 
     /**
@@ -20,7 +20,12 @@ class InstagramUser extends ApiResponse implements ApiUserInterface
      */
     public function getUrl()
     {
-        throw new NotImplementedException();
+        $handle = $this->getHandle();
+        if (!is_null($handle)) {
+            return 'http://instagram.com/' . $handle;
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -28,7 +33,7 @@ class InstagramUser extends ApiResponse implements ApiUserInterface
      */
     public function getHandle()
     {
-        throw new NotImplementedException();
+        return $this->getArrayValue(array('data', 'username'));
     }
 
     /**
@@ -36,6 +41,6 @@ class InstagramUser extends ApiResponse implements ApiUserInterface
      */
     public function getName()
     {
-        throw new NotImplementedException();
+        return $this->getArrayValue(array('data', 'full_name'));
     }
 }
