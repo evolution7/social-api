@@ -28,7 +28,7 @@ interface ServiceInterface
      *
      * @return OAuthServiceInterface
      */
-    public function getService();
+    public function getLibService();
 
     /**
      * Get OAuth request token
@@ -47,13 +47,13 @@ interface ServiceInterface
      * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
      *
      * @param RequestToken $requestToken
-     * @param string       $oauthToken      - e.g. $_GET['oauth_token']
-     * @param string       $oauthVerifier   - e.g. $_GET['oauth_verifier']
+     * @param string       $token           - e.g. $_GET['oauth_token']
+     * @param string       $verifier        - e.g. $_GET['oauth_verifier']
      * @param string       $code            - e.g. $_GET['code']
      *
      * @return AccessToken
      */
-    public function getAuthAccess(RequestToken $requestToken, $oauthToken, $oauthVerifier, $code);
+    public function getAuthAccess(RequestToken $requestToken, $token, $verifier, $code);
 
 
 
