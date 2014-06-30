@@ -8,12 +8,15 @@ use Evolution7\SocialApi\Token\RequestTokenInterface;
 use Evolution7\SocialApi\Token\AccessToken;
 use Evolution7\SocialApi\Token\AccessTokenInterface;
 
-class Service implements ServiceInterface
+abstract class Service implements ServiceInterface
 {
     private $config;
     private $accessToken;
     private $libService;
 
+    /**
+     * {@inheritdoc}
+     */
     public function __construct(ConfigInterface $config, AccessTokenInterface $accessToken = null)
     {
         $this->setConfig($config);
@@ -22,21 +25,33 @@ class Service implements ServiceInterface
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getConfig()
     {
         return $this->config;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setConfig(ConfigInterface $config)
     {
         $this->config = $config;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getAccessToken()
     {
         return $this->accessToken;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setAccessToken(AccessTokenInterface $accessToken)
     {
 
@@ -60,6 +75,9 @@ class Service implements ServiceInterface
 
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getLibService()
     {
 
@@ -90,6 +108,9 @@ class Service implements ServiceInterface
 
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getAuthRequest()
     {
 
@@ -121,6 +142,9 @@ class Service implements ServiceInterface
 
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getAuthAccess(RequestTokenInterface $requestToken, $token, $verifier, $code)
     {
 

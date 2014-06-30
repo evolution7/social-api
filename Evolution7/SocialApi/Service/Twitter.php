@@ -6,28 +6,37 @@ use Evolution7\SocialApi\Exception\NotImplementedException;
 
 class Twitter extends Service implements ServiceInterface
 {
-    public function search($searchTerm)
+    /**
+     * {@inheritdoc}
+     */
+    public function search(QueryInterface $query)
     {
-        throw new NotImplementedException();
-    }
-
-    public function searchForTagSince($tag, \DateTime $since)
-    {
-        throw new NotImplementedException();
-    }
-
-    public function comment($objectId, $objectType, $message)
-    {
-        throw new NotImplementedException();
-    }
-
-    public function message($userId, $message)
-    {
-        throw new NotImplementedException();
-    }
-
-    public function getOriginalApi()
-    {
-        throw new NotImplementedException();
+        // Get library service
+        $libService = $this->getLibService();
+        // Build search value
+        $hashtags = implode(' ', $query->getHashtags());
+        // Build request url
+        $requestUrl = 'search/tweets.json?';
+        $requestUrl .= 'q=' . urlencode($hashtags);
+        // Search api
+        $responseRaw = $libService->request($requestUrl);
+        $responseArray = json_decode($responseRaw, true);
+        // Create return array
+        $return = array();
+        // Check if value returned
+        if (array_key_exists('value', $responseArray)) {
+            // Check if statuses exist
+            if (array_key_exists('statuses', $responseArray['value'])) {
+                // Check if at least one statuses exists
+                if (count($responseArray['value']['statuses']) > 0) {
+                    // Loop statuses
+                    foreach ($responseArray['value']['statuses'] as $status) {
+                        // Create new TwitterPost object and add to return array
+                        $return[] = new TwitterPost(json_encode($status));
+                    }
+                }
+            }
+        }
+        return $return;
     }
 }
