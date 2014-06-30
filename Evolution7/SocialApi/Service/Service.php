@@ -97,18 +97,16 @@ class Service implements ServiceInterface
     // Get OAuth libray Service instance
     $libService = $this->getLibService();
 
-    // Check if OAuth1
-    if (method_exists($libService, 'requestRequestToken')) {
+    // Check OAuth version
+    if ($libService::OAUTH_VERSION == 1) {
 
       // Generate request token via service provider API
-      $token = $libService->requestRequestToken(); // OAuth V1 Only
-      $requestToken = $token->getRequestToken();
-      $requestSecret = $token->getRequestTokenSecret();
+      $libToken = $libService->requestRequestToken();
+      $requestToken = $libToken->getRequestToken();
+      $requestSecret = $libToken->getRequestTokenSecret();
 
       // Generate url
-      $url = $libService->getAuthorizationUri(
-        array('oauth_token' => $requestToken) // OAuth V1 Only
-        );  
+      $url = $libService->getAuthorizationUri(array('oauth_token' => $requestToken));
 
     } else {
       
@@ -140,12 +138,12 @@ class Service implements ServiceInterface
 
       // Create and store Oauth library token using request token
       $libStorage = $libService->getStorage();
-      $libRequestToken = new \OAuth\OAuth1\Token\StdOAuth1Token();
-      $libRequestToken->setRequestToken($requestToken->getToken());
-      $libRequestToken->setAccessToken($requestToken->getToken());
-      $libRequestToken->setRequestTokenSecret($requestToken->getSecret());
-      $libRequestToken->setAccessTokenSecret($requestToken->getSecret());
-      $libStorage->storeAccessToken($libService->service(), $libRequestToken);
+      $libToken = new \OAuth\OAuth1\Token\StdOAuth1Token();
+      $libToken->setRequestToken($requestToken->getToken());
+      $libToken->setAccessToken($requestToken->getToken());
+      $libToken->setRequestTokenSecret($requestToken->getSecret());
+      $libToken->setAccessTokenSecret($requestToken->getSecret());
+      $libStorage->storeAccessToken($libService->service(), $libToken);
 
       // Build access token from token returned by service provider API
       $oauthAccessToken = $libService->requestAccessToken($token, $verifier);
@@ -153,7 +151,7 @@ class Service implements ServiceInterface
         $oauthAccessToken->getAccessToken(), $oauthAccessToken->getAccessTokenSecret()
       );
 
-    } else if ($libService::OAUTH_VERSION == 2) {
+    } else {
 
       // Check code parameter is valid
       if (empty($code)) {
@@ -164,11 +162,6 @@ class Service implements ServiceInterface
       $oauthAccessToken = $libService->requestAccessToken($code);
       $accessToken = new AccessToken($oauthAccessToken->getAccessToken(), null);
       
-    } else {
-
-      // Not supported
-      throw new \Exception("Only OAuth version 1 and 2 are supported.");
-
     }
 
     // Build AccessToken and return
