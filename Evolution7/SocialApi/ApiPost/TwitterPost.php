@@ -2,11 +2,14 @@
 
 namespace Evolution7\SocialApi\ApiPost;
 
-use Evolution7\SocialApi\ApiItem\ApiItem;
+use Evolution7\SocialApi\ApiResponse\ApiResponse;
 use Evolution7\SocialApi\Exception\NotImplementedException;
+use Evolution7\SocialApi\ApiUser\TwitterUser;
 
-class TwitterPost extends ApiItem implements ApiPostInterface
+class TwitterPost extends ApiResponse implements ApiPostInterface
 {
+
+    private $user;
 
     /**
      * {@inheritdoc}
@@ -30,20 +33,12 @@ class TwitterPost extends ApiItem implements ApiPostInterface
     public function getUrl()
     {
         $id = $this->getId();
-        $username = $this->getUsername();
-        if (!is_null($id)) {
-            return 'https://twitter.com/' . $username . '/status/' . $id;
+        $user = $this->getUser();
+        if (!is_null($id) && !is_null($user)) {
+            return 'https://twitter.com/' . $user->getHandle() . '/status/' . $id;
         } else {
             return null;
         }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUsername()
-    {
-        return $this->getArrayValue(array('user', 'screen_name'));
     }
 
     /**
@@ -56,4 +51,17 @@ class TwitterPost extends ApiItem implements ApiPostInterface
         return $this->getArrayValue(array('media', 'media_url'));
     }
     
+    /**
+     * {@inheritdoc}
+     *
+     * @return TwitterUser
+     */
+    public function getUser()
+    {
+        if (is_null($this->user)) {
+            $this->user = new TwitterUser($this->getRawSubset('user'));
+        }
+        return $this->user;
+    }
+
 }

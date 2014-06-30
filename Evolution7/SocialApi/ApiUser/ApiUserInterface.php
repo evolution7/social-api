@@ -1,14 +1,14 @@
 <?php
 
-namespace Evolution7\SocialApi\ApiPost;
+namespace Evolution7\SocialApi\ApiUser;
 
 use Evolution7\SocialApi\ApiResponse\ApiResponseInterface;
 
-interface ApiPostInterface extends ApiResponseInterface 
+interface ApiUserInterface extends ApiResponseInterface 
 {
 
     /**
-     * Get post ID
+     * Get user ID
      *
      * @throws NotSupportedByAPIException
      *
@@ -17,7 +17,7 @@ interface ApiPostInterface extends ApiResponseInterface
     public function getId();
 
     /**
-     * Get post URL
+     * Get user URL
      *
      * @throws NotSupportedByAPIException
      *
@@ -26,30 +26,21 @@ interface ApiPostInterface extends ApiResponseInterface
     public function getUrl();
 
     /**
-     * Get post body
+     * Get user handle/screen name
      *
      * @throws NotSupportedByAPIException
      *
      * @return string
      */
-    public function getBody();
+    public function getHandle();
 
     /**
-     * Get post media URL
+     * Get user name
      *
      * @throws NotSupportedByAPIException
      *
      * @return string
      */
-    public function getMediaUrl();
-
-    /**
-     * Get user
-     *
-     * @throws NotSupportedByAPIException
-     *
-     * @return ApiUserInterface
-     */
-    public function getUser();
+    public function getName();
 
 }

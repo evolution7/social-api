@@ -1,10 +1,10 @@
 <?php
 
-namespace Evolution7\SocialApi\ApiItem;
+namespace Evolution7\SocialApi\ApiResponse;
 
 use Evolution7\SocialApi\Exception\NotImplementedException;
 
-class ApiItem implements ApiItemInterface
+class ApiResponse implements ApiResponseInterface
 {
 
     private $raw;
@@ -26,6 +26,24 @@ class ApiItem implements ApiItemInterface
     public function getRaw()
     {
         return $this->raw;   
+    }
+
+    /**
+     * Get field value as raw
+     */
+    protected function getRawSubset($key)
+    {
+        
+        // Get array value
+        $arrayValue = $this->getArrayValue($key);
+
+        // Return encoded as json
+        if (!is_null($arrayValue)) {
+            return json_encode($arrayValue);
+        } else {
+            return null;
+        }
+
     }
 
     /**

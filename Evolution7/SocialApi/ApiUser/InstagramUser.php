@@ -1,11 +1,11 @@
 <?php
 
-namespace Evolution7\SocialApi\ApiPost;
+namespace Evolution7\SocialApi\ApiUser;
 
 use Evolution7\SocialApi\ApiResponse\ApiResponse;
 use Evolution7\SocialApi\Exception\NotImplementedException;
 
-class InstagramPost extends ApiResponse implements ApiPostInterface
+class InstagramUser extends ApiResponse implements ApiUserInterface
 {
 
     /**
@@ -27,7 +27,7 @@ class InstagramPost extends ApiResponse implements ApiPostInterface
     /**
      * {@inheritdoc}
      */
-    public function getBody()
+    public function getHandle()
     {
         throw new NotImplementedException();
     }
@@ -35,17 +35,9 @@ class InstagramPost extends ApiResponse implements ApiPostInterface
     /**
      * {@inheritdoc}
      */
-    public function getMediaUrl()
+    public function getName()
     {
         throw new NotImplementedException();
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUser()
-    {
-        throw new NotImplementedException();
-    }
-
+    
 }

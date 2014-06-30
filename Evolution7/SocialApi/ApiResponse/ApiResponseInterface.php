@@ -1,8 +1,8 @@
 <?php
 
-namespace Evolution7\SocialApi\ApiItem;
+namespace Evolution7\SocialApi\ApiResponse;
 
-interface ApiItemInterface
+interface ApiResponseInterface
 {
 
     /**
