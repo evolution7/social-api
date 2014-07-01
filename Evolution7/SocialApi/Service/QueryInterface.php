@@ -41,7 +41,7 @@ interface QueryInterface
      *
      * @return array
      */
-    public function getMedia($state);
+    public function getMedia();
 
     /**
      * Filter by media e.g. images
