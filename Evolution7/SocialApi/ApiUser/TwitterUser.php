@@ -2,19 +2,11 @@
 
 namespace Evolution7\SocialApi\ApiUser;
 
-use Evolution7\SocialApi\ApiResponse\ApiResponse;
+use Evolution7\SocialApi\ApiResponse\TwitterResponse;
 use Evolution7\SocialApi\Exception\NotImplementedException;
 
-class TwitterUser extends ApiResponse implements ApiUserInterface
+class TwitterUser extends TwitterResponse implements ApiUserInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getId()
-    {
-        return $this->getArrayValue('id_str');
-    }
-
     /**
      * {@inheritdoc}
      */

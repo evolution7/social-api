@@ -2,21 +2,13 @@
 
 namespace Evolution7\SocialApi\ApiPost;
 
-use Evolution7\SocialApi\ApiResponse\ApiResponse;
+use Evolution7\SocialApi\ApiResponse\TwitterResponse;
 use Evolution7\SocialApi\Exception\NotImplementedException;
 use Evolution7\SocialApi\ApiUser\TwitterUser;
 
-class TwitterPost extends ApiResponse implements ApiPostInterface
+class TwitterPost extends TwitterResponse implements ApiPostInterface
 {
     private $user;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getId()
-    {
-        return $this->getArrayValue('id_str');
-    }
 
     /**
      * {@inheritdoc}
