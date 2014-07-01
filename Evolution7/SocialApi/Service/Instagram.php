@@ -23,6 +23,17 @@ class Instagram extends Service implements ServiceInterface
     /**
      * {@inheritdoc}
      */
+    public function getPostById($id)
+    {
+        $libService = $this->getLibService();
+        $requestUrl = 'media/' . $id;
+        $responseRaw = $libService->request($requestUrl);
+        return new InstagramPost($responseRaw);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function search(QueryInterface $query)
     {
         // Get library service

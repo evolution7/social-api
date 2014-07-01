@@ -90,6 +90,18 @@ interface ServiceInterface
     public function getCurrentUser();
 
     /**
+     * Get post by ID
+     *
+     * @param int $id
+     *
+     * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
+     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
+     *
+     * @return ApiPostInterface[]
+     */
+    public function getPostById($id);
+
+    /**
      * Search API using Query object
      *
      * @param QueryInterface $query

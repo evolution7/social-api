@@ -23,6 +23,17 @@ class Twitter extends Service implements ServiceInterface
     /**
      * {@inheritdoc}
      */
+    public function getPostById($id)
+    {
+        $libService = $this->getLibService();
+        $requestUrl = 'statuses/show/' . $id . '.json';
+        $responseRaw = $libService->request($requestUrl);
+        return new TwitterPost($responseRaw);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function search(QueryInterface $query)
     {
         // Get library service
