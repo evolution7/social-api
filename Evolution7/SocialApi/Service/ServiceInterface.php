@@ -79,6 +79,16 @@ interface ServiceInterface
     public function getAuthAccess(RequestTokenInterface $requestToken, $token, $verifier, $code);
 
     /**
+     * Get current authenticated user
+     *
+     * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
+     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
+     *
+     * @return ApiUserInterface[]
+     */
+    public function getCurrentUser();
+
+    /**
      * Search API using Query object
      *
      * @param QueryInterface $query

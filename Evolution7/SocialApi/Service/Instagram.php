@@ -3,10 +3,22 @@
 namespace Evolution7\SocialApi\Service;
 
 use Evolution7\SocialApi\Exception\NotImplementedException;
+use Evolution7\SocialApi\ApiUser\InstagramUser;
 use Evolution7\SocialApi\ApiPost\InstagramPost;
 
 class Instagram extends Service implements ServiceInterface
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function getCurrentUser()
+    {
+        $libService = $this->getLibService();
+        $requestUrl = 'users/self';
+        $responseRaw = $libService->request($requestUrl);
+        return new InstagramUser($responseRaw);
+    }
+
     /**
      * {@inheritdoc}
      */

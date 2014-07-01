@@ -3,10 +3,22 @@
 namespace Evolution7\SocialApi\Service;
 
 use Evolution7\SocialApi\Exception\NotImplementedException;
+use Evolution7\SocialApi\ApiUser\TwitterUser;
 use Evolution7\SocialApi\ApiPost\TwitterPost;
 
 class Twitter extends Service implements ServiceInterface
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function getCurrentUser()
+    {
+        $libService = $this->getLibService();
+        $requestUrl = 'account/verify_credentials.json';
+        $responseRaw = $libService->request($requestUrl);
+        return new TwitterUser($responseRaw);
+    }
+
     /**
      * {@inheritdoc}
      */
