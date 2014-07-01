@@ -16,6 +16,15 @@ interface ApiPostInterface extends ApiResponseInterface
     public function getId();
 
     /**
+     * Get post created date
+     *
+     * @throws NotSupportedByAPIException
+     *
+     * @return DateTime
+     */
+    public function getCreated();
+
+    /**
      * Get post URL
      *
      * @throws NotSupportedByAPIException

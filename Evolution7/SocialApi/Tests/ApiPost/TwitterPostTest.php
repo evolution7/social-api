@@ -10,6 +10,7 @@ class TwitterPostTest extends \PHPUnit_Framework_TestCase
     {
         return '{
             "id_str": "1234567890",
+            "created_at": "Tue Jul 01 05:17:45 +0000 2014",
             "text": "Say hello to my little friend",
             "user": {
                 "screen_name": "Evolution_7"
@@ -24,6 +25,14 @@ class TwitterPostTest extends \PHPUnit_Framework_TestCase
     {
         $post = new TwitterPost($this->getTestRaw());
         $this->assertEquals('1234567890', $post->getId());
+    }
+
+    public function testGetCreated()
+    {
+        $date = new \DateTime('Tue Jul 01 05:17:45 +0000 2014');
+        $post = new TwitterPost($this->getTestRaw());
+        $this->assertInstanceOf('DateTime', $post->getCreated());
+        $this->assertEquals($date->format(DATE_ISO8601), $post->getCreated()->format(DATE_ISO8601));
     }
 
     public function testGetBody()

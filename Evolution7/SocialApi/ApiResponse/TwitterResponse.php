@@ -13,4 +13,13 @@ class TwitterResponse extends ApiResponse
     {
         return $this->getArrayValue('id_str');
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCreated()
+    {
+        $value = $this->getArrayValue('created_at');
+        return !is_null($value) ? new \DateTime($value) : null;
+    }
 }

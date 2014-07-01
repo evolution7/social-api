@@ -21,6 +21,15 @@ class InstagramPost extends InstagramResponse implements ApiPostInterface
     /**
      * {@inheritdoc}
      */
+    public function getCreated()
+    {
+        $value = $this->getArrayValue($this->hasRootElement() ? array('data', 'created_time') : 'created_time');
+        return !is_null($value) ? new \DateTime(date(DATE_ISO8601, $value)) : null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getBody()
     {
         if ($this->hasRootElement()) {
