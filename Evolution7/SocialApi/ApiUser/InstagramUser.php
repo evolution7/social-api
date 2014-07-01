@@ -2,17 +2,17 @@
 
 namespace Evolution7\SocialApi\ApiUser;
 
-use Evolution7\SocialApi\ApiResponse\ApiResponse;
+use Evolution7\SocialApi\ApiResponse\InstagramResponse;
 use Evolution7\SocialApi\Exception\NotImplementedException;
 
-class InstagramUser extends ApiResponse implements ApiUserInterface
+class InstagramUser extends InstagramResponse implements ApiUserInterface
 {
     /**
      * {@inheritdoc}
      */
     public function getId()
     {
-        return $this->getArrayValue(array('data', 'id'));
+        return $this->getArrayValue($this->hasRootElement() ? array('data', 'id') : 'id');
     }
 
     /**
@@ -33,7 +33,7 @@ class InstagramUser extends ApiResponse implements ApiUserInterface
      */
     public function getHandle()
     {
-        return $this->getArrayValue(array('data', 'username'));
+        return $this->getArrayValue($this->hasRootElement() ? array('data', 'username') : 'username');
     }
 
     /**
@@ -41,6 +41,6 @@ class InstagramUser extends ApiResponse implements ApiUserInterface
      */
     public function getName()
     {
-        return $this->getArrayValue(array('data', 'full_name'));
+        return $this->getArrayValue($this->hasRootElement() ? array('data', 'full_name') : 'full_name');
     }
 }
