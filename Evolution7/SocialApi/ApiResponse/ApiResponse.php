@@ -15,6 +15,7 @@ class ApiResponse implements ApiResponseInterface
      */
     public function __construct($raw, $format = 'json')
     {
+        // Save data
         $this->raw = $raw;
         $this->format = $format;
     }
@@ -97,7 +98,11 @@ class ApiResponse implements ApiResponseInterface
         }
 
         // Return
-        return $iArray;
+        if (!is_null($iArray) && !is_array($iArray)) {
+            return mb_convert_encoding($iArray, 'ISO-8859-15', 'auto');
+        } else {
+            return $iArray;
+        }
 
     }
 }
