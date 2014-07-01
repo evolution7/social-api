@@ -90,7 +90,7 @@ class ApiResponse implements ApiResponseInterface
         $dimensions = count($key);
         for ($iArray = $array, $i = 0; $i < $dimensions; ++$i) {
             $iKey = $key[$i];
-            if (!array_key_exists($iKey, $iArray)) {
+            if (!is_array($iArray) || !array_key_exists($iKey, $iArray)) {
                 return null;
             }
             $iArray = $iArray[$iKey];
