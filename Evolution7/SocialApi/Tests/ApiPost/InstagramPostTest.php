@@ -104,10 +104,10 @@ class InstagramPostTest extends \PHPUnit_Framework_TestCase
 
     public function testGetCreated()
     {
-        $date = new \DateTime('Sat, 17 Jul 2010 14:29:43 +1000');
+        $date = new \DateTime('Sat, 17 Jul 2010 14:29:43 +0000');
         $post = new InstagramPost($this->getTestRaw());
         $this->assertInstanceOf('DateTime', $post->getCreated());
-        $this->assertEquals($date->format(DATE_ISO8601), $post->getCreated()->format(DATE_ISO8601));
+        $this->assertEquals($date->format('Y-m-d H:i:s'), $post->getCreated()->format('Y-m-d H:i:s'));
     }
 
     public function testGetBody()

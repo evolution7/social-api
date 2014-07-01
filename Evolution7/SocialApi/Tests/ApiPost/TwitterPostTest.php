@@ -32,7 +32,7 @@ class TwitterPostTest extends \PHPUnit_Framework_TestCase
         $date = new \DateTime('Tue Jul 01 05:17:45 +0000 2014');
         $post = new TwitterPost($this->getTestRaw());
         $this->assertInstanceOf('DateTime', $post->getCreated());
-        $this->assertEquals($date->format(DATE_ISO8601), $post->getCreated()->format(DATE_ISO8601));
+        $this->assertEquals($date->format('Y-m-d H:i:s'), $post->getCreated()->format('Y-m-d H:i:s'));
     }
 
     public function testGetBody()
