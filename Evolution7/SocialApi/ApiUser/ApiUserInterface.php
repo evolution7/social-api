@@ -41,4 +41,13 @@ interface ApiUserInterface extends ApiResponseInterface
      * @return string
      */
     public function getName();
+
+    /**
+     * Get user profile image URL
+     *
+     * @throws NotSupportedByAPIException
+     *
+     * @return string
+     */
+    public function getImageUrl();
 }

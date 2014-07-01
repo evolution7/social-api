@@ -49,4 +49,28 @@ class Twitter extends Service implements ServiceInterface
         }
         return $return;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function comment(ApiPostInterface $post, $comment)
+    {
+        // Get post user
+        $postUser = $post->getUser();
+        // Check comment contains @mention
+        if (strpos($comment, '@'.$postUser->getHandle()) === false) {
+            // Invalid comment
+            throw new Exception('Comment invalid - must @mention original post user');
+        }
+        // Get library service
+        $libService = $this->getLibService();
+        // Build request url
+        $postData = array(
+            'status' => $comment,
+            'in_reply_to_status_id' => $post->getId()
+            );
+        $requestUrl = 'statuses/update.json?' . http_build_query($postData);
+        // Call api
+        $responseRaw = $libService->request($requestUrl, 'POST');
+    }
 }

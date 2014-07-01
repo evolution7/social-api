@@ -99,4 +99,17 @@ interface ServiceInterface
      * @return ApiResponseInterface[]
      */
     public function search(QueryInterface $query);
+
+    /**
+     * Commont on ApiPostInterface
+     *
+     * @param ApiPostInterface $post
+     * @param string           $comment
+     *
+     * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
+     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
+     *
+     * @return ApiResponseInterface[]
+     */
+    public function comment(ApiPostInterface $post, $comment);
 }

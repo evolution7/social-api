@@ -50,4 +50,12 @@ class Instagram extends Service implements ServiceInterface
         }
         return $return;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function comment(ApiPostInterface $post, $comment)
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -43,4 +43,12 @@ class TwitterUser extends ApiResponse implements ApiUserInterface
     {
         return $this->getArrayValue('name');
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getImageUrl()
+    {
+        return $this->getArrayValue('profile_image_url_https');
+    }
 }

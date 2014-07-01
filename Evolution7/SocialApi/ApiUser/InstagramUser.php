@@ -43,4 +43,12 @@ class InstagramUser extends InstagramResponse implements ApiUserInterface
     {
         return $this->getArrayValue($this->hasRootElement() ? array('data', 'full_name') : 'full_name');
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getImageUrl()
+    {
+        return $this->getArrayValue($this->hasRootElement() ? array('data', 'profile_picture') : 'profile_picture');
+    }
 }
