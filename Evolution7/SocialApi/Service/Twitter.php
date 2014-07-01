@@ -5,6 +5,7 @@ namespace Evolution7\SocialApi\Service;
 use Evolution7\SocialApi\Exception\NotImplementedException;
 use Evolution7\SocialApi\ApiUser\TwitterUser;
 use Evolution7\SocialApi\ApiPost\TwitterPost;
+use Evolution7\SocialApi\ApiPost\ApiPostInterface;
 
 class Twitter extends Service implements ServiceInterface
 {

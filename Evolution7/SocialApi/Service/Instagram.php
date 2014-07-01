@@ -5,6 +5,7 @@ namespace Evolution7\SocialApi\Service;
 use Evolution7\SocialApi\Exception\NotImplementedException;
 use Evolution7\SocialApi\ApiUser\InstagramUser;
 use Evolution7\SocialApi\ApiPost\InstagramPost;
+use Evolution7\SocialApi\ApiPost\ApiPostInterface;
 
 class Instagram extends Service implements ServiceInterface
 {

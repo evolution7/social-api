@@ -2,7 +2,9 @@
 
 namespace Evolution7\SocialApi\Tests\Service;
 
+use Evolution7\SocialApi\Service\Query;
 use Evolution7\SocialApi\Service\Instagram;
+use Evolution7\SocialApi\ApiPost\InstagramPost;
 
 class InstagramTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,25 +14,25 @@ class InstagramTest extends \PHPUnit_Framework_TestCase
         $config->expects($this->any())
                ->method('getPlatform')
                ->will($this->returnValue('instagram'));
+        $config->expects($this->any())
+               ->method('getApiKey')
+               ->will($this->returnValue('instagram'));
+        $config->expects($this->any())
+               ->method('getApiSecret')
+               ->will($this->returnValue('instagram'));
+        $config->expects($this->any())
+               ->method('getApiScopes')
+               ->will($this->returnValue(array()));
         return $config;
     }
 
     /**
-     * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
+     * @expectedException \OAuth\Common\Storage\Exception\TokenNotFoundException
      */
     public function testSearch()
     {
         $instagram = new Instagram($this->getConfigMock());
-        $instagram->search('testvalue');
-    }
-
-    /**
-     * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
-     */
-    public function testSearchForTagSince()
-    {
-        $instagram = new Instagram($this->getConfigMock());
-        $instagram->searchForTagSince('testvalue', new \DateTime());
+        $instagram->search(Query::create());
     }
 
     /**
@@ -39,24 +41,6 @@ class InstagramTest extends \PHPUnit_Framework_TestCase
     public function testComment()
     {
         $instagram = new Instagram($this->getConfigMock());
-        $instagram->comment('id', 'type', 'message');
-    }
-
-    /**
-     * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
-     */
-    public function testMessage()
-    {
-        $instagram = new Instagram($this->getConfigMock());
-        $instagram->message('id', 'message');
-    }
-
-    /**
-     * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
-     */
-    public function testGetOriginalApi()
-    {
-        $instagram = new Instagram($this->getConfigMock());
-        $instagram->getOriginalApi();
+        $instagram->comment(new InstagramPost(''), 'test');
     }
 }

@@ -2,7 +2,9 @@
 
 namespace Evolution7\SocialApi\Tests\Service;
 
+use Evolution7\SocialApi\Service\Query;
 use Evolution7\SocialApi\Service\Twitter;
+use Evolution7\SocialApi\ApiPost\TwitterPost;
 
 class TwitterTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,51 +14,30 @@ class TwitterTest extends \PHPUnit_Framework_TestCase
         $config->expects($this->any())
                ->method('getPlatform')
                ->will($this->returnValue('twitter'));
+        $config->expects($this->any())
+               ->method('getApiKey')
+               ->will($this->returnValue('twitter'));
+        $config->expects($this->any())
+               ->method('getApiSecret')
+               ->will($this->returnValue('twitter'));
+        $config->expects($this->any())
+               ->method('getApiScopes')
+               ->will($this->returnValue(array()));
         return $config;
     }
 
     /**
-     * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
+     * @expectedException \OAuth\Common\Storage\Exception\TokenNotFoundException
      */
     public function testSearch()
     {
         $twitter = new Twitter($this->getConfigMock());
-        $twitter->search('testvalue');
+        $twitter->search(Query::create());
     }
 
-    /**
-     * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
-     */
-    public function testSearchForTagSince()
-    {
-        $twitter = new Twitter($this->getConfigMock());
-        $twitter->searchForTagSince('testvalue', new \DateTime());
-    }
-
-    /**
-     * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
-     */
     public function testComment()
     {
-        $twitter = new Twitter($this->getConfigMock());
-        $twitter->comment('id', 'type', 'message');
-    }
-
-    /**
-     * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
-     */
-    public function testMessage()
-    {
-        $twitter = new Twitter($this->getConfigMock());
-        $twitter->message('id', 'message');
-    }
-
-    /**
-     * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
-     */
-    public function testGetOriginalApi()
-    {
-        $twitter = new Twitter($this->getConfigMock());
-        $twitter->getOriginalApi();
+        //$twitter = new Twitter($this->getConfigMock());
+        //$twitter->comment(new TwitterPost(''), 'test');
     }
 }

@@ -23,7 +23,13 @@ class InstagramPost extends InstagramResponse implements ApiPostInterface
      */
     public function getBody()
     {
-        return $this->getArrayValue($this->hasRootElement() ? array('data', 'caption', 'text') : array('caption', 'text'));
+        if ($this->hasRootElement()) {
+            $caption = $this->getArrayValue(array('data', 'caption', 'text'));
+            return is_null($caption) ? $this->getArrayValue(array('data', 'caption')) : $caption;
+        } else {
+            $caption = $this->getArrayValue(array('caption', 'text'));
+            return is_null($caption) ? $this->getArrayValue(array('caption')) : $caption;
+        }
     }
 
     /**

@@ -6,6 +6,7 @@ use Evolution7\SocialApi\Config\ConfigInterface;
 use Evolution7\SocialApi\Token\RequestToken;
 use Evolution7\SocialApi\Token\RequestTokenInterface;
 use Evolution7\SocialApi\Token\AccessTokenInterface;
+use Evolution7\SocialApi\ApiPost\ApiPostInterface;
 use OAuth\Common\Service\ServiceInterface as OAuthServiceInterface;
 
 interface ServiceInterface
