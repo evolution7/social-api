@@ -99,7 +99,7 @@ class Query implements QueryInterface
     /**
      * {@inheritdoc}
      */
-    public function limitFrom($id, DateTime $date)
+    public function limitFrom($id, \DateTime $date)
     {
         $this->fromId = $id;
         $this->fromDate = $date;
@@ -125,7 +125,7 @@ class Query implements QueryInterface
     /**
      * {@inheritdoc}
      */
-    public function limitTo($id, DateTime $date)
+    public function limitTo($id, \DateTime $date)
     {
         $this->toId = $id;
         $this->toDate = $date;

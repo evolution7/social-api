@@ -77,7 +77,7 @@ interface QueryInterface
      *
      * @return QueryInterface
      */
-    public function limitFrom($id, DateTime $date);
+    public function limitFrom($id, \DateTime $date);
 
     /**
      * Get to id to filter by
@@ -101,7 +101,7 @@ interface QueryInterface
      *
      * @return QueryInterface
      */
-    public function limitTo($id, DateTime $date);
+    public function limitTo($id, \DateTime $date);
 
     /**
      * Get number results to limit to
