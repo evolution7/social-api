@@ -12,11 +12,11 @@ interface QueryInterface
     public static function create();
 
     /**
-     * Get hashtags to filter by
+     * Get hashtag to filter by
      *
-     * @return array
+     * @return string
      */
-    public function getHashtags();
+    public function getHashtag();
 
     /**
      * Filter by hashtag
@@ -28,15 +28,6 @@ interface QueryInterface
     public function filterByHashtag($hashtag);
 
     /**
-     * Filter by hashtags
-     *
-     * @param array $hashtags
-     *
-     * @return QueryInterface
-     */
-    public function filterByHashtags($hashtags);
-
-    /**
      * Get media to filter by
      *
      * @return array
@@ -44,77 +35,73 @@ interface QueryInterface
     public function getMedia();
 
     /**
-     * Filter by media e.g. images
-     *
-     * @param array $media
+     * Only get posts with images
      *
      * @return QueryInterface
      */
-    public function filterByMedia($media);
+    public function filterImages();
+
+    /**
+     * Only get posts with videos
+     *
+     * @return QueryInterface
+     */
+    public function filterVideos();
+
+    /**
+     * Only get posts with images or videos
+     *
+     * @return QueryInterface
+     */
+    public function filterImagesAndVideos();
 
     /**
      * Get from id to filter by
      *
      * @return DateTime
      */
-    public function getIdFrom();
-
-    /**
-     * Set from id to filter by
-     *
-     * @param int $id
-     *
-     * @return QueryInterface
-     */
-    public function limitIdFrom($id);
-
-    /**
-     * Get to id to filter by
-     *
-     * @return int
-     */
-    public function getIdTo();
-
-    /**
-     * Set to id to filter by
-     *
-     * @param int $id
-     *
-     * @return QueryInterface
-     */
-    public function limitIdTo($id);
+    public function getFromId();
 
     /**
      * Get from date to filter by
      *
      * @return DateTime
      */
-    public function getDateFrom();
+    public function getFromDate();
 
     /**
-     * Set from date to filter by
+     * Set from id/date to filter by
      *
+     * @param int      $id
      * @param DateTime $date
      *
      * @return QueryInterface
      */
-    public function limitDateFrom(DateTime $date);
+    public function limitFrom($id, DateTime $date);
+
+    /**
+     * Get to id to filter by
+     *
+     * @return int
+     */
+    public function getToId();
 
     /**
      * Get to date to filter by
      *
      * @return DateTime
      */
-    public function getDateTo();
+    public function getToDate();
 
     /**
-     * Set to date to filter by
+     * Set from id/date to filter by
      *
+     * @param int      $id
      * @param DateTime $date
      *
      * @return QueryInterface
      */
-    public function limitDateTo(DateTime $date);
+    public function limitTo($id, DateTime $date);
 
     /**
      * Get number results to limit to

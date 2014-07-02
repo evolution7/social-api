@@ -4,12 +4,12 @@ namespace Evolution7\SocialApi\Service;
 
 class Query implements QueryInterface
 {
-    private $hashtags;
+    private $hashtag;
     private $media;
-    private $idFrom;
-    private $idTo;
-    private $dateFrom;
-    private $dateTo;
+    private $fromId;
+    private $fromDate;
+    private $toId;
+    private $toDate;
     private $numResults;
 
     /**
@@ -31,9 +31,9 @@ class Query implements QueryInterface
     /**
      * {@inheritdoc}
      */
-    public function getHashtags()
+    public function getHashtag()
     {
-        return array_keys($this->hashtags);
+        return $this->hashtag;
     }
 
     /**
@@ -41,15 +41,7 @@ class Query implements QueryInterface
      */
     public function filterByHashtag($hashtag)
     {
-        return $this->filterByHashtags(array($hashtag));
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function filterByHashtags($hashtags)
-    {
-        $this->hashtags = array_merge($this->hashtags, array_flip($hashtags));
+        $this->hashtag = $hashtag;
         return $this;
     }
 
@@ -58,83 +50,90 @@ class Query implements QueryInterface
      */
     public function getMedia()
     {
-        return array_keys($this->media);
+        if (!is_null($this->media) && is_array($this->media)) {
+            return array_keys($this->media);    
+        } else {
+            return null;
+        }
     }
 
     /**
      * {@inheritdoc}
      */
-    public function filterByMedia($media)
+    public function filterImages()
     {
-        $this->media = array_merge($this->media, array_flip($hashtags));
+        $this->media['images'] = true;
         return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getIdFrom()
+    public function filterVideos()
     {
-        return $this->idFrom;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function limitIdFrom($id)
-    {
-        $this->idFrom = $id;
+        $this->media['videos'] = true;
         return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getIdTo()
+    public function filterImagesAndVideos()
     {
-        return $this->idTo;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function limitIdTo($id)
-    {
-        $this->idTo = $id;
+        $this->filterImages();
+        $this->filterVideos();
         return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getDateFrom()
+    public function getFromId()
     {
-        return $this->dateFrom;
+        return $this->fromId;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function limitDateFrom(DateTime $date)
+    public function getFromDate()
     {
-        $this->dateFrom = $date;
+        return $this->fromDate;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function limitFrom($id, DateTime $date)
+    {
+        $this->fromId = $id;
+        $this->fromDate = $date;
         return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getDateTo()
+    public function getToId()
     {
-        return $this->dateTo;
+        return $this->toId;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function limitDateTo(DateTime $date)
+    public function getToDate()
     {
-        $this->dateTo = $date;
+        return $this->toDate;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function limitTo($id, DateTime $date)
+    {
+        $this->toId = $id;
+        $this->toDate = $date;
         return $this;
     }
 
@@ -143,7 +142,7 @@ class Query implements QueryInterface
      */
     public function getNumResults()
     {
-        return $this->dateFrom;
+        return $this->numResults;
     }
 
     /**

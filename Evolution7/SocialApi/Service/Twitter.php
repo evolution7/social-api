@@ -38,11 +38,41 @@ class Twitter extends Service implements ServiceInterface
     {
         // Get library service
         $libService = $this->getLibService();
+        // Get query data
+        $qHashtag = $query->getHashtag();
+        $qMedia = $query->getMedia();
+        $qFromId = $query->getFromId();
+        $qToId = $query->getToId();
+        $qNumResults = $query->getNumResults();
         // Build search value
-        $hashtags = implode(' ', $query->getHashtags());
+        $filters = array();
+        if (!is_null($qHashtag)) {
+            $filters[] = '#'.$qHashtag;
+        }
+        if (!is_null($qMedia)) {
+            if (in_array('images', $qMedia)) {
+                $filters[] = 'filter:images';
+            }
+            if (in_array('videos', $qMedia)) {
+                $filters[] = 'filter:videos';
+            }
+        }
+        // Build request params
+        $requestParams = array('include_entities' => 'true');
+        if (count($filters) > 0) {
+            $requestParams['q'] = implode(' ', $filters);
+        }
+        if (!empty($qFromId)) {
+            $requestParams['since_id'] = $qFromId;
+        }
+        if (!empty($qFromId)) {
+            $requestParams['max_id'] = $qFromId;
+        }
+        if (!empty($qNumResults)) {
+            $requestParams['count'] = $qNumResults;
+        }
         // Build request url
-        $requestUrl = 'search/tweets.json?';
-        $requestUrl .= 'q=' . urlencode($hashtags);
+        $requestUrl = 'search/tweets.json?' . http_build_query($requestParams);
         // Search api
         $responseRaw = $libService->request($requestUrl);
         $responseArray = json_decode($responseRaw, true);

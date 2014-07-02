@@ -38,11 +38,11 @@ class Instagram extends Service implements ServiceInterface
     {
         // Get library service
         $libService = $this->getLibService();
-        // Build search value
-        $hashtags = implode(' ', $query->getHashtags());
+        // Get query values
+        $qHashtag = $query->getHashtag();
         // Build request url
         $requestUrl = 'tags/';
-        $requestUrl .= urlencode($hashtags);
+        $requestUrl .= urlencode($qHashtag);
         $requestUrl .= '/media/recent';
         // Search api
         $responseRaw = $libService->request($requestUrl);
