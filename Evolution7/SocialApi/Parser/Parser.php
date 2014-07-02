@@ -44,8 +44,7 @@ abstract class Parser
     public function getFirstUser()
     {
         if (is_array($this->users) && count($this->users) > 0) {
-            reset($this->users);
-            return current($this->users);
+            return reset($this->users);
         } else {
             return null;
         }
@@ -59,7 +58,6 @@ abstract class Parser
     public function getLastUser()
     {
         if (is_array($this->users) && count($this->users) > 0) {
-            reset($this->users);
             return end($this->users);
         } else {
             return null;
@@ -84,8 +82,7 @@ abstract class Parser
     public function getFirstPost()
     {
         if (is_array($this->posts) && count($this->posts) > 0) {
-            reset($this->posts);
-            return current($this->posts);
+            return reset($this->posts);
         } else {
             return null;
         }
@@ -99,7 +96,6 @@ abstract class Parser
     public function getLastPost()
     {
         if (is_array($this->posts) && count($this->posts) > 0) {
-            reset($this->posts);
             return end($this->posts);
         } else {
             return null;
