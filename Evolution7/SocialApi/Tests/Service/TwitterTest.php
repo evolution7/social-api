@@ -4,7 +4,6 @@ namespace Evolution7\SocialApi\Tests\Service;
 
 use Evolution7\SocialApi\Service\Query;
 use Evolution7\SocialApi\Service\Twitter;
-use Evolution7\SocialApi\ApiPost\TwitterPost;
 
 class TwitterTest extends \PHPUnit_Framework_TestCase
 {

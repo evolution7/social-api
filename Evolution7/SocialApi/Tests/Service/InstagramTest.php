@@ -4,7 +4,6 @@ namespace Evolution7\SocialApi\Tests\Service;
 
 use Evolution7\SocialApi\Service\Query;
 use Evolution7\SocialApi\Service\Instagram;
-use Evolution7\SocialApi\ApiPost\InstagramPost;
 
 class InstagramTest extends \PHPUnit_Framework_TestCase
 {
@@ -35,12 +34,9 @@ class InstagramTest extends \PHPUnit_Framework_TestCase
         $instagram->search(Query::create());
     }
 
-    /**
-     * @expectedException \Evolution7\SocialApi\Exception\NotImplementedException
-     */
     public function testComment()
     {
         $instagram = new Instagram($this->getConfigMock());
-        $instagram->comment(new InstagramPost(''), 'test');
+        //$instagram->comment(new InstagramPost(''), 'test');
     }
 }
