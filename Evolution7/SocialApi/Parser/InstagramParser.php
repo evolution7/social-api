@@ -32,11 +32,11 @@ class InstagramParser extends Parser
         // Check pagination
         if (array_key_exists('pagination', $responseArray)) {
             // Check pagination id
-            if (array_key_exists('next_max_id', $responseArray['pagination'])) {
+            if (array_key_exists('min_tag_id', $responseArray['pagination'])) {
                 // Iterate over posts
                 foreach ($this->posts as $post) {
                     // Save pagination id
-                    $post->setPaginationId($responseArray['pagination']['next_max_id']);
+                    $post->setPaginationId($responseArray['pagination']['min_tag_id']);
                 }
             }
         }
