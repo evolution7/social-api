@@ -38,12 +38,46 @@ class Instagram extends Service implements ServiceInterface
     {
         // Get library service
         $libService = $this->getLibService();
-        // Get query values
+        // Get query data
         $qHashtag = $query->getHashtag();
+        $qMedia = $query->getMedia();
+        $qFromId = $query->getFromId();
+        $qFromDate = $query->getFromDate();
+        $qToId = $query->getToId();
+        $qToDate = $query->getToDate();
+        $qNumResults = $query->getNumResults();
+        // Build request params
+        $requestParams = array();
+        if (empty($qHashtag)) {
+            if (!empty($qFromDate)) {
+                $requestParams['min_timestamp'] = $qFromDate->format('U');
+            }
+            if (!empty($qToDate)) {
+                $requestParams['max_timestamp'] = $qToDate->format('U');
+            }
+        } else {
+            if (!empty($qFromId)) {
+                $requestParams['min_tag_id'] = $qFromId;
+            }
+            if (!empty($qToId)) {
+                $requestParams['max_tag_id'] = $qToId;
+            }
+            if (!empty($qNumResults)) {
+                $requestParams['count'] = $qNumResults;
+            }
+        }
         // Build request url
-        $requestUrl = 'tags/';
-        $requestUrl .= urlencode($qHashtag);
-        $requestUrl .= '/media/recent';
+        if (empty($qHashtag)) {
+            $requestUrl = 'media/search?';
+        } else {
+            $requestUrl = 'tags/' . urlencode($qHashtag) . '/media/recent?';
+        }
+        $requestUrl .= http_build_query(
+            $requestParams,
+            null,
+            '&',
+            PHP_QUERY_RFC3986
+        );
         // Search api
         $responseRaw = $libService->request($requestUrl);
         $responseArray = json_decode($responseRaw, true);

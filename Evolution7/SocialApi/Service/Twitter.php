@@ -65,8 +65,8 @@ class Twitter extends Service implements ServiceInterface
         if (!empty($qFromId)) {
             $requestParams['since_id'] = $qFromId;
         }
-        if (!empty($qFromId)) {
-            $requestParams['max_id'] = $qFromId;
+        if (!empty($qToId)) {
+            $requestParams['max_id'] = $qToId;
         }
         if (!empty($qNumResults)) {
             $requestParams['count'] = $qNumResults;
