@@ -95,11 +95,7 @@ class Response implements ResponseInterface
         }
 
         // Return
-        if (!is_null($iArray) && !is_array($iArray)) {
-            return mb_convert_encoding($iArray, 'ISO-8859-15', 'auto');
-        } else {
-            return $iArray;
-        }
+        return $iArray;
 
     }
 }
