@@ -1,6 +1,6 @@
 <?php
 
-namespace \Evolution7\SocialApi\Parser;
+namespace Evolution7\SocialApi\Parser;
 
 use \Evolution7\SocialApi\Response\ResponseInterface;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace \Evolution7\SocialApi\Entity;
+namespace Evolution7\SocialApi\Entity;
 
 use Evolution7\SocialApi\Config\Config;
 
@@ -32,8 +32,10 @@ abstract class Base
 
     /**
      * Get platform
+     *
+     * @return string
      */
-    final public function getPlatform($platform)
+    final public function getPlatform()
     {
         return $this->platform;
     }

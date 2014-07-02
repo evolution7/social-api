@@ -2,7 +2,7 @@
 
 namespace Evolution7\SocialApi\Service;
 
-use Evolution7\SocialApi\ApiPost\ApiPostInterface;
+use Evolution7\SocialApi\Entity\Post;
 
 class Query implements QueryInterface
 {
@@ -83,7 +83,7 @@ class Query implements QueryInterface
     /**
      * {@inheritdoc}
      */
-    public function limitFrom(ApiPostInterface $from)
+    public function limitFrom(Post $from)
     {
         $this->from = $from;
         return $this;
@@ -100,7 +100,7 @@ class Query implements QueryInterface
     /**
      * {@inheritdoc}
      */
-    public function limitTo(ApiPostInterface $to)
+    public function limitTo(Post $to)
     {
         $this->to = $to;
         return $this;

@@ -5,6 +5,7 @@ namespace Evolution7\SocialApi\Service;
 use Evolution7\SocialApi\Service\QueryInterface;
 use Evolution7\SocialApi\Entity\User;
 use Evolution7\SocialApi\Entity\Post;
+use Evolution7\SocialApi\Response\Response;
 use Evolution7\SocialApi\Parser\InstagramParser;
 use Evolution7\SocialApi\Exception\NotImplementedException;
 
@@ -43,42 +44,35 @@ class Instagram extends Service implements ServiceInterface
     {
         // Get library service
         $libService = $this->getLibService();
-        // Get query data
-        $qHashtag = $query->getHashtag();
-        $qMedia = $query->getMedia();
-        $qFromId = $query->getFromId();
-        $qFromDate = $query->getFromDate();
-        $qToId = $query->getToId();
-        $qToDate = $query->getToDate();
-        $qNumResults = $query->getNumResults();
         // Build request params
         $requestParams = array();
-        if (empty($qHashtag)) {
-            if (!empty($qFromDate)) {
-                $requestParams['min_timestamp'] = $qFromDate->format('U');
-            }
-            if (!empty($qToDate)) {
-                $requestParams['max_timestamp'] = $qToDate->format('U');
-            }
+        if (is_null($query->getHashtag())) {
+            // TODO
+            // if (!empty($qFromDate)) {
+            //     $requestParams['min_timestamp'] = $qFromDate->format('U');
+            // }
+            // if (!empty($qToDate)) {
+            //     $requestParams['max_timestamp'] = $qToDate->format('U');
+            // }
         } else {
-            if (!empty($qFromId)) {
+            if (!is_null($query->getFrom())) {
                 // Return media after this max ID
-                $requestParams['max_tag_id'] = $qFromId;
+                $requestParams['max_tag_id'] = $query->getFrom()->getId();
             }
-            if (!empty($qToId)) {
+            if (!is_null($query->getTo())) {
                 // Return media before this min ID
-                $requestParams['min_tag_id'] = $qToId;
+                $requestParams['min_tag_id'] = $query->getTo()->getId();
             }
-            if (!empty($qNumResults)) {
-                $requestParams['count'] = $qNumResults;
+            if (!is_null($query->getNumResults())) {
+                $requestParams['count'] = $query->getNumResults();
             }
         }
         // Build request url
-        if (empty($qHashtag)) {
+        if (is_null($query->getHashtag())) {
             $requestUrl = 'media/search?';
             $parseMethod = 'parseMediaSearch';
         } else {
-            $requestUrl = 'tags/' . urlencode($qHashtag) . '/media/recent?';
+            $requestUrl = 'tags/' . urlencode($query->getHashtag()) . '/media/recent?';
             $parseMethod = 'parseTagsMediaRecent';
         }
         $requestUrl .= http_build_query(
@@ -98,7 +92,7 @@ class Instagram extends Service implements ServiceInterface
     /**
      * {@inheritdoc}
      */
-    public function comment(ApiPostInterface $post, $comment)
+    public function comment(Post $post, $comment)
     {
         throw new NotImplementedException();
     }

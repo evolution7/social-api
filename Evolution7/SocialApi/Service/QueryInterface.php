@@ -2,7 +2,7 @@
 
 namespace Evolution7\SocialApi\Service;
 
-use Evolution7\SocialApi\ApiPost\ApiPostInterface;
+use Evolution7\SocialApi\Entity\Post;
 
 interface QueryInterface
 {
@@ -60,34 +60,34 @@ interface QueryInterface
     /**
      * Get from date to filter by
      *
-     * @return ApiPostInterface
+     * @return Post
      */
     public function getFrom();
 
     /**
      * Set from id/date to filter by
      *
-     * @param ApiPostInterface $post
+     * @param Post $post
      *
      * @return QueryInterface
      */
-    public function limitFrom(ApiPostInterface $post);
+    public function limitFrom(Post $post);
 
     /**
      * Get to date to filter by
      *
-     * @return ApiPostInterface
+     * @return Post
      */
     public function getTo();
 
     /**
      * Set from id/date to filter by
      *
-     * @param ApiPostInterface $post
+     * @param Post $post
      *
      * @return QueryInterface
      */
-    public function limitTo(ApiPostInterface $post);
+    public function limitTo(Post $post);
 
     /**
      * Get number results to limit to

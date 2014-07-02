@@ -1,7 +1,8 @@
 <?php
 
-namespace \Evolution7\SocialApi\Parser;
+namespace Evolution7\SocialApi\Parser;
 
+use \Evolution7\SocialApi\Config\Config;
 use \Evolution7\SocialApi\Entity\User;
 use \Evolution7\SocialApi\Entity\Post;
 
@@ -69,6 +70,7 @@ class TwitterParser extends Parser
     {
         // Create User
         $user = new User();
+        $user->setPlatform(Config::PLATFORM_TWITTER);
         $user->setId($array['id_str']);
         $user->setHandle($array['screen_name']);
         $user->setName($array['name']);
@@ -97,6 +99,7 @@ class TwitterParser extends Parser
         }
         // Create Post
         $post = new Post();
+        $post->setPlatform(Config::PLATFORM_TWITTER);
         if (!is_null($user)) {
             $post->setUser($user);
         }

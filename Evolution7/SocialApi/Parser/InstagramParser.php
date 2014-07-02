@@ -1,6 +1,10 @@
 <?php
 
-namespace \Evolution7\SocialApi\Parser;
+namespace Evolution7\SocialApi\Parser;
+
+use \Evolution7\SocialApi\Config\Config;
+use \Evolution7\SocialApi\Entity\User;
+use \Evolution7\SocialApi\Entity\Post;
 
 /**
  * Instagram API parser
@@ -15,13 +19,13 @@ class InstagramParser extends Parser
         // Get response array
         $responseArray = $this->response->getArray();
         // Check if data exists
-        if (array_key_exists('data', $responseArray)) {
+        if (is_array($responseArray) && array_key_exists('data', $responseArray)) {
             // Check if at least one data record exists
             if (count($responseArray['data']) > 0) {
                 // Loop data
                 foreach ($responseArray['data'] as $data) {
                     // Parse post array
-                    $this->parsePostArray($status);
+                    $this->parsePostArray($data);
                 }
             }
         }
@@ -84,7 +88,8 @@ class InstagramParser extends Parser
     {
         // Create User
         $user = new User();
-        $post->setId($array['id']);
+        $user->setPlatform(Config::PLATFORM_INSTAGRAM);
+        $user->setId($array['id']);
         $user->setHandle($array['username']);
         $user->setName($array['full_name']);
         $user->setUrl(
@@ -105,15 +110,16 @@ class InstagramParser extends Parser
     private function parsePostArray($array)
     {
         // Create User
-        if (array_key_exists('user', $array)) {
+        if (is_array($array) && array_key_exists('user', $array)) {
             $user = $this->parseUserArray($array['user']);
         } else {
             $user = null;
         }
         // Create Post
         $post = new Post();
+        $post->setPlatform(Config::PLATFORM_INSTAGRAM);
         if (!is_null($user)) {
-            $array->setUser($user);
+            $post->setUser($user);
         }
         $post->setId($array['id']);
         $post->setCreated(new \DateTime(date(DATE_ISO8601, $array['created_time'])));

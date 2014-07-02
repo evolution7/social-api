@@ -5,6 +5,7 @@ namespace Evolution7\SocialApi\Service;
 use Evolution7\SocialApi\Service\QueryInterface;
 use Evolution7\SocialApi\Entity\User;
 use Evolution7\SocialApi\Entity\Post;
+use Evolution7\SocialApi\Response\Response;
 use Evolution7\SocialApi\Parser\TwitterParser;
 use Evolution7\SocialApi\Exception\NotImplementedException;
 
@@ -61,11 +62,11 @@ class Twitter extends Service implements ServiceInterface
         if (count($filters) > 0) {
             $requestParams['q'] = implode(' ', $filters);
         }
-        if (!is_null($query->getFromId())) {
-            $requestParams['since_id'] = $query->getFromId();
+        if (!is_null($query->getFrom())) {
+            $requestParams['since_id'] = $query->getFrom()->getId();
         }
-        if (!is_null($query->getToId())) {
-            $requestParams['max_id'] = $query->getToId();
+        if (!is_null($query->getTo())) {
+            $requestParams['max_id'] = $query->getTo()->getId();
         }
         if (!is_null($query->getNumResults())) {
             $requestParams['count'] = $query->getNumResults();
