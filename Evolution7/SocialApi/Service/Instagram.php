@@ -46,17 +46,16 @@ class Instagram extends Service implements ServiceInterface
         $libService = $this->getLibService();
         // Build request params
         $requestParams = array();
+        $qFrom = $query->getFrom();
+        $qTo = $query->getTo();
         if (is_null($query->getHashtag())) {
-            // TODO
-            // if (!empty($qFromDate)) {
-            //     $requestParams['min_timestamp'] = $qFromDate->format('U');
-            // }
-            // if (!empty($qToDate)) {
-            //     $requestParams['max_timestamp'] = $qToDate->format('U');
-            // }
+            if (!empty($qFromDate)) {
+                $requestParams['min_timestamp'] = $qFrom->getCreated();
+            }
+            if (!empty($qToDate)) {
+                $requestParams['max_timestamp'] = $qTo->getCreated();
+            }
         } else {
-            $qFrom = $query->getFrom();
-            $qTo = $query->getTo();
             if (!is_null($qFrom)) {
                 // Return media before/newer than this min ID
                 $paginationId = $qFrom->getPaginationId();
@@ -100,6 +99,15 @@ class Instagram extends Service implements ServiceInterface
      */
     public function comment(Post $post, $comment)
     {
-        throw new NotImplementedException();
+        // Get library service
+        $libService = $this->getLibService();
+        // Build request url/body
+        $requestUrl = 'media/' . $post->getId() . '/comments';
+        $requestBody = array(
+            'text' => $comment,
+            );
+        // Call api
+        $response = new Response($libService->request($requestUrl, 'POST', $requestBody));
+        return $response;
     }
 }
