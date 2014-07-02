@@ -70,6 +70,8 @@ class Twitter extends Service implements ServiceInterface
         }
         if (!empty($qNumResults)) {
             $requestParams['count'] = $qNumResults;
+        } else {
+            $requestParams['count'] = 100;
         }
         // Build request url
         $requestUrl = 'search/tweets.json?'
