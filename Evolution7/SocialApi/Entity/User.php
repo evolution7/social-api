@@ -16,7 +16,7 @@ class User extends Base
      */
     public function setUrl($url)
     {
-        return $this->url;
+        $this->url = $url;
     }
 
     /**
@@ -36,7 +36,7 @@ class User extends Base
      */
     public function setHandle($handle)
     {
-        return $this->handle;
+        $this->handle = $handle;
     }
 
     /**
@@ -56,7 +56,7 @@ class User extends Base
      */
     public function setName($name)
     {
-        return $this->name;
+        $this->name = $name;
     }
 
     /**
@@ -76,7 +76,7 @@ class User extends Base
      */
     public function setImageUrl($imageUrl)
     {
-        return $this->imageUrl;
+        $this->imageUrl = $imageUrl;
     }
 
     /**
