@@ -50,11 +50,7 @@ class Query implements QueryInterface
      */
     public function getMedia()
     {
-        if (!is_null($this->media) && is_array($this->media)) {
-            return array_keys($this->media);    
-        } else {
-            return null;
-        }
+        return $this->media;
     }
 
     /**
@@ -62,7 +58,7 @@ class Query implements QueryInterface
      */
     public function filterImages()
     {
-        $this->media['images'] = true;
+        $this->media = array('images');
         return $this;
     }
 
@@ -71,7 +67,7 @@ class Query implements QueryInterface
      */
     public function filterVideos()
     {
-        $this->media['videos'] = true;
+        $this->media = array('videos');
         return $this;
     }
 
@@ -80,8 +76,7 @@ class Query implements QueryInterface
      */
     public function filterImagesAndVideos()
     {
-        $this->filterImages();
-        $this->filterVideos();
+        $this->media = array('images', 'videos');
         return $this;
     }
 

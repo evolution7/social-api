@@ -72,7 +72,8 @@ class Twitter extends Service implements ServiceInterface
             $requestParams['count'] = $qNumResults;
         }
         // Build request url
-        $requestUrl = 'search/tweets.json?' . http_build_query($requestParams);
+        $requestUrl = 'search/tweets.json?'
+            . http_build_query($requestParams, null, '&', PHP_QUERY_RFC3986);
         // Search api
         $responseRaw = $libService->request($requestUrl);
         $responseArray = json_decode($responseRaw, true);
