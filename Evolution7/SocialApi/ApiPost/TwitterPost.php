@@ -39,7 +39,7 @@ class TwitterPost extends TwitterResponse implements ApiPostInterface
      */
     public function getMediaUrl()
     {
-        return $this->getArrayValue(array('media', 'media_url'));
+        return $this->getArrayValue(array('entities', 'media', 0, 'media_url'));
     }
     
     /**

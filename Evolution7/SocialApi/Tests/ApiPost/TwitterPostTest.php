@@ -15,8 +15,10 @@ class TwitterPostTest extends \PHPUnit_Framework_TestCase
             "user": {
                 "screen_name": "Evolution_7"
             },
-            "media": {
-                "media_url": "http:\/\/pbs.twimg.com\/media\/A7EiDWcCYAAZT1D.jpg"
+            "entities": {
+                "media": [{
+                    "media_url": "http:\/\/pbs.twimg.com\/media\/A7EiDWcCYAAZT1D.jpg"
+                }]
             }
         }';
     }
