@@ -2,11 +2,11 @@
 
 namespace Evolution7\SocialApi\Service;
 
+use Evolution7\SocialApi\Service\QueryInterface;
 use Evolution7\SocialApi\Config\ConfigInterface;
-use Evolution7\SocialApi\Token\RequestToken;
-use Evolution7\SocialApi\Token\RequestTokenInterface;
 use Evolution7\SocialApi\Token\AccessTokenInterface;
-use Evolution7\SocialApi\ApiPost\ApiPostInterface;
+use Evolution7\SocialApi\Token\RequestTokenInterface;
+use Evolution7\SocialApi\Entity\Post;
 use OAuth\Common\Service\ServiceInterface as OAuthServiceInterface;
 
 interface ServiceInterface
@@ -60,7 +60,7 @@ interface ServiceInterface
      * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
      * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
      *
-     * @return RequestToken
+     * @return \Evolution7\SocialApi\Token\RequestToken
      */
     public function getAuthRequest();
 
@@ -75,7 +75,7 @@ interface ServiceInterface
      * @param string                $verifier        - e.g. $_GET['oauth_verifier']
      * @param string                $code            - e.g. $_GET['code']
      *
-     * @return AccessToken
+     * @return \Evolution7\SocialApi\Token\AccessToken
      */
     public function getAuthAccess(RequestTokenInterface $requestToken, $token, $verifier, $code);
 
@@ -85,7 +85,7 @@ interface ServiceInterface
      * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
      * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
      *
-     * @return ApiUserInterface[]
+     * @return User
      */
     public function getCurrentUser();
 
@@ -97,32 +97,32 @@ interface ServiceInterface
      * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
      * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
      *
-     * @return ApiPostInterface[]
+     * @return \Evolution7\SocialApi\Entity\Post
      */
     public function getPostById($id);
 
     /**
      * Search API using Query object
      *
-     * @param QueryInterface $query
+     * @param \Evolution7\SocialApi\Service\QueryInterface $query
      *
      * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
      * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
      *
-     * @return ApiResponseInterface[]
+     * @return \Evolution7\SocialApi\Entity\Post[]
      */
     public function search(QueryInterface $query);
 
     /**
-     * Commont on ApiPostInterface
+     * Commont on Post
      *
-     * @param ApiPostInterface $post
-     * @param string           $comment
+     * @param \Evolution7\SocialApi\Entity\Post $post
+     * @param string                            $comment
      *
      * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
      * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
      *
-     * @return ApiResponseInterface[]
+     * @return \Evolution7\SocialApi\Response\ResponseInterface
      */
-    public function comment(ApiPostInterface $post, $comment);
+    public function comment(Post $post, $comment);
 }

@@ -38,22 +38,16 @@ class Twitter extends Service implements ServiceInterface
     {
         // Get library service
         $libService = $this->getLibService();
-        // Get query data
-        $qHashtag = $query->getHashtag();
-        $qMedia = $query->getMedia();
-        $qFromId = $query->getFromId();
-        $qToId = $query->getToId();
-        $qNumResults = $query->getNumResults();
         // Build search value
         $filters = array();
-        if (!is_null($qHashtag)) {
-            $filters[] = '#'.$qHashtag;
+        if (!is_null($query->getHashtag())) {
+            $filters[] = '#'.$query->getHashtag();
         }
-        if (!is_null($qMedia)) {
-            if (in_array('images', $qMedia)) {
+        if (!is_null($query->getMedia())) {
+            if (in_array('images', $query->getMedia())) {
                 $filters[] = 'filter:images';
             }
-            if (in_array('videos', $qMedia)) {
+            if (in_array('videos', $query->getMedia())) {
                 $filters[] = 'filter:videos';
             }
         }
@@ -62,37 +56,30 @@ class Twitter extends Service implements ServiceInterface
         if (count($filters) > 0) {
             $requestParams['q'] = implode(' ', $filters);
         }
-        if (!empty($qFromId)) {
-            $requestParams['since_id'] = $qFromId;
+        if (!is_null($query->getFromId())) {
+            $requestParams['since_id'] = $query->getFromId();
         }
-        if (!empty($qToId)) {
-            $requestParams['max_id'] = $qToId;
+        if (!is_null($query->getToId())) {
+            $requestParams['max_id'] = $query->getToId();
         }
-        if (!empty($qNumResults)) {
-            $requestParams['count'] = $qNumResults;
+        if (!is_null($query->getNumResults())) {
+            $requestParams['count'] = $query->getNumResults();
         } else {
             $requestParams['count'] = 100;
         }
         // Build request url
-        $requestUrl = 'search/tweets.json?'
-            . http_build_query($requestParams, null, '&', PHP_QUERY_RFC3986);
+        $requestUrl = 'search/tweets.json?' . http_build_query(
+            $requestParams,
+            null,
+            '&',
+            PHP_QUERY_RFC3986
+        );
         // Search api
-        $responseRaw = $libService->request($requestUrl);
-        $responseArray = json_decode($responseRaw, true);
-        // Create return array
-        $return = array();
-        // Check if statuses exist
-        if (array_key_exists('statuses', $responseArray)) {
-            // Check if at least one statuses exists
-            if (count($responseArray['statuses']) > 0) {
-                // Loop statuses
-                foreach ($responseArray['statuses'] as $status) {
-                    // Create new TwitterPost object and add to return array
-                    $return[] = new TwitterPost(json_encode($status));
-                }
-            }
-        }
-        return $return;
+        $response = new Response($libService->request($requestUrl), 'json');
+        // Parse response
+        $parser = new TwitterParser($response);
+        $parser->parseSearchResponse();
+        return $parser->getPosts();
     }
 
     /**
