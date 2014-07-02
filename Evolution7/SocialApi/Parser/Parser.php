@@ -36,6 +36,21 @@ abstract class Parser
     }
 
     /**
+     * Get first user
+     *
+     * @return \Evolution7\SocialApi\Entity\User
+     */
+    public function getFirstUser()
+    {
+        if (count($this->users) > 0) {
+            $usersKeys = array_keys($this->users);
+            return $this->users[$usersKeys[0]];
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * Get posts
      *
      * @return array $posts
@@ -43,5 +58,20 @@ abstract class Parser
     public function getPosts()
     {
         return $this->posts;
+    }
+
+    /**
+     * Get first post
+     *
+     * @return \Evolution7\SocialApi\Entity\Post
+     */
+    public function getFirstPost()
+    {
+        if (count($this->posts) > 0) {
+            $postsKeys = array_keys($this->posts);
+            return $this->posts[$postsKeys[0]];
+        } else {
+            return null;
+        }
     }
 }

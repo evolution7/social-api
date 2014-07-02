@@ -2,10 +2,11 @@
 
 namespace Evolution7\SocialApi\Service;
 
+use Evolution7\SocialApi\Service\QueryInterface;
+use Evolution7\SocialApi\Entity\User;
+use Evolution7\SocialApi\Entity\Post;
+use Evolution7\SocialApi\Parser\TwitterParser;
 use Evolution7\SocialApi\Exception\NotImplementedException;
-use Evolution7\SocialApi\ApiUser\TwitterUser;
-use Evolution7\SocialApi\ApiPost\TwitterPost;
-use Evolution7\SocialApi\ApiPost\ApiPostInterface;
 
 class Twitter extends Service implements ServiceInterface
 {
@@ -16,8 +17,10 @@ class Twitter extends Service implements ServiceInterface
     {
         $libService = $this->getLibService();
         $requestUrl = 'account/verify_credentials.json';
-        $responseRaw = $libService->request($requestUrl);
-        return new TwitterUser($responseRaw);
+        $response = new Response($libService->request($requestUrl));
+        $parser = new TwitterParser($response);
+        $parser->parseAccountVerifyCredentials();
+        return $parser->getFirstUser();
     }
 
     /**
@@ -27,8 +30,10 @@ class Twitter extends Service implements ServiceInterface
     {
         $libService = $this->getLibService();
         $requestUrl = 'statuses/show/' . $id . '.json';
-        $responseRaw = $libService->request($requestUrl);
-        return new TwitterPost($responseRaw);
+        $response = new Response($libService->request($requestUrl));
+        $parser = new TwitterParser($response);
+        $parser->parseStatusesShow();
+        return $parser->getFirstPost();
     }
 
     /**
@@ -78,14 +83,14 @@ class Twitter extends Service implements ServiceInterface
         $response = new Response($libService->request($requestUrl), 'json');
         // Parse response
         $parser = new TwitterParser($response);
-        $parser->parseSearchResponse();
+        $parser->parseSearchTweets();
         return $parser->getPosts();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function comment(ApiPostInterface $post, $comment)
+    public function comment(Post $post, $comment)
     {
         // Get post user
         $postUser = $post->getUser();
@@ -103,6 +108,7 @@ class Twitter extends Service implements ServiceInterface
             );
         $requestUrl = 'statuses/update.json?' . http_build_query($postData);
         // Call api
-        $responseRaw = $libService->request($requestUrl, 'POST');
+        $response = new Response($libService->request($requestUrl, 'POST'));
+        return $response;
     }
 }

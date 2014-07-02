@@ -2,10 +2,11 @@
 
 namespace Evolution7\SocialApi\Service;
 
+use Evolution7\SocialApi\Service\QueryInterface;
+use Evolution7\SocialApi\Entity\User;
+use Evolution7\SocialApi\Entity\Post;
+use Evolution7\SocialApi\Parser\InstagramParser;
 use Evolution7\SocialApi\Exception\NotImplementedException;
-use Evolution7\SocialApi\ApiUser\InstagramUser;
-use Evolution7\SocialApi\ApiPost\InstagramPost;
-use Evolution7\SocialApi\ApiPost\ApiPostInterface;
 
 class Instagram extends Service implements ServiceInterface
 {
@@ -16,8 +17,10 @@ class Instagram extends Service implements ServiceInterface
     {
         $libService = $this->getLibService();
         $requestUrl = 'users/self';
-        $responseRaw = $libService->request($requestUrl);
-        return new InstagramUser($responseRaw);
+        $response = new Response($libService->request($requestUrl));
+        $parser = new InstagramParser($response);
+        $parser->parseUsersSelf();
+        return $parser->getFirstUser();
     }
 
     /**
@@ -27,8 +30,10 @@ class Instagram extends Service implements ServiceInterface
     {
         $libService = $this->getLibService();
         $requestUrl = 'media/' . $id;
-        $responseRaw = $libService->request($requestUrl);
-        return new InstagramPost($responseRaw);
+        $response = new Response($libService->request($requestUrl));
+        $parser = new InstagramParser($response);
+        $parser->parseMedia();
+        return $parser->getFirstPost();
     }
 
     /**
@@ -71,8 +76,10 @@ class Instagram extends Service implements ServiceInterface
         // Build request url
         if (empty($qHashtag)) {
             $requestUrl = 'media/search?';
+            $parseMethod = 'parseMediaSearch';
         } else {
             $requestUrl = 'tags/' . urlencode($qHashtag) . '/media/recent?';
+            $parseMethod = 'parseTagsMediaRecent';
         }
         $requestUrl .= http_build_query(
             $requestParams,
@@ -80,24 +87,12 @@ class Instagram extends Service implements ServiceInterface
             '&',
             PHP_QUERY_RFC3986
         );
-        //throw new \Exception($requestUrl);
         // Search api
-        $responseRaw = $libService->request($requestUrl);
-        $responseArray = json_decode($responseRaw, true);
-        // Create return array
-        $return = array();
-        // Check if statuses exist
-        if (array_key_exists('data', $responseArray)) {
-            // Check if at least one statuses exists
-            if (count($responseArray['data']) > 0) {
-                // Loop statuses
-                foreach ($responseArray['data'] as $media) {
-                    // Create new InstagramPost object and add to return array
-                    $return[] = new InstagramPost(json_encode($media));
-                }
-            }
-        }
-        return $return;
+        $response = new Response($libService->request($requestUrl), 'json');
+        // Parse response
+        $parser = new InstagramParser($response);
+        $parser->$parseMethod();
+        return $parser->getPosts();
     }
 
     /**

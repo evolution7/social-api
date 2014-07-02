@@ -2,10 +2,13 @@
 
 namespace Evolution7\SocialApi\Service;
 
-use Evolution7\SocialApi\Service\QueryInterface;
 use Evolution7\SocialApi\Config\ConfigInterface;
-use Evolution7\SocialApi\Token\AccessTokenInterface;
+use Evolution7\SocialApi\Token\RequestToken;
 use Evolution7\SocialApi\Token\RequestTokenInterface;
+use Evolution7\SocialApi\Token\AccessToken;
+use Evolution7\SocialApi\Token\AccessTokenInterface;
+use Evolution7\SocialApi\Service\QueryInterface;
+use Evolution7\SocialApi\Entity\User;
 use Evolution7\SocialApi\Entity\Post;
 use OAuth\Common\Service\ServiceInterface as OAuthServiceInterface;
 

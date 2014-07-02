@@ -15,7 +15,7 @@ class TwitterParser extends Parser
      *
      * @see https://dev.twitter.com/docs/api/1.1/get/search/tweets
      */
-    public function parseSearchResponse()
+    public function parseSearchTweets()
     {
         // Get response array
         $responseArray = $this->response->getArray();
@@ -30,6 +30,32 @@ class TwitterParser extends Parser
                 }
             }
         }
+    }
+
+    /**
+     * Parse response from /account/verify_credentials
+     *
+     * @see https://dev.twitter.com/docs/api/1.1/get/account/verify_credentials
+     */
+    public function parseAccountVerifyCredentials()
+    {
+        // Get response array
+        $responseArray = $this->response->getArray();
+        // Parse user data
+        $this->parseUserArray($responseArray);
+    }
+
+    /**
+     * Parse response from /statuses/show/:id
+     *
+     * @see https://dev.twitter.com/docs/api/1.1/get/statuses/show/%3Aid
+     */
+    public function parseStatusesShow()
+    {
+        // Get response array
+        $responseArray = $this->response->getArray();
+        // Parse post data
+        $this->parsePostArray($responseArray);
     }
 
     /**

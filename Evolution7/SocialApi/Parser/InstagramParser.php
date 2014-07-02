@@ -8,11 +8,9 @@ namespace \Evolution7\SocialApi\Parser;
 class InstagramParser extends Parser
 {
     /**
-     * Parse response from /tags/[tag-name]/media/recent
-     *
-     * @see http://instagram.com/developer/endpoints/tags/
+     * Parse generic response of posts
      */
-    public function parseTagsMediaRecentResponse()
+    private function parsePostsGeneric()
     {
         // Get response array
         $responseArray = $this->response->getArray();
@@ -27,6 +25,52 @@ class InstagramParser extends Parser
                 }
             }
         }
+    }
+
+    /**
+     * Parse response from /tags/[tag-name]/media/recent
+     *
+     * @see http://instagram.com/developer/endpoints/tags/
+     */
+    public function parseTagsMediaRecent()
+    {
+        $this->parsePostsGeneric();
+    }
+
+    /**
+     * Parse response from /media/search
+     *
+     * @see http://instagram.com/developer/endpoints/media/
+     */
+    public function parseMediaSearch()
+    {
+        $this->parsePostsGeneric();
+    }
+
+    /**
+     * Parse response from /users/self
+     *
+     * @see http://instagram.com/developer/endpoints/users/
+     */
+    public function parseUsersSelf()
+    {
+        // Get response array
+        $responseArray = $this->response->getArray();
+        // Parse user data
+        $this->parseUserArray($responseArray['data']);
+    }
+
+    /**
+     * Parse response from /media/:media-id
+     *
+     * @see http://instagram.com/developer/endpoints/media/
+     */
+    public function parseMedia()
+    {
+        // Get response array
+        $responseArray = $this->response->getArray();
+        // Parse post data
+        $this->parsePostArray($responseArray['data']);
     }
 
     /**
