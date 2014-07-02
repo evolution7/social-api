@@ -29,6 +29,15 @@ class InstagramParser extends Parser
                 }
             }
         }
+        // Check pagination
+        if (array_key_exists('pagination', $responseArray)) {
+            // Get last post
+            $lastPost = $this->getLastPost();
+            if ($lastPost instanceof Post) {
+                // Save pagination id
+                $lastPost->setPaginationId($responseArray['pagination']['next_max_id']);
+            }
+        }
     }
 
     /**

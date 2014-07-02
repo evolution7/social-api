@@ -55,13 +55,19 @@ class Instagram extends Service implements ServiceInterface
             //     $requestParams['max_timestamp'] = $qToDate->format('U');
             // }
         } else {
-            if (!is_null($query->getFrom())) {
-                // Return media after this max ID
-                $requestParams['max_tag_id'] = $query->getFrom()->getId();
+            $qFrom = $query->getFrom();
+            $qTo = $query->getTo();
+            if (!is_null($qFrom)) {
+                // Return media before/newer than this min ID
+                $paginationId = $qFrom->getPaginationId();
+                $paginationId = is_null($paginationId) ? $qFrom->getId() : $paginationId;
+                $requestParams['min_tag_id'] = $paginationId;
             }
-            if (!is_null($query->getTo())) {
-                // Return media before this min ID
-                $requestParams['min_tag_id'] = $query->getTo()->getId();
+            if (!is_null($qTo)) {
+                // Return media after/older than this max ID
+                $paginationId = $qTo->getPaginationId();
+                $paginationId = is_null($paginationId) ? $qTo->getId() : $paginationId;
+                $requestParams['max_tag_id'] = $qTo->getPaginationId();
             }
             if (!is_null($query->getNumResults())) {
                 $requestParams['count'] = $query->getNumResults();

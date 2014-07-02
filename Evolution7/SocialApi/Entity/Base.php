@@ -11,6 +11,7 @@ abstract class Base
 {
     private $platform;
     private $id;
+    private $paginationId;
 
     /**
      * Set platform
@@ -58,5 +59,25 @@ abstract class Base
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set entity pagination ID
+     *
+     * @param string $paginationId
+     */
+    public function setPaginationId($paginationId)
+    {
+        $this->paginationId = $paginationId;
+    }
+
+    /**
+     * Get entity pagination ID
+     *
+     * @return string
+     */
+    public function getPaginationId()
+    {
+        return $this->paginationId;
     }
 }

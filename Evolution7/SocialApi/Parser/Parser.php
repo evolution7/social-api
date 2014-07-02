@@ -12,6 +12,7 @@ abstract class Parser
     protected $response;
     protected $users;
     protected $posts;
+    protected $paginationId;
 
     /**
      * Constructor
@@ -42,9 +43,24 @@ abstract class Parser
      */
     public function getFirstUser()
     {
-        if (count($this->users) > 0) {
-            $usersKeys = array_keys($this->users);
-            return $this->users[$usersKeys[0]];
+        if (is_array($this->users) && count($this->users) > 0) {
+            reset($this->users);
+            return current($this->users);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Get last user
+     *
+     * @return \Evolution7\SocialApi\Entity\User
+     */
+    public function getLastUser()
+    {
+        if (is_array($this->users) && count($this->users) > 0) {
+            reset($this->users);
+            return end($this->users);
         } else {
             return null;
         }
@@ -67,11 +83,36 @@ abstract class Parser
      */
     public function getFirstPost()
     {
-        if (count($this->posts) > 0) {
-            $postsKeys = array_keys($this->posts);
-            return $this->posts[$postsKeys[0]];
+        if (is_array($this->posts) && count($this->posts) > 0) {
+            reset($this->posts);
+            return current($this->posts);
         } else {
             return null;
         }
+    }
+
+    /**
+     * Get last post
+     *
+     * @return \Evolution7\SocialApi\Entity\Post
+     */
+    public function getLastPost()
+    {
+        if (is_array($this->posts) && count($this->posts) > 0) {
+            reset($this->posts);
+            return end($this->posts);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Get pagination id
+     *
+     * @return int
+     */
+    public function getPaginationId()
+    {
+        return $this->paginationId;
     }
 }
