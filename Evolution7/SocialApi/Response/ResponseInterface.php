@@ -15,16 +15,21 @@ interface ResponseInterface
     /**
      * Get original API response for item
      *
-     * @throws NotSupportedByAPIException
-     *
      * @return string
      */
     public function getRaw();
 
     /**
-     * Get original API format for item
+     * Get field value as raw
      *
-     * @throws NotSupportedByAPIException
+     * @param string $key
+     *
+     * @return mixed
+     */
+    public function getRawSubset($key);
+
+    /**
+     * Get original API format for item
      *
      * @return string
      */
@@ -32,9 +37,6 @@ interface ResponseInterface
 
     /**
      * Get API response parsed into an array
-     *
-     * @throws NotSupportedByAPIException
-     * @throws NotImplementedException
      *
      * @return array
      */

@@ -32,7 +32,7 @@ class Response implements ResponseInterface
     /**
      * Get field value as raw
      */
-    protected function getRawSubset($key)
+    public function getRawSubset($key)
     {
         
         // Get array value
