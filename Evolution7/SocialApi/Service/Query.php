@@ -2,23 +2,15 @@
 
 namespace Evolution7\SocialApi\Service;
 
+use Evolution7\SocialApi\ApiPost\ApiPostInterface;
+
 class Query implements QueryInterface
 {
     private $hashtag;
     private $media;
-    private $fromId;
-    private $fromDate;
-    private $toId;
-    private $toDate;
+    private $from;
+    private $to;
     private $numResults;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->hashtags = array();
-    }
 
     /**
      * {@inheritdoc}
@@ -83,52 +75,34 @@ class Query implements QueryInterface
     /**
      * {@inheritdoc}
      */
-    public function getFromId()
+    public function getFrom()
     {
-        return $this->fromId;
+        return $this->from;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getFromDate()
+    public function limitFrom(ApiPostInterface $from)
     {
-        return $this->fromDate;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function limitFrom($id, \DateTime $date)
-    {
-        $this->fromId = $id;
-        $this->fromDate = $date;
+        $this->from = $from;
         return $this;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getToId()
+    public function getTo()
     {
-        return $this->toId;
+        return $this->to;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getToDate()
+    public function limitTo(ApiPostInterface $to)
     {
-        return $this->toDate;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function limitTo($id, \DateTime $date)
-    {
-        $this->toId = $id;
-        $this->toDate = $date;
+        $this->to = $to;
         return $this;
     }
 

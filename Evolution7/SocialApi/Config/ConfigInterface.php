@@ -5,6 +5,13 @@ namespace Evolution7\SocialApi\Config;
 interface ConfigInterface
 {
     /**
+     * Validate platform
+     *
+     * @param string $platform
+     */
+    public static function validatePlatform($platform);
+
+    /**
      * Constructor
      *
      * @param string $platform

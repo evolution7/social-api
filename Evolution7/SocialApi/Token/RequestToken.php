@@ -6,6 +6,9 @@ class RequestToken extends Token implements RequestTokenInterface
 {
     protected $redirectUrl;
 
+    /**
+     * {@inheritdoc}
+     */
     public function __construct($token, $secret, $redirectUrl = null)
     {
         $this->token = $token;
@@ -13,6 +16,9 @@ class RequestToken extends Token implements RequestTokenInterface
         $this->redirectUrl = $redirectUrl;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getRedirectUrl()
     {
         return $this->redirectUrl;

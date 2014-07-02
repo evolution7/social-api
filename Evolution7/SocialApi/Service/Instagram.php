@@ -57,10 +57,12 @@ class Instagram extends Service implements ServiceInterface
             }
         } else {
             if (!empty($qFromId)) {
-                $requestParams['min_tag_id'] = $qFromId;
+                // Return media after this max ID
+                $requestParams['max_tag_id'] = $qFromId;
             }
             if (!empty($qToId)) {
-                $requestParams['max_tag_id'] = $qToId;
+                // Return media before this min ID
+                $requestParams['min_tag_id'] = $qToId;
             }
             if (!empty($qNumResults)) {
                 $requestParams['count'] = $qNumResults;
@@ -78,6 +80,7 @@ class Instagram extends Service implements ServiceInterface
             '&',
             PHP_QUERY_RFC3986
         );
+        //throw new \Exception($requestUrl);
         // Search api
         $responseRaw = $libService->request($requestUrl);
         $responseArray = json_decode($responseRaw, true);

@@ -1,10 +1,11 @@
 <?php
 
-namespace Evolution7\SocialApi\ApiResponse;
+namespace Evolution7\SocialApi\Response;
 
 use Evolution7\SocialApi\Exception\NotImplementedException;
+use Evolution7\SocialApi\Exception\NotSupportedByAPIException;
 
-class ApiResponse implements ApiResponseInterface
+class Response implements ResponseInterface
 {
     private $raw;
     private $format;
@@ -70,13 +71,9 @@ class ApiResponse implements ApiResponseInterface
     }
 
     /**
-     * Get field value or null if field does not exist
-     *
-     * @param string $key
-     *
-     * @return mixed
+     * {@inheritdoc}
      */
-    protected function getArrayValue($key)
+    public function getArrayValue($key)
     {
 
         // Get array

@@ -5,7 +5,6 @@ namespace Evolution7\SocialApi\Service;
 use Evolution7\SocialApi\Config\Config;
 use Evolution7\SocialApi\Config\ConfigInterface;
 use Evolution7\SocialApi\Token\AccessTokenInterface;
-use Evolution7\SocialApi\Service as Services;
 
 /**
  * Factory class for retrieving an ApiService instance
@@ -25,10 +24,10 @@ class ServiceFactory
         $platform = $config->getPlatform();
         switch ($platform) {
             case Config::PLATFORM_INSTAGRAM:
-                return new Services\Instagram($config, $accessToken);
+                return new Instagram($config, $accessToken);
                 break;
             case Config::PLATFORM_TWITTER:
-                return new Services\Twitter($config, $accessToken);
+                return new Twitter($config, $accessToken);
                 break;
             default:
                 throw new \InvalidArgumentException(

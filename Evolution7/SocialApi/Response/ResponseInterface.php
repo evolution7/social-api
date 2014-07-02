@@ -1,8 +1,8 @@
 <?php
 
-namespace Evolution7\SocialApi\ApiResponse;
+namespace Evolution7\SocialApi\Response;
 
-interface ApiResponseInterface
+interface ResponseInterface
 {
     /**
      * Constructor
@@ -39,4 +39,13 @@ interface ApiResponseInterface
      * @return array
      */
     public function getArray();
+
+    /**
+     * Get field value or null if field does not exist
+     *
+     * @param string $key
+     *
+     * @return mixed
+     */
+    public function getArrayValue($key);
 }

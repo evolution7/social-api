@@ -2,6 +2,8 @@
 
 namespace Evolution7\SocialApi\Service;
 
+use Evolution7\SocialApi\ApiPost\ApiPostInterface;
+
 interface QueryInterface
 {
     /**
@@ -56,57 +58,41 @@ interface QueryInterface
     public function filterImagesAndVideos();
 
     /**
-     * Get from id to filter by
-     *
-     * @return DateTime
-     */
-    public function getFromId();
-
-    /**
      * Get from date to filter by
      *
-     * @return DateTime
+     * @return ApiPostInterface
      */
-    public function getFromDate();
+    public function getFrom();
 
     /**
      * Set from id/date to filter by
      *
-     * @param int      $id
-     * @param DateTime $date
+     * @param ApiPostInterface $post
      *
      * @return QueryInterface
      */
-    public function limitFrom($id, \DateTime $date);
-
-    /**
-     * Get to id to filter by
-     *
-     * @return int
-     */
-    public function getToId();
+    public function limitFrom(ApiPostInterface $post);
 
     /**
      * Get to date to filter by
      *
-     * @return DateTime
+     * @return ApiPostInterface
      */
-    public function getToDate();
+    public function getTo();
 
     /**
      * Set from id/date to filter by
      *
-     * @param int      $id
-     * @param DateTime $date
+     * @param ApiPostInterface $post
      *
      * @return QueryInterface
      */
-    public function limitTo($id, \DateTime $date);
+    public function limitTo(ApiPostInterface $post);
 
     /**
      * Get number results to limit to
      *
-     * @return DateTime
+     * @return int
      */
     public function getNumResults();
 
