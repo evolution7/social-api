@@ -2,41 +2,56 @@
 
 namespace Evolution7\SocialApi\Tests\Service;
 
-use Evolution7\SocialApi\Service\Query;
-use Evolution7\SocialApi\Service\Instagram;
-
-class InstagramTest extends \PHPUnit_Framework_TestCase
+class InstagramTest extends ServiceTestCommon
 {
-    private function getConfigMock()
+    protected $instagram;
+    protected $queryMock;
+    protected $postMock;
+
+    protected function setUp()
     {
-        $config = $this->getMock('Evolution7\SocialApi\Config\ConfigInterface');
-        $config->expects($this->any())
-               ->method('getPlatform')
-               ->will($this->returnValue('instagram'));
-        $config->expects($this->any())
-               ->method('getApiKey')
-               ->will($this->returnValue('instagram'));
-        $config->expects($this->any())
-               ->method('getApiSecret')
-               ->will($this->returnValue('instagram'));
-        $config->expects($this->any())
-               ->method('getApiScopes')
-               ->will($this->returnValue(array()));
-        return $config;
+        $this->instagram = $this->getServiceMock(
+            '\Evolution7\SocialApi\Service\Instagram',
+            array($this->getConfigMock('instagram'))
+        );
+        $this->queryMock = $this->getQueryMock();
+        $this->postMock = $this->getPostMock();
+    }
+
+    protected function tearDown()
+    {
+        $this->instagram = null;
     }
 
     /**
-     * @expectedException \OAuth\Common\Storage\Exception\TokenNotFoundException
+     * @expectedException \Evolution7\SocialApi\Exception\HttpUnauthorizedException
      */
-    public function testSearch()
+    public function testGetCurrentUserHttpUnauthorizedException()
     {
-        $instagram = new Instagram($this->getConfigMock());
-        $instagram->search(Query::create());
+        $this->instagram->getCurrentUser();
     }
 
-    public function testComment()
+    /**
+     * @expectedException \Evolution7\SocialApi\Exception\HttpUnauthorizedException
+     */
+    public function testGetPostByIdHttpUnauthorizedException()
     {
-        $instagram = new Instagram($this->getConfigMock());
-        //$instagram->comment(new InstagramPost(''), 'test');
+        $this->instagram->getPostById(1);
+    }
+
+    /**
+     * @expectedException \Evolution7\SocialApi\Exception\HttpUnauthorizedException
+     */
+    public function testSearchHttpUnauthorizedException()
+    {
+        $this->instagram->search($this->queryMock);
+    }
+
+    /**
+     * @expectedException \Evolution7\SocialApi\Exception\HttpUnauthorizedException
+     */
+    public function testCommentHttpUnauthorizedException()
+    {
+        $this->instagram->comment($this->postMock, $this->queryMock);
     }
 }

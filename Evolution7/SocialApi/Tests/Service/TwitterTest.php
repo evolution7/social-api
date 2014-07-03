@@ -2,41 +2,56 @@
 
 namespace Evolution7\SocialApi\Tests\Service;
 
-use Evolution7\SocialApi\Service\Query;
-use Evolution7\SocialApi\Service\Twitter;
-
-class TwitterTest extends \PHPUnit_Framework_TestCase
+class TwitterTest extends ServiceTestCommon
 {
-    private function getConfigMock()
+    protected $twitter;
+    protected $queryMock;
+    protected $postMock;
+
+    protected function setUp()
     {
-        $config = $this->getMock('Evolution7\SocialApi\Config\ConfigInterface');
-        $config->expects($this->any())
-               ->method('getPlatform')
-               ->will($this->returnValue('twitter'));
-        $config->expects($this->any())
-               ->method('getApiKey')
-               ->will($this->returnValue('twitter'));
-        $config->expects($this->any())
-               ->method('getApiSecret')
-               ->will($this->returnValue('twitter'));
-        $config->expects($this->any())
-               ->method('getApiScopes')
-               ->will($this->returnValue(array()));
-        return $config;
+        $this->twitter = $this->getServiceMock(
+            '\Evolution7\SocialApi\Service\Twitter',
+            array($this->getConfigMock('twitter'))
+        );
+        $this->queryMock = $this->getQueryMock();
+        $this->postMock = $this->getPostMock();
+    }
+
+    protected function tearDown()
+    {
+        $this->twitter = null;
     }
 
     /**
-     * @expectedException \OAuth\Common\Storage\Exception\TokenNotFoundException
+     * @expectedException \Evolution7\SocialApi\Exception\HttpUnauthorizedException
      */
-    public function testSearch()
+    public function testGetCurrentUserHttpUnauthorizedException()
     {
-        $twitter = new Twitter($this->getConfigMock());
-        $twitter->search(Query::create());
+        $this->twitter->getCurrentUser();
     }
 
-    public function testComment()
+    /**
+     * @expectedException \Evolution7\SocialApi\Exception\HttpUnauthorizedException
+     */
+    public function testGetPostByIdHttpUnauthorizedException()
     {
-        //$twitter = new Twitter($this->getConfigMock());
-        //$twitter->comment(new TwitterPost(''), 'test');
+        $this->twitter->getPostById(1);
+    }
+
+    /**
+     * @expectedException \Evolution7\SocialApi\Exception\HttpUnauthorizedException
+     */
+    public function testSearchHttpUnauthorizedException()
+    {
+        $this->twitter->search($this->queryMock);
+    }
+
+    /**
+     * @expectedException \Evolution7\SocialApi\Exception\HttpUnauthorizedException
+     */
+    public function testCommentHttpUnauthorizedException()
+    {
+        $this->twitter->comment($this->postMock, $this->queryMock);
     }
 }
