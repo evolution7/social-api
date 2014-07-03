@@ -52,6 +52,6 @@ class TwitterTest extends ServiceTestCommon
      */
     public function testCommentHttpUnauthorizedException()
     {
-        $this->twitter->comment($this->postMock, $this->queryMock);
+        $this->twitter->comment($this->postMock, 'test @test');
     }
 }

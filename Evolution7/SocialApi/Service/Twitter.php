@@ -108,10 +108,14 @@ class Twitter extends Service implements ServiceInterface
     {
         // Get post user
         $postUser = $post->getUser();
+        // Check comment not empty
+        if (empty($comment)) {
+            throw new \Exception('Comment invalid - cannot be empty');
+        }
         // Check comment contains @mention
         if (strpos($comment, '@'.$postUser->getHandle()) === false) {
             // Invalid comment
-            throw new Exception('Comment invalid - must @mention original post user');
+            throw new \Exception('Comment invalid - must @mention original post user');
         }
         // Get library service
         $libService = $this->getLibService();

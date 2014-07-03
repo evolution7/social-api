@@ -52,6 +52,6 @@ class InstagramTest extends ServiceTestCommon
      */
     public function testCommentHttpUnauthorizedException()
     {
-        $this->instagram->comment($this->postMock, $this->queryMock);
+        $this->instagram->comment($this->postMock, 'test');
     }
 }

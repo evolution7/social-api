@@ -20,15 +20,6 @@ interface ResponseInterface
     public function getRaw();
 
     /**
-     * Get field value as raw
-     *
-     * @param string $key
-     *
-     * @return mixed
-     */
-    public function getRawSubset($key);
-
-    /**
      * Get original API format for item
      *
      * @return string
@@ -41,13 +32,4 @@ interface ResponseInterface
      * @return array
      */
     public function getArray();
-
-    /**
-     * Get field value or null if field does not exist
-     *
-     * @param string $key
-     *
-     * @return mixed
-     */
-    public function getArrayValue($key);
 }

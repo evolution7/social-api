@@ -71,13 +71,13 @@ class TwitterParser extends Parser
         // Create User
         $user = new User();
         $user->setPlatform(Config::PLATFORM_TWITTER);
-        $user->setId($array['id_str']);
-        $user->setHandle($array['screen_name']);
-        $user->setName($array['name']);
+        $user->setId($this->getArrayValue('id_str', $array));
+        $user->setHandle($this->getArrayValue('screen_name', $array));
+        $user->setName($this->getArrayValue('name', $array));
         $user->setUrl(
             'https://twitter.com/' . $user->getHandle()
         );
-        $user->setImageUrl($array['profile_image_url_https']);
+        $user->setImageUrl($this->getArrayValue('profile_image_url_https', $array));
         $this->users[$user->getId()] = $user;
         return $user;
     }
@@ -93,7 +93,7 @@ class TwitterParser extends Parser
     {
         // Create User
         if (array_key_exists('user', $array)) {
-            $user = $this->parseUserArray($array['user']);
+            $user = $this->parseUserArray($this->getArrayValue('user', $array));
         } else {
             $user = null;
         }
@@ -103,14 +103,16 @@ class TwitterParser extends Parser
         if (!is_null($user)) {
             $post->setUser($user);
         }
-        $post->setId($array['id_str']);
-        $post->setCreated(new \DateTime($array['created_at']));
-        $post->setBody($array['text']);
-        $post->setUrl(
-            'https://twitter.com/' . $user->getHandle() .
-            '/status/' . $post->getId()
-        );
-        $post->setMediaUrl($array['entities']['media'][0]['media_url']);
+        $post->setId($this->getArrayValue('id_str', $array));
+        $post->setCreated(new \DateTime($this->getArrayValue('created_at', $array)));
+        $post->setBody($this->getArrayValue('text', $array));
+        if (!is_null($user)) {
+            $post->setUrl(
+                'https://twitter.com/' . $user->getHandle() .
+                '/status/' . $post->getId()
+            );
+        }
+        $post->setMediaUrl($this->getArrayValue('entities', $array)['media'][0]['media_url']);
         $this->posts[$post->getId()] = $post;
         return $post;
     }

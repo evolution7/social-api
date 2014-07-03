@@ -30,24 +30,6 @@ class Response implements ResponseInterface
     }
 
     /**
-     * Get field value as raw
-     */
-    public function getRawSubset($key)
-    {
-        
-        // Get array value
-        $arrayValue = $this->getArrayValue($key);
-
-        // Return encoded as json
-        if (!is_null($arrayValue)) {
-            return json_encode($arrayValue);
-        } else {
-            return null;
-        }
-
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getFormat()
@@ -68,34 +50,5 @@ class Response implements ResponseInterface
         } else {
             throw new NotImplementedException();
         }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getArrayValue($key)
-    {
-
-        // Get array
-        $array = $this->getArray();
-
-        // Make key an array if string given
-        if (!is_array($key)) {
-            $key = array($key);
-        }
-
-        // Iterate over key dimensions and check key exists
-        $dimensions = count($key);
-        for ($iArray = $array, $i = 0; $i < $dimensions; ++$i) {
-            $iKey = $key[$i];
-            if (!is_array($iArray) || !array_key_exists($iKey, $iArray)) {
-                return null;
-            }
-            $iArray = $iArray[$iKey];
-        }
-
-        // Return
-        return $iArray;
-
     }
 }

@@ -111,4 +111,35 @@ abstract class Parser
     {
         return $this->paginationId;
     }
+
+    /**
+     * Get field value or null if field does not exist
+     *
+     * @param string $key
+     * @param array  $array
+     *
+     * @return mixed
+     */
+    protected function getArrayValue($key, $array)
+    {
+
+        // Make key an array if string given
+        if (!is_array($key)) {
+            $key = array($key);
+        }
+
+        // Iterate over key dimensions and check key exists
+        $dimensions = count($key);
+        for ($iArray = $array, $i = 0; $i < $dimensions; ++$i) {
+            $iKey = $key[$i];
+            if (!is_array($iArray) || !array_key_exists($iKey, $iArray)) {
+                return null;
+            }
+            $iArray = $iArray[$iKey];
+        }
+
+        // Return
+        return $iArray;
+
+    }
 }

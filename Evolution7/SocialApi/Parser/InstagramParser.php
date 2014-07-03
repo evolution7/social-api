@@ -72,7 +72,9 @@ class InstagramParser extends Parser
         // Get response array
         $responseArray = $this->response->getArray();
         // Parse user data
-        $this->parseUserArray($responseArray['data']);
+        if (array_key_exists('data', $responseArray)) {
+            $this->parseUserArray($responseArray['data']);
+        }
     }
 
     /**
@@ -85,7 +87,9 @@ class InstagramParser extends Parser
         // Get response array
         $responseArray = $this->response->getArray();
         // Parse post data
-        $this->parsePostArray($responseArray['data']);
+        if (array_key_exists('data', $responseArray)) {
+            $this->parsePostArray($responseArray['data']);
+        }
     }
 
     /**
@@ -100,13 +104,13 @@ class InstagramParser extends Parser
         // Create User
         $user = new User();
         $user->setPlatform(Config::PLATFORM_INSTAGRAM);
-        $user->setId($array['id']);
-        $user->setHandle($array['username']);
-        $user->setName($array['full_name']);
+        $user->setId($this->getArrayValue('id', $array));
+        $user->setHandle($this->getArrayValue('username', $array));
+        $user->setName($this->getArrayValue('full_name', $array));
         $user->setUrl(
             'http://instagram.com/' . $user->getHandle()
         );
-        $user->setImageUrl($array['profile_picture']);
+        $user->setImageUrl($this->getArrayValue('profile_picture', $array));
         $this->users[$user->getId()] = $user;
         return $user;
     }
@@ -122,7 +126,7 @@ class InstagramParser extends Parser
     {
         // Create User
         if (is_array($array) && array_key_exists('user', $array)) {
-            $user = $this->parseUserArray($array['user']);
+            $user = $this->parseUserArray($this->getArrayValue('user', $array));
         } else {
             $user = null;
         }
@@ -132,11 +136,11 @@ class InstagramParser extends Parser
         if (!is_null($user)) {
             $post->setUser($user);
         }
-        $post->setId($array['id']);
+        $post->setId($this->getArrayValue('id', $array));
         $post->setCreated(new \DateTime(date(DATE_ISO8601, $array['created_time'])));
-        $post->setBody(is_array($array['caption']) ? $array['caption']['text'] : $array['caption']);
-        $post->setUrl($array['link']);
-        $post->setMediaUrl($array['images']['standard_resolution']['url']);
+        $post->setBody(is_array($this->getArrayValue('caption', $array)) ? $array['caption']['text'] : $array['caption']);
+        $post->setUrl($this->getArrayValue('link', $array));
+        $post->setMediaUrl($this->getArrayValue('images', $array)['standard_resolution']['url']);
         $this->posts[$post->getId()] = $post;
         return $post;
     }
