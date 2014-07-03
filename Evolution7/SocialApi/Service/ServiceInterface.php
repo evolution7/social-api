@@ -60,8 +60,8 @@ interface ServiceInterface
     /**
      * Get OAuth request token
      *
-     * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
-     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
+     * @throws \Evolution7\SocialApi\Exception\NotImplementedException
+     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException
      *
      * @return \Evolution7\SocialApi\Token\RequestToken
      */
@@ -70,8 +70,8 @@ interface ServiceInterface
     /**
      * Get OAuth access token
      *
-     * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
-     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
+     * @throws \Evolution7\SocialApi\Exception\NotImplementedException
+     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException
      *
      * @param RequestTokenInterface $requestToken
      * @param string                $token           - e.g. $_GET['oauth_token']
@@ -85,8 +85,9 @@ interface ServiceInterface
     /**
      * Get current authenticated user
      *
-     * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
-     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
+     * @throws \Evolution7\SocialApi\Exception\NotImplementedException
+     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException
+     * @throws \Evolution7\SocialApi\Exception\HttpUnauthorizedException
      *
      * @return User
      */
@@ -97,8 +98,9 @@ interface ServiceInterface
      *
      * @param int $id
      *
-     * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
-     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
+     * @throws \Evolution7\SocialApi\Exception\NotImplementedException
+     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException
+     * @throws \Evolution7\SocialApi\Exception\HttpUnauthorizedException
      *
      * @return \Evolution7\SocialApi\Entity\Post
      */
@@ -109,8 +111,9 @@ interface ServiceInterface
      *
      * @param \Evolution7\SocialApi\Service\QueryInterface $query
      *
-     * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
-     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
+     * @throws \Evolution7\SocialApi\Exception\NotImplementedException
+     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException
+     * @throws \Evolution7\SocialApi\Exception\HttpUnauthorizedException
      *
      * @return \Evolution7\SocialApi\Entity\Post[]
      */
@@ -122,8 +125,9 @@ interface ServiceInterface
      * @param \Evolution7\SocialApi\Entity\Post $post
      * @param string                            $comment
      *
-     * @throws \Evolution7\SocialApi\Exception\NotImplementedException;
-     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException;
+     * @throws \Evolution7\SocialApi\Exception\NotImplementedException
+     * @throws \Evolution7\SocialApi\Exception\NotSupportedByAPIException
+     * @throws \Evolution7\SocialApi\Exception\HttpUnauthorizedException
      *
      * @return \Evolution7\SocialApi\Response\ResponseInterface
      */

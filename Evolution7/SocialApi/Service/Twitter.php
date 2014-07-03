@@ -8,6 +8,7 @@ use Evolution7\SocialApi\Entity\Post;
 use Evolution7\SocialApi\Response\Response;
 use Evolution7\SocialApi\Parser\TwitterParser;
 use Evolution7\SocialApi\Exception\NotImplementedException;
+use Evolution7\SocialApi\Exception\HttpUnauthorizedException;
 
 class Twitter extends Service implements ServiceInterface
 {
@@ -18,7 +19,11 @@ class Twitter extends Service implements ServiceInterface
     {
         $libService = $this->getLibService();
         $requestUrl = 'account/verify_credentials.json';
-        $response = new Response($libService->request($requestUrl));
+        try {
+            $response = new Response($libService->request($requestUrl));
+        } catch (\Exception $e) {
+            $this->propogateException($e);
+        }
         $parser = new TwitterParser($response);
         $parser->parseAccountVerifyCredentials();
         return $parser->getFirstUser();
@@ -31,7 +36,11 @@ class Twitter extends Service implements ServiceInterface
     {
         $libService = $this->getLibService();
         $requestUrl = 'statuses/show/' . $id . '.json';
-        $response = new Response($libService->request($requestUrl));
+        try {
+            $response = new Response($libService->request($requestUrl));
+        } catch (\Exception $e) {
+            $this->propogateException($e);
+        }
         $parser = new TwitterParser($response);
         $parser->parseStatusesShow();
         return $parser->getFirstPost();
@@ -81,7 +90,11 @@ class Twitter extends Service implements ServiceInterface
             PHP_QUERY_RFC3986
         );
         // Search api
-        $response = new Response($libService->request($requestUrl), 'json');
+        try {
+            $response = new Response($libService->request($requestUrl), 'json');
+        } catch (\Exception $e) {
+            $this->propogateException($e);
+        }
         // Parse response
         $parser = new TwitterParser($response);
         $parser->parseSearchTweets();
@@ -109,7 +122,27 @@ class Twitter extends Service implements ServiceInterface
             );
         $requestUrl = 'statuses/update.json?' . http_build_query($postData);
         // Call api
-        $response = new Response($libService->request($requestUrl, 'POST'));
+        try {
+            $response = new Response($libService->request($requestUrl, 'POST'));
+        } catch (\Exception $e) {
+            $this->propogateException($e);
+        }
         return $response;
+    }
+
+    /**
+     * Propogate Exception
+     *
+     * @param \Exception $exception
+     */
+    protected function propogateException($exception)
+    {
+        // Check if we should throw a custom exception
+        if (strpos($exception->getMessage(), 'HTTP/1.1 401 Unauthorized') !== false) {
+            throw new HttpUnauthorizedException($exception->getMessage());
+        } else {
+            $exceptionClass = get_class($exception);
+            throw new $exceptionClass($exception->getMessage());
+        }
     }
 }

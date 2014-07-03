@@ -8,6 +8,7 @@ use Evolution7\SocialApi\Entity\Post;
 use Evolution7\SocialApi\Response\Response;
 use Evolution7\SocialApi\Parser\InstagramParser;
 use Evolution7\SocialApi\Exception\NotImplementedException;
+use Evolution7\SocialApi\Exception\HttpUnauthorizedException;
 
 class Instagram extends Service implements ServiceInterface
 {
@@ -18,7 +19,11 @@ class Instagram extends Service implements ServiceInterface
     {
         $libService = $this->getLibService();
         $requestUrl = 'users/self';
-        $response = new Response($libService->request($requestUrl));
+        try {
+            $response = new Response($libService->request($requestUrl));
+        } catch (\Exception $e) {
+            $this->propogateException($e);
+        }
         $parser = new InstagramParser($response);
         $parser->parseUsersSelf();
         return $parser->getFirstUser();
@@ -31,7 +36,11 @@ class Instagram extends Service implements ServiceInterface
     {
         $libService = $this->getLibService();
         $requestUrl = 'media/' . $id;
-        $response = new Response($libService->request($requestUrl));
+        try {
+            $response = new Response($libService->request($requestUrl));
+        } catch (\Exception $e) {
+            $this->propogateException($e);
+        }
         $parser = new InstagramParser($response);
         $parser->parseMedia();
         return $parser->getFirstPost();
@@ -87,7 +96,11 @@ class Instagram extends Service implements ServiceInterface
             PHP_QUERY_RFC3986
         );
         // Search api
-        $response = new Response($libService->request($requestUrl), 'json');
+        try {
+            $response = new Response($libService->request($requestUrl), 'json');
+        } catch (\Exception $e) {
+            $this->propogateException($e);
+        }
         // Parse response
         $parser = new InstagramParser($response);
         $parser->$parseMethod();
@@ -107,7 +120,27 @@ class Instagram extends Service implements ServiceInterface
             'text' => $comment,
             );
         // Call api
-        $response = new Response($libService->request($requestUrl, 'POST', $requestBody));
+        try {
+            $response = new Response($libService->request($requestUrl, 'POST', $requestBody));
+        } catch (\Exception $e) {
+            $this->propogateException($e);
+        }
         return $response;
+    }
+
+    /**
+     * Propogate Exception
+     *
+     * @param \Exception $exception
+     */
+    protected function propogateException($exception)
+    {
+        // Check if we should throw a custom exception
+        if (strpos($exception->getMessage(), 'HTTP/1.1 400 BAD REQUEST') !== false) {
+            throw new HttpUnauthorizedException($exception->getMessage());
+        } else {
+            $exceptionClass = get_class($exception);
+            throw new $exceptionClass($exception->getMessage());
+        }
     }
 }
