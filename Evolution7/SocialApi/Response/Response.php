@@ -67,7 +67,9 @@ class Response implements ResponseInterface
         }
         // Throw exception if error occured
         if (!is_null($error)) {
-            throw new ResponseInvalidException($error);
+            throw new ResponseInvalidException(
+                sprintf("Response (JSON) Invalid: %s", $error)
+            );
         }
     }
 
