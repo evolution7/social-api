@@ -30,25 +30,37 @@ class InstagramTest extends ServiceTestCommon
 
     public function testGetCurrentUser()
     {
+        // Get user
         $user = $this->instagram->getCurrentUser();
+        // Test user
+        $this->assertInstanceOf('\Evolution7\SocialApi\Entity\User', $user);
     }
 
     public function testGetPostById()
     {
+        // Get post
         $post = $this->instagram->getPostById('1');
+        // Test post
+        $this->assertInstanceOf('\Evolution7\SocialApi\Entity\Post', $post);
     }
 
     public function testSearch()
     {
+        // Get posts
         $posts = $this->instagram->search($this->queryMock);
+        // Test output
+        $this->assertEquals(2, count($posts));
+        // Test posts
+        foreach ($posts as $post) {
+            // Test post
+            $this->assertInstanceOf('\Evolution7\SocialApi\Entity\Post', $post);
+            // Test user
+            $this->assertInstanceOf('\Evolution7\SocialApi\Entity\User', $post->getUser());
+        }
     }
 
-    /**
-     * @expectedException \Evolution7\SocialApi\Exception\HttpUnauthorizedException
-     */
     public function testCommentHttpUnauthorizedException()
     {
-        $this->markTestSkipped('TODO');
-        //$this->instagram->comment($this->postMock, 'test');
+        $this->instagram->comment($this->postMock, 'test');
     }
 }

@@ -30,26 +30,38 @@ class TwitterTest extends ServiceTestCommon
 
     public function testGetCurrentUser()
     {
+        // Get user
         $user = $this->twitter->getCurrentUser();
-        
+        // Test user
+        $this->assertInstanceOf('\Evolution7\SocialApi\Entity\User', $user);
     }
 
     public function testGetPostById()
     {
+        // Get post
         $post = $this->twitter->getPostById(1);
+        // Test post
+        $this->assertInstanceOf('\Evolution7\SocialApi\Entity\Post', $post);
     }
 
     public function testSearch()
     {
+        // Get posts
         $posts = $this->twitter->search($this->queryMock);
+        // Test output
+        $this->assertEquals(4, count($posts));
+        // Test posts
+        foreach ($posts as $post) {
+            // Test post
+            $this->assertInstanceOf('\Evolution7\SocialApi\Entity\Post', $post);
+            // Test user
+            $this->assertInstanceOf('\Evolution7\SocialApi\Entity\User', $post->getUser());
+        }
     }
 
-    /**
-     * @expectedException \Evolution7\SocialApi\Exception\HttpUnauthorizedException
-     */
     public function testCommentHttpUnauthorizedException()
     {
-        $this->markTestSkipped('TODO');
-        //$this->twitter->comment($this->postMock, 'test @test');
+        // Test comment
+        $this->twitter->comment($this->postMock, 'test @test');
     }
 }
