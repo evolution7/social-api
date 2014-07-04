@@ -2,7 +2,7 @@
 
 namespace Evolution7\SocialApi\Entity;
 
-class Post extends Base
+class Post extends Base implements PostInterface
 {
     protected $created;
     protected $body;
@@ -10,9 +10,7 @@ class Post extends Base
     protected $user;
 
     /**
-     * Set post created date
-     *
-     * @param DateTime $created
+     * {@inheritdoc}
      */
     public function setCreated($created)
     {
@@ -20,11 +18,7 @@ class Post extends Base
     }
 
     /**
-     * Get post created date
-     *
-     * @throws NotSupportedByAPIException
-     *
-     * @return DateTime
+     * {@inheritdoc}
      */
     public function getCreated()
     {
@@ -32,9 +26,7 @@ class Post extends Base
     }
 
     /**
-     * Set post body
-     *
-     * @param string $body
+     * {@inheritdoc}
      */
     public function setBody($body)
     {
@@ -42,11 +34,7 @@ class Post extends Base
     }
 
     /**
-     * Get post body
-     *
-     * @throws NotSupportedByAPIException
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getBody()
     {
@@ -54,9 +42,7 @@ class Post extends Base
     }
 
     /**
-     * Set post media URL
-     *
-     * @param string $mediaUrl
+     * {@inheritdoc}
      */
     public function setMediaUrl($mediaUrl)
     {
@@ -64,11 +50,7 @@ class Post extends Base
     }
 
     /**
-     * Get post media URL
-     *
-     * @throws NotSupportedByAPIException
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getMediaUrl()
     {
@@ -76,9 +58,7 @@ class Post extends Base
     }
 
     /**
-     * Set user
-     *
-     * @param ApiUserInterface $user
+     * {@inheritdoc}
      */
     public function setUser($user)
     {
@@ -86,11 +66,7 @@ class Post extends Base
     }
 
     /**
-     * Get user
-     *
-     * @throws NotSupportedByAPIException
-     *
-     * @return ApiUserInterface
+     * {@inheritdoc}
      */
     public function getUser()
     {

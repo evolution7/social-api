@@ -2,17 +2,14 @@
 
 namespace Evolution7\SocialApi\Entity;
 
-class User extends Base
+class User extends Base implements UserInterface
 {
-    protected $url;
     protected $handle;
     protected $name;
     protected $imageUrl;
 
     /**
-     * Set user handle/screen name
-     *
-     * @param string $handle
+     * {@inheritdoc}
      */
     public function setHandle($handle)
     {
@@ -20,9 +17,7 @@ class User extends Base
     }
 
     /**
-     * Get user handle/screen name
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getHandle()
     {
@@ -30,9 +25,7 @@ class User extends Base
     }
 
     /**
-     * Set user name
-     *
-     * @param string $name
+     * {@inheritdoc}
      */
     public function setName($name)
     {
@@ -40,9 +33,7 @@ class User extends Base
     }
 
     /**
-     * Get user name
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getName()
     {
@@ -50,9 +41,7 @@ class User extends Base
     }
 
     /**
-     * Set user profile image URL
-     *
-     * @param string $imageUrl
+     * {@inheritdoc}
      */
     public function setImageUrl($imageUrl)
     {
@@ -60,9 +49,7 @@ class User extends Base
     }
 
     /**
-     * Get user profile image URL
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getImageUrl()
     {

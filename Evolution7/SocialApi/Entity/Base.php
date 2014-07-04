@@ -9,18 +9,15 @@ use Evolution7\SocialApi\Config\Config;
  */
 abstract class Base
 {
-    private $platform;
-    private $id;
-    private $paginationId;
+    protected $platform;
+    protected $id;
+    protected $paginationId;
+    protected $url;
 
     /**
-     * Set platform
-     *
-     * @param $platform
-     *
-     * @throws \InvalidArgumentException
+     * {@inheritdoc}
      */
-    final public function setPlatform($platform)
+    public function setPlatform($platform)
     {
         if (config::validatePlatform($platform)) {
             $this->platform = $platform;
@@ -32,19 +29,15 @@ abstract class Base
     }
 
     /**
-     * Get platform
-     *
-     * @return string
+     * {@inheritdoc}
      */
-    final public function getPlatform()
+    public function getPlatform()
     {
         return $this->platform;
     }
 
     /**
-     * Set entity ID
-     *
-     * @param string $id
+     * {@inheritdoc}
      */
     public function setId($id)
     {
@@ -52,9 +45,7 @@ abstract class Base
     }
 
     /**
-     * Get entity ID
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getId()
     {
@@ -62,9 +53,7 @@ abstract class Base
     }
 
     /**
-     * Set entity pagination ID
-     *
-     * @param string $paginationId
+     * {@inheritdoc}
      */
     public function setPaginationId($paginationId)
     {
@@ -72,9 +61,7 @@ abstract class Base
     }
 
     /**
-     * Get entity pagination ID
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getPaginationId()
     {
@@ -82,9 +69,7 @@ abstract class Base
     }
 
     /**
-     * Set entity URL
-     *
-     * @param string $url
+     * {@inheritdoc}
      */
     public function setUrl($url)
     {
@@ -92,9 +77,7 @@ abstract class Base
     }
 
     /**
-     * Get entity URL
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getUrl()
     {
