@@ -2,8 +2,8 @@
 
 namespace Evolution7\SocialApi\Response;
 
-use Evolution7\SocialApi\Exception\NotImplementedException;
-use Evolution7\SocialApi\Exception\NotSupportedByAPIException;
+use Evolution7\SocialApi\Exception\ResponseFormatNotSupportedException;
+use Evolution7\SocialApi\Exception\ResponseInvalidException;
 
 class Response implements ResponseInterface
 {
@@ -19,6 +19,56 @@ class Response implements ResponseInterface
         // Save data
         $this->raw = $raw;
         $this->format = $format;
+        // Process data
+        switch ($format) {
+            case 'json':
+                $this->processJson($raw);
+                break;
+            default:
+                throw new ResponseFormatNotSupportedException();
+                break;
+        }
+    }
+
+    /**
+     * Decode JSON response as array
+     *
+     * @param string $raw - Raw JSON response
+     *
+     * @throws ResponseInvalidException
+     */
+    private function processJson($raw)
+    {
+        // Decode JSON
+        $this->array = json_decode($this->raw, true);
+        // Check for errors
+        switch (json_last_error()) {
+            case JSON_ERROR_NONE:
+                $error = null;
+            break;
+            case JSON_ERROR_DEPTH:
+                $error = 'Maximum stack depth exceeded';
+            break;
+            case JSON_ERROR_STATE_MISMATCH:
+                $error = 'Underflow or the modes mismatch';
+            break;
+            case JSON_ERROR_CTRL_CHAR:
+                $error = 'Unexpected control character found';
+            break;
+            case JSON_ERROR_SYNTAX:
+                $error = 'Syntax error, malformed JSON';
+            break;
+            case JSON_ERROR_UTF8:
+                $error = 'Malformed UTF-8 characters, possibly incorrectly encoded';
+            break;
+            default:
+                $error = 'Unknown error';
+            break;
+        }
+        // Throw exception if error occured
+        if (!is_null($error)) {
+            throw new ResponseInvalidException($error);
+        }
     }
 
     /**
@@ -42,13 +92,6 @@ class Response implements ResponseInterface
      */
     public function getArray()
     {
-        if ($this->getFormat() == 'json') {
-            if (is_null($this->array)) {
-                $this->array = json_decode($this->raw, true);
-            }
-            return $this->array;
-        } else {
-            throw new NotImplementedException();
-        }
+        return $this->array;
     }
 }

@@ -8,7 +8,10 @@ interface ResponseInterface
      * Constructor
      *
      * @param string $raw    - unprocessed API response
-     * @param string $format - json by default
+     * @param string $format - response format (default: json)
+     *
+     * @throws ResponseFormatNotSupportedException
+     * @throws ResponseInvalidException
      */
     public function __construct($raw, $format = 'json');
 
