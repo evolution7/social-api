@@ -53,4 +53,26 @@ class InstagramParserTest extends Parser
         $parser->parseMedia();
         
     }
+
+    public function testParseUserArray()
+    {
+        // Get sample response
+        $sampleResponse = $this->sampleResponses['user.json'];
+        $response = new Response($sampleResponse, 'json');
+        // Get parser
+        $parser = new InstagramParser($response);
+        // Parse and test
+        $user = $parser->parseUserArray($response->getArray());
+    }
+
+    public function testParsePostArray()
+    {
+        // Get sample response
+        $sampleResponse = $this->sampleResponses['post.json'];
+        $response = new Response($sampleResponse, 'json');
+        // Get parser
+        $parser = new InstagramParser($response);
+        // Parse and test
+        $user = $parser->parsePostArray($response->getArray());
+    }
 }

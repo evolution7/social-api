@@ -99,7 +99,7 @@ class InstagramParser extends Parser
      *
      * @return \Evolution7\SocialApi\Entity\User
      */
-    private function parseUserArray($array)
+    public function parseUserArray($array)
     {
         // Create User
         $user = new User();
@@ -122,7 +122,7 @@ class InstagramParser extends Parser
      *
      * @return \Evolution7\SocialApi\Entity\Post
      */
-    private function parsePostArray($array)
+    public function parsePostArray($array)
     {
         // Create User
         if (is_array($array) && array_key_exists('user', $array)) {
