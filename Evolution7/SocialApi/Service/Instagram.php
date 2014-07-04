@@ -104,7 +104,30 @@ class Instagram extends Service implements ServiceInterface
         // Parse response
         $parser = new InstagramParser($response);
         $parser->$parseMethod();
-        return $parser->getPosts();
+        $posts = $parser->getPosts();
+        // Filter posts
+        $filteredPosts = array();
+        if (!is_null($query->getMedia())) {
+            $mediaTypes = array();
+            foreach ($query->getMedia() as $media) {
+                switch ($media) {
+                    case 'images':
+                        $mediaTypes[] = 'image';
+                        break;
+                    case 'videos':
+                        $mediaTypes[] = 'video';
+                        break;
+                }
+            }
+            foreach ($posts as $i => $post) {
+                if (in_array($post->getMediaType(), $mediaTypes)) {
+                    $filteredPosts[$i] = $post;
+                }
+            }
+        } else {
+            $filteredPosts = $posts;
+        }
+        return $filteredPosts;
     }
 
     /**
