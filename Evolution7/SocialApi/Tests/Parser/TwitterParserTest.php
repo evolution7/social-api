@@ -33,12 +33,39 @@ class TwitterParserTest extends \PHPUnit_Framework_TestCase
         $this->sampleResponses = null;
     }
 
-    public function testGetAccountVerifyCredentials()
+    public function testParseAccountVerifyCredentials()
     {
+        // Get sample response
         $sampleResponse = $this->sampleResponses['get-account-verify_credentials.json'];
         $response = new Response($sampleResponse, 'json');
+        // Get parser
         $parser = new TwitterParser($response);
+        // Parse and test
         $parser->parseAccountVerifyCredentials();
         $this->assertInstanceOf('\Evolution7\SocialApi\Entity\User', $parser->getFirstUser());
+    }
+
+    public function testParseSearchTweets()
+    {
+        // Get sample response
+        $sampleResponse = $this->sampleResponses['get-search-tweets.json'];
+        $response = new Response($sampleResponse, 'json');
+        // Get parser
+        $parser = new TwitterParser($response);
+        // Parse and test
+        $parser->parseSearchTweets();
+        
+    }
+
+    public function testParseStatusesShow()
+    {
+        // Get sample response
+        $sampleResponse = $this->sampleResponses['get-statuses-show-id.json'];
+        $response = new Response($sampleResponse, 'json');
+        // Get parser
+        $parser = new TwitterParser($response);
+        // Parse and test
+        $parser->parseStatusesShow();
+        
     }
 }

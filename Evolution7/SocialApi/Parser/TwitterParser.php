@@ -112,7 +112,7 @@ class TwitterParser extends Parser
                 '/status/' . $post->getId()
             );
         }
-        $post->setMediaUrl($this->getArrayValue('entities', $array)['media'][0]['media_url']);
+        $post->setMediaUrl($this->getArrayValue(array('entities', 'media', 0, 'media_url'), $array));
         $this->posts[$post->getId()] = $post;
         return $post;
     }
