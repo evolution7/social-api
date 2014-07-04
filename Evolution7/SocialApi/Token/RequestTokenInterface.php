@@ -7,9 +7,9 @@ interface RequestTokenInterface
     /**
      * Constructor
      *
-     * @param $token
-     * @param $secret
-     * @param $redirectUrl
+     * @param string $token
+     * @param string $secret
+     * @param string $redirectUrl
      */
     public function __construct($token, $secret, $redirectUrl = null);
 }

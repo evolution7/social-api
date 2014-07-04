@@ -7,8 +7,8 @@ interface AccessTokenInterface
     /**
      * Constructor
      *
-     * @param $token
-     * @param $secret
+     * @param string $token
+     * @param string $secret
      */
     public function __construct($token, $secret);
 }
