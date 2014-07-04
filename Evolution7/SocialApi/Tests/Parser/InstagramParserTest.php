@@ -20,7 +20,29 @@ class InstagramParserTest extends Parser
         $posts = $parser->getPosts();
         $this->assertEquals(2, count($posts));
         // Test first post
-
+        $post = $parser->getFirstPost();
+        $this->assertInstanceOf('\Evolution7\SocialApi\Entity\Post', $post);
+        $this->assertEquals('22699663', $post->getId());
+        $this->assertEquals('#Snow', $post->getBody());
+        $this->assertEquals('image', $post->getMediaType());
+        $this->assertEquals(
+            'http://distillery.s3.amazonaws.com/media/2011/02/02/f9443f3443484c40b4792fa7c76214d5_7.jpg',
+            $post->getMediaUrl()
+        );
+        $dateTime = new \DateTime();
+        $dateTime->setTimestamp(1296703536);
+        $this->assertEquals($dateTime, $post->getCreated());
+        // Test first post user
+        $user = $post->getUser();
+        $this->assertInstanceOf('\Evolution7\SocialApi\Entity\User', $user);
+        $this->assertEquals('1242695', $user->getId());
+        $this->assertEquals('emohatch', $user->getHandle());
+        $this->assertEquals('http://instagram.com/emohatch', $user->getUrl());
+        $this->assertEquals('Dave', $user->getName());
+        $this->assertEquals(
+            'http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg',
+            $user->getImageUrl()
+        );
     }
 
     public function testParseMediaSearch()
