@@ -2,13 +2,15 @@
 
 namespace Evolution7\SocialApi\Token;
 
-class Token implements TokenInterface
+abstract class Token
 {
     protected $token;
     protected $secret;
 
     /**
-     * {@inheritdoc}
+     * Get token
+     *
+     * @return string
      */
     public function getToken()
     {
@@ -16,7 +18,9 @@ class Token implements TokenInterface
     }
 
     /**
-     * {@inheritdoc}
+     * Get secret
+     *
+     * @return string
      */
     public function getSecret()
     {
