@@ -12,7 +12,7 @@ class ConfigTest extends \PHPUnit_Framework_TestCase
         $this->validPlatforms = array('twitter', 'instagram');
         $this->config = $this->getMockBuilder('\Evolution7\SocialApi\Config\Config')
             ->disableOriginalConstructor()
-            ->setMethods(NULL)
+            ->setMethods(null)
             ->getMock();
     }
 
