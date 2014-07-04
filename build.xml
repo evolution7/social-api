@@ -107,6 +107,7 @@
         <exec executable="phpcpd">
             <arg value="--log-pmd" />
             <arg value="${basedir}/build/logs/pmd-cpd.xml" />
+            <arg value="--names-exclude=${basedir}/Evolution7/SocialApi/Tests/" />
             <arg path="${basedir}/Evolution7" />
         </exec>
     </target>
