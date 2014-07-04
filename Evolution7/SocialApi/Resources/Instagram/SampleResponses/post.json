@@ -39,7 +39,7 @@
         }],
         "count": 2
     },
-    "caption": null,
+    "caption": "Hello world",
     "likes": {
         "count": 1,
         "data": [{
