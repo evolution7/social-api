@@ -67,6 +67,7 @@ class InstagramParserTest extends Parser
         $this->assertInstanceOf('\Evolution7\SocialApi\Entity\User', $user);
         $this->assertEquals('1574083', $user->getId());
         $this->assertEquals('snoopdogg', $user->getHandle());
+        $this->assertEquals('http://instagram.com/snoopdogg', $user->getUrl());
         $this->assertEquals('Snoop Dogg', $user->getName());
         $this->assertEquals(
             'http://distillery.s3.amazonaws.com/profiles/profile_1574083_75sq_1295469061.jpg',
@@ -99,6 +100,7 @@ class InstagramParserTest extends Parser
         $this->assertInstanceOf('\Evolution7\SocialApi\Entity\User', $user);
         $this->assertEquals('3', $user->getId());
         $this->assertEquals('kevin', $user->getHandle());
+        $this->assertEquals('http://instagram.com/kevin', $user->getUrl());
         $this->assertEquals('Kevin S', $user->getName());
         $this->assertEquals('...', $user->getImageUrl());
     }
