@@ -9,8 +9,8 @@ use \Evolution7\SocialApi\Tests\ResourceLoader;
  */
 class InstagramResponseMap
 {
-    public function request($url, $method) {
-        
+    public function request($url, $method)
+    {
         // Load sample responses
         $resourceLoader = new ResourceLoader('Instagram');
         $this->sampleResponses = $resourceLoader->loadSampleResponses();
@@ -18,15 +18,14 @@ class InstagramResponseMap
         // Return response
         if (strpos($url, 'users/self') !== false) {
             return $this->sampleResponses['get-users-self.json'];
-        } else if (strpos($url, 'media/search') !== false) {
+        } elseif (strpos($url, 'media/search') !== false) {
             return $this->sampleResponses['get-media-search.json'];
-        } else if (strpos($url, 'tags/') !== false) {
+        } elseif (strpos($url, 'tags/') !== false) {
             return $this->sampleResponses['get-tags-tag_name-media-recent.json'];
-        } else if (strpos($url, 'media/') !== false) {
+        } elseif (strpos($url, 'media/') !== false) {
             return $this->sampleResponses['get-media-media_id.json'];
         } else {
             return '{}';
         }
-
     }
 }

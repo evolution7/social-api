@@ -9,8 +9,8 @@ use \Evolution7\SocialApi\Tests\ResourceLoader;
  */
 class TwitterResponseMap
 {
-    public function request($url, $method) {
-        
+    public function request($url, $method)
+    {
         // Load sample responses
         $resourceLoader = new ResourceLoader('Twitter');
         $this->sampleResponses = $resourceLoader->loadSampleResponses();
@@ -18,13 +18,12 @@ class TwitterResponseMap
         // Return response
         if (strpos($url, 'account/verify_credentials') !== false) {
             return $this->sampleResponses['get-account-verify_credentials.json'];
-        } else if (strpos($url, 'search/tweets') !== false) {
+        } elseif (strpos($url, 'search/tweets') !== false) {
             return $this->sampleResponses['get-search-tweets.json'];
-        } else if (strpos($url, 'statuses/show/') !== false) {
+        } elseif (strpos($url, 'statuses/show/') !== false) {
             return $this->sampleResponses['get-statuses-show-id.json'];
         } else {
             return '{}';
         }
-
     }
 }
