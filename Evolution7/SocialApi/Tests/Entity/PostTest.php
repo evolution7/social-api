@@ -41,4 +41,11 @@ class PostTest extends Base
         $this->entity->setMediaUrl('http://www.example.com');
         $this->assertEquals('http://www.example.com', $this->entity->getMediaUrl());
     }
+
+    public function testSetUser()
+    {
+        $mockUser = $this->getMock('\Evolution7\SocialApi\Entity\User');
+        $this->entity->setUser($mockUser);
+        $this->assertSame($mockUser, $this->entity->getUser());
+    }
 }

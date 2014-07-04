@@ -39,4 +39,10 @@ class Base extends \PHPUnit_Framework_TestCase
         $this->entity->setPaginationId('test');
         $this->assertEquals('test', $this->entity->getPaginationId());
     }
+
+    public function testSetUrl()
+    {
+        $this->entity->setUrl('http://www.example.com');
+        $this->assertEquals('http://www.example.com', $this->entity->getUrl());
+    }
 }

@@ -4,30 +4,10 @@ namespace Evolution7\SocialApi\Entity;
 
 class User extends Base
 {
-    private $url;
-    private $handle;
-    private $name;
-    private $imageUrl;
-
-    /**
-     * Set user URL
-     *
-     * @param string $url
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-    }
-
-    /**
-     * Get user URL
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
+    protected $url;
+    protected $handle;
+    protected $name;
+    protected $imageUrl;
 
     /**
      * Set user handle/screen name

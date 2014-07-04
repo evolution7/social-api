@@ -80,4 +80,24 @@ abstract class Base
     {
         return $this->paginationId;
     }
+
+    /**
+     * Set entity URL
+     *
+     * @param string $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
+    /**
+     * Get entity URL
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
 }

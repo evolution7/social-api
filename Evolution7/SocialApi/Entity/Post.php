@@ -4,11 +4,10 @@ namespace Evolution7\SocialApi\Entity;
 
 class Post extends Base
 {
-    private $created;
-    private $url;
-    private $body;
-    private $mediaUrl;
-    private $user;
+    protected $created;
+    protected $body;
+    protected $mediaUrl;
+    protected $user;
 
     /**
      * Set post created date
@@ -30,28 +29,6 @@ class Post extends Base
     public function getCreated()
     {
         return $this->created;
-    }
-
-    /**
-     * Set post URL
-     *
-     * @param string $url
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-    }
-
-    /**
-     * Get post URL
-     *
-     * @throws NotSupportedByAPIException
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->url;
     }
 
     /**
