@@ -6,7 +6,8 @@
         "filter": "Earlybird",
         "tags": ["snow"],
         "comments": {
-            "data": [{
+            "data": [
+            {
                 "created_time": "1296703540",
                 "text": "Snow",
                 "from": {
@@ -25,7 +26,8 @@
                     "id": "1242695"
                 },
                 "id": "26609649"
-            }],
+            }
+            ],
             "count": 3
         },
         "caption": {
@@ -39,12 +41,14 @@
         },
         "likes": {
             "count": 1,
-            "data": [{
+            "data": [
+            {
                 "username": "mikeyk",
                 "full_name": "Mike Krieger",
                 "id": "4",
                 "profile_picture": "http://distillery.s3.amazonaws.com/profiles/profile_1242695_75sq_1293915800.jpg"
-            }]
+            }
+            ]
         },        
         "link": "http://instagr.am/p/BWl6P/",
         "user": {
@@ -86,13 +90,14 @@
                 "url": "http://distilleryvesper9-13.ak.instagram.com/090d06dad9cd11e2aa0912313817975d_101.mp4",
                 "width": 640,
                 "height": 640
-            },
+            }
         },
         "users_in_photo": null,
         "filter": "Vesper",
         "tags": ["snow"],
         "comments": {
-            "data": [{
+            "data": [
+            {
                 "created_time": "1279332030",
                 "text": "Love the sign here",
                 "from": {
@@ -113,18 +118,21 @@
                     "profile_picture": "..."
                 },
                 "id": "3"
-            }],
+            }
+            ],
             "count": 2
         },
         "caption": null,
         "likes": {
             "count": 1,
-            "data": [{
+            "data": [
+            {
                 "username": "mikeyk",
                 "full_name": "Mikeyk",
                 "id": "4",
                 "profile_picture": "..."
-            }]
+            }
+            ]
         },
         "link": "http://instagr.am/p/D/",
         "user": {
