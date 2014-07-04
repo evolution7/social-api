@@ -6,6 +6,7 @@ class Post extends Base implements PostInterface
 {
     protected $created;
     protected $body;
+    protected $mediaType;
     protected $mediaUrl;
     protected $user;
 
@@ -39,6 +40,22 @@ class Post extends Base implements PostInterface
     public function getBody()
     {
         return $this->body;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setMediaType($mediaType)
+    {
+        $this->mediaType = $mediaType;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getMediaType()
+    {
+        return $this->mediaType;
     }
 
     /**

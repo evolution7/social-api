@@ -37,6 +37,22 @@ interface PostInterface extends BaseInterface
     public function getBody();
 
     /**
+     * Set post media type
+     *
+     * @param string $mediaUrl
+     */
+    public function setMediaType($mediaType);
+
+    /**
+     * Get post media type
+     *
+     * @throws NotSupportedByAPIException
+     *
+     * @return string
+     */
+    public function getMediaType();
+
+    /**
      * Set post media URL
      *
      * @param string $mediaUrl
