@@ -8,6 +8,11 @@ class InstagramTest extends ServiceTestCommon
     protected $queryMock;
     protected $postMock;
 
+    protected function getResponseMap()
+    {
+        return new InstagramResponseMap();
+    }
+
     protected function setUp()
     {
         $this->instagram = $this->getServiceMock(
@@ -23,28 +28,19 @@ class InstagramTest extends ServiceTestCommon
         $this->instagram = null;
     }
 
-    /**
-     * @expectedException \Evolution7\SocialApi\Exception\HttpUnauthorizedException
-     */
-    public function testGetCurrentUserHttpUnauthorizedException()
+    public function testGetCurrentUser()
     {
-        $this->instagram->getCurrentUser();
+        $user = $this->instagram->getCurrentUser();
     }
 
-    /**
-     * @expectedException \Evolution7\SocialApi\Exception\HttpUnauthorizedException
-     */
-    public function testGetPostByIdHttpUnauthorizedException()
+    public function testGetPostById()
     {
-        $this->instagram->getPostById(1);
+        $post = $this->instagram->getPostById('1');
     }
 
-    /**
-     * @expectedException \Evolution7\SocialApi\Exception\HttpUnauthorizedException
-     */
-    public function testSearchHttpUnauthorizedException()
+    public function testSearch()
     {
-        $this->instagram->search($this->queryMock);
+        $posts = $this->instagram->search($this->queryMock);
     }
 
     /**
@@ -52,6 +48,7 @@ class InstagramTest extends ServiceTestCommon
      */
     public function testCommentHttpUnauthorizedException()
     {
-        $this->instagram->comment($this->postMock, 'test');
+        $this->markTestSkipped('TODO');
+        //$this->instagram->comment($this->postMock, 'test');
     }
 }

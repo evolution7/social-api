@@ -21,7 +21,7 @@ class TwitterParser extends Parser
         // Get response array
         $responseArray = $this->response->getArray();
         // Check if statuses exist
-        if (array_key_exists('statuses', $responseArray)) {
+        if (!is_null($responseArray) && array_key_exists('statuses', $responseArray)) {
             // Check if at least one statuses exists
             if (count($responseArray['statuses']) > 0) {
                 // Loop statuses
@@ -92,7 +92,7 @@ class TwitterParser extends Parser
     public function parsePostArray($array)
     {
         // Create User
-        if (array_key_exists('user', $array)) {
+        if (!is_null($array) && array_key_exists('user', $array)) {
             $user = $this->parseUserArray($this->getArrayValue('user', $array));
         } else {
             $user = null;

@@ -19,7 +19,7 @@ class InstagramParser extends Parser
         // Get response array
         $responseArray = $this->response->getArray();
         // Check if data exists
-        if (is_array($responseArray) && array_key_exists('data', $responseArray)) {
+        if (!is_null($responseArray) && array_key_exists('data', $responseArray)) {
             // Check if at least one data record exists
             if (count($responseArray['data']) > 0) {
                 // Loop data
@@ -30,7 +30,7 @@ class InstagramParser extends Parser
             }
         }
         // Check pagination
-        if (array_key_exists('pagination', $responseArray)) {
+        if (!is_null($responseArray) && array_key_exists('pagination', $responseArray)) {
             // Check pagination id
             if (array_key_exists('min_tag_id', $responseArray['pagination'])) {
                 // Iterate over posts
@@ -72,7 +72,7 @@ class InstagramParser extends Parser
         // Get response array
         $responseArray = $this->response->getArray();
         // Parse user data
-        if (array_key_exists('data', $responseArray)) {
+        if (!is_null($responseArray) && array_key_exists('data', $responseArray)) {
             $this->parseUserArray($responseArray['data']);
         }
     }
@@ -87,7 +87,7 @@ class InstagramParser extends Parser
         // Get response array
         $responseArray = $this->response->getArray();
         // Parse post data
-        if (array_key_exists('data', $responseArray)) {
+        if (!is_null($responseArray) && array_key_exists('data', $responseArray)) {
             $this->parsePostArray($responseArray['data']);
         }
     }
@@ -125,7 +125,7 @@ class InstagramParser extends Parser
     public function parsePostArray($array)
     {
         // Create User
-        if (is_array($array) && array_key_exists('user', $array)) {
+        if (!is_null($array) && array_key_exists('user', $array)) {
             $user = $this->parseUserArray($this->getArrayValue('user', $array));
         } else {
             $user = null;

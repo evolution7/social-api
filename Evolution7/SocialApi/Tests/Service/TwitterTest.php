@@ -8,6 +8,11 @@ class TwitterTest extends ServiceTestCommon
     protected $queryMock;
     protected $postMock;
 
+    protected function getResponseMap()
+    {
+        return new TwitterResponseMap();
+    }
+
     protected function setUp()
     {
         $this->twitter = $this->getServiceMock(
@@ -23,28 +28,20 @@ class TwitterTest extends ServiceTestCommon
         $this->twitter = null;
     }
 
-    /**
-     * @expectedException \Evolution7\SocialApi\Exception\HttpUnauthorizedException
-     */
-    public function testGetCurrentUserHttpUnauthorizedException()
+    public function testGetCurrentUser()
     {
-        $this->twitter->getCurrentUser();
+        $user = $this->twitter->getCurrentUser();
+        
     }
 
-    /**
-     * @expectedException \Evolution7\SocialApi\Exception\HttpUnauthorizedException
-     */
-    public function testGetPostByIdHttpUnauthorizedException()
+    public function testGetPostById()
     {
-        $this->twitter->getPostById(1);
+        $post = $this->twitter->getPostById(1);
     }
 
-    /**
-     * @expectedException \Evolution7\SocialApi\Exception\HttpUnauthorizedException
-     */
-    public function testSearchHttpUnauthorizedException()
+    public function testSearch()
     {
-        $this->twitter->search($this->queryMock);
+        $posts = $this->twitter->search($this->queryMock);
     }
 
     /**
@@ -52,6 +49,7 @@ class TwitterTest extends ServiceTestCommon
      */
     public function testCommentHttpUnauthorizedException()
     {
-        $this->twitter->comment($this->postMock, 'test @test');
+        $this->markTestSkipped('TODO');
+        //$this->twitter->comment($this->postMock, 'test @test');
     }
 }

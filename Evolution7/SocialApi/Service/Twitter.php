@@ -145,8 +145,7 @@ class Twitter extends Service implements ServiceInterface
         if (strpos($exception->getMessage(), 'HTTP/1.1 401 Unauthorized') !== false) {
             throw new HttpUnauthorizedException($exception->getMessage());
         } else {
-            $exceptionClass = get_class($exception);
-            throw new $exceptionClass($exception->getMessage());
+            throw new \Exception($exception->getMessage());
         }
     }
 }

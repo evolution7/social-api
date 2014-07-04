@@ -4,8 +4,11 @@ namespace Evolution7\SocialApi\Tests\Service;
 
 use \Evolution7\SocialApi\Exception\HttpUnauthorizedException;
 
-class ServiceTestCommon extends \PHPUnit_Framework_TestCase
+abstract class ServiceTestCommon extends \PHPUnit_Framework_TestCase
 {
+    protected $sampleResponses;
+
+    abstract protected function getResponseMap();
 
     protected function getConfigMock($platform)
     {
@@ -49,7 +52,7 @@ class ServiceTestCommon extends \PHPUnit_Framework_TestCase
         // Override request() method
         $libService->expects($this->any())
                    ->method('request')
-                   ->will($this->throwException(new HttpUnauthorizedException));
+                   ->will($this->returnCallback(array($this->getResponseMap(), 'request')));
         
         // Get mock of service
         $service = $this->getMockBuilder($class)
@@ -74,6 +77,11 @@ class ServiceTestCommon extends \PHPUnit_Framework_TestCase
 
         // Get mock of Query
         $query = $this->getMock('\Evolution7\SocialApi\Service\QueryInterface');
+
+        // Override getHashtag() method
+        $query->expects($this->any())
+              ->method('getHastag')
+              ->will($this->returnValue('howwemove'));
 
         // Return mock
         return $query;
