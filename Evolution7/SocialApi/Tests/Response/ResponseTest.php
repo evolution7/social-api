@@ -2,6 +2,8 @@
 
 namespace Evolution7\SocialApi\Tests\Response;
 
+use \Evolution7\SocialApi\Response\Response;
+
 class ResponseTest extends \PHPUnit_Framework_TestCase
 {
     protected $jsonSampleData;
@@ -12,7 +14,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $this->jsonSampleData = json_encode(array(
             'data' => array('key' => 'value')
         ));
-        $this->jsonResponseObject = new \Evolution7\SocialApi\Response\Response(
+        $this->jsonResponseObject = new Response(
             $this->jsonSampleData,
             'json'
         );
@@ -40,5 +42,21 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
             $this->jsonSampleData,
             json_encode($this->jsonResponseObject->getArray())
         );
+    }
+
+    /**
+     * @expectedException \Evolution7\SocialApi\Exception\ResponseInvalidException
+     */
+    public function testResponseInvalid()
+    {
+        $jsonResponse = new Response('invalid', 'json');
+    }
+
+    /**
+     * @expectedException \Evolution7\SocialApi\Exception\ResponseFormatNotSupportedException
+     */
+    public function testResponseFormatNotSupported()
+    {
+        $jsonResponse = new Response('', 'invalid');
     }
 }
