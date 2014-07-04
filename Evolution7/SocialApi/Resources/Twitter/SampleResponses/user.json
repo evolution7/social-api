@@ -1,0 +1,59 @@
+{
+  "profile_sidebar_fill_color": "DDFFCC",
+  "profile_sidebar_border_color": "BDDCAD",
+  "profile_background_tile": true,
+  "name": "Chaz Martenstein",
+  "profile_image_url": "http://a0.twimg.com/profile_images/447958234/Lichtenstein_normal.jpg",
+  "created_at": "Tue Apr 07 19:05:07 +0000 2009",
+  "location": "Durham, NC",
+  "follow_request_sent": null,
+  "profile_link_color": "0084B4",
+  "is_translator": false,
+  "id_str": "29516238",
+  "entities": {
+    "url": {
+      "urls": [
+        {
+          "expanded_url": null,
+          "url": "http://bullcityrecords.com/wnng/",
+          "indices": [
+            0,
+            32
+          ]
+        }
+      ]
+    },
+    "description": {
+      "urls": [
+  
+      ]
+    }
+  },
+  "default_profile": false,
+  "contributors_enabled": false,
+  "favourites_count": 8,
+  "url": "http://bullcityrecords.com/wnng/",
+  "profile_image_url_https": "https://si0.twimg.com/profile_images/447958234/Lichtenstein_normal.jpg",
+  "utc_offset": -18000,
+  "id": 29516238,
+  "profile_use_background_image": true,
+  "listed_count": 118,
+  "profile_text_color": "333333",
+  "lang": "en",
+  "followers_count": 2052,
+  "protected": false,
+  "notifications": null,
+  "profile_background_image_url_https": "https://si0.twimg.com/profile_background_images/9423277/background_tile.bmp",
+  "profile_background_color": "9AE4E8",
+  "verified": false,
+  "geo_enabled": false,
+  "time_zone": "Eastern Time (US & Canada)",
+  "description": "You will come to Durham, North Carolina. I will sell you some records then, here in Durham, North Carolina. Fun will happen.",
+  "default_profile_image": false,
+  "profile_background_image_url": "http://a0.twimg.com/profile_background_images/9423277/background_tile.bmp",
+  "statuses_count": 7579,
+  "friends_count": 348,
+  "following": null,
+  "show_all_inline_media": true,
+  "screen_name": "bullcityrecords"
+}

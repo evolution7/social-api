@@ -42,4 +42,26 @@ class TwitterParserTest extends Parser
         $parser->parseStatusesShow();
         
     }
+
+    public function testParseUserArray()
+    {
+        // Get sample response
+        $sampleResponse = $this->sampleResponses['user.json'];
+        $response = new Response($sampleResponse, 'json');
+        // Get parser
+        $parser = new TwitterParser($response);
+        // Parse and test
+        $user = $parser->parseUserArray($response->getArray());
+    }
+
+    public function testParsePostArray()
+    {
+        // Get sample response
+        $sampleResponse = $this->sampleResponses['post.json'];
+        $response = new Response($sampleResponse, 'json');
+        // Get parser
+        $parser = new TwitterParser($response);
+        // Parse and test
+        $user = $parser->parsePostArray($response->getArray());
+    }
 }

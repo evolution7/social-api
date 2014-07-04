@@ -66,7 +66,7 @@ class TwitterParser extends Parser
      *
      * @return \Evolution7\SocialApi\Entity\User
      */
-    private function parseUserArray($array)
+    public function parseUserArray($array)
     {
         // Create User
         $user = new User();
@@ -89,7 +89,7 @@ class TwitterParser extends Parser
      *
      * @return \Evolution7\SocialApi\Entity\Post
      */
-    private function parsePostArray($array)
+    public function parsePostArray($array)
     {
         // Create User
         if (array_key_exists('user', $array)) {
