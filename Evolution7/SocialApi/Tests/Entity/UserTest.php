@@ -2,14 +2,12 @@
 
 namespace Evolution7\SocialApi\Tests\Entity;
 
-use Evolution7\SocialApi\Entity\User;
-
 class UserTest extends Base
 {
     protected function setUp()
     {
         parent::setUp();
-        $this->entity = new User;
+        $this->entity = new \Evolution7\SocialApi\Entity\User;
     }
 
     protected function tearDown()

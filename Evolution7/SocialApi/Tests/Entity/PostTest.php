@@ -2,14 +2,12 @@
 
 namespace Evolution7\SocialApi\Tests\Entity;
 
-use Evolution7\SocialApi\Entity\Post;
-
 class PostTest extends Base
 {
     protected function setUp()
     {
         parent::setUp();
-        $this->entity = new Post;
+        $this->entity = new \Evolution7\SocialApi\Entity\Post;
     }
 
     protected function tearDown()
