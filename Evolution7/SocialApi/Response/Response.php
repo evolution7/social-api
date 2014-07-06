@@ -22,7 +22,7 @@ class Response implements ResponseInterface
         // Process data
         switch ($format) {
             case 'json':
-                $this->processJson($raw);
+                $this->processJson();
                 break;
             default:
                 throw new ResponseFormatNotSupportedException();
@@ -33,11 +33,9 @@ class Response implements ResponseInterface
     /**
      * Decode JSON response as array
      *
-     * @param string $raw - Raw JSON response
-     *
      * @throws ResponseInvalidException
      */
-    private function processJson($raw)
+    private function processJson()
     {
         // Decode JSON
         $this->array = json_decode($this->raw, true);

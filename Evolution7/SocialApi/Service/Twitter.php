@@ -31,6 +31,8 @@ class Twitter extends Service implements ServiceInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @SuppressWarnings(PHPMD.ShortVariable)
      */
     public function getPostById($id)
     {

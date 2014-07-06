@@ -49,7 +49,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
      */
     public function testResponseInvalid()
     {
-        $jsonResponse = new Response('invalid', 'json');
+        new Response('invalid', 'json');
     }
 
     /**
@@ -57,6 +57,6 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
      */
     public function testResponseFormatNotSupported()
     {
-        $jsonResponse = new Response('', 'invalid');
+        new Response('', 'invalid');
     }
 }

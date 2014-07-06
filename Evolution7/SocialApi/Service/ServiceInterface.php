@@ -103,6 +103,8 @@ interface ServiceInterface
      * @throws \Evolution7\SocialApi\Exception\HttpUnauthorizedException
      *
      * @return \Evolution7\SocialApi\Entity\Post
+     *
+     * @SuppressWarnings(PHPMD.ShortVariable)
      */
     public function getPostById($id);
 

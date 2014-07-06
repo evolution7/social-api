@@ -15,9 +15,9 @@ class ResourceLoader
     public function loadSampleResponses()
     {
         $sampleResponses = array();
-        $dh = opendir($this->sampleResponsesDir);
-        if ($dh !== false) {
-            while (($filename = readdir($dh)) !== false) {
+        $handle = opendir($this->sampleResponsesDir);
+        if ($handle !== false) {
+            while (($filename = readdir($handle)) !== false) {
                 if (substr($filename, 0, 1) !== '.') {
                     $sampleResponses[$filename] = file_get_contents(
                         $this->sampleResponsesDir . '/' . $filename

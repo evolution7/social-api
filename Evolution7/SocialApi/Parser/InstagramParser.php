@@ -138,7 +138,11 @@ class InstagramParser extends Parser
         }
         $post->setId($this->getArrayValue('id', $array));
         $post->setCreated(new \DateTime(date(DATE_ISO8601, $array['created_time'])));
-        $post->setBody(is_array($this->getArrayValue('caption', $array)) ? $array['caption']['text'] : $array['caption']);
+        if (is_array($this->getArrayValue('caption', $array))) {
+            $post->setBody($array['caption']['text']);
+        } else {
+            $post->setBody($array['caption']);
+        }
         $post->setUrl($this->getArrayValue('link', $array));
         $post->setMediaType($this->getArrayValue('type', $array));
         $post->setMediaUrl(

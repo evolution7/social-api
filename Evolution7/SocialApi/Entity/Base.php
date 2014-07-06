@@ -6,6 +6,7 @@ use Evolution7\SocialApi\Config\Config;
 
 /**
  * Base class for all entities
+ * @SuppressWarnings(PHPMD.ShortVariable)
  */
 abstract class Base
 {

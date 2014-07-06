@@ -2,6 +2,9 @@
 
 namespace Evolution7\SocialApi\Entity;
 
+/**
+ * @SuppressWarnings(PHPMD.ShortVariable)
+ */
 interface BaseInterface
 {
     /**

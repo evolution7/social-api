@@ -8,8 +8,8 @@ class Query implements QueryInterface
 {
     private $hashtag;
     private $media;
-    private $from;
-    private $to;
+    private $fromPost;
+    private $toPost;
     private $numResults;
 
     /**
@@ -77,15 +77,15 @@ class Query implements QueryInterface
      */
     public function getFrom()
     {
-        return $this->from;
+        return $this->fromPost;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function limitFrom(Post $from)
+    public function limitFrom(Post $post)
     {
-        $this->from = $from;
+        $this->fromPost = $post;
         return $this;
     }
 
@@ -94,15 +94,15 @@ class Query implements QueryInterface
      */
     public function getTo()
     {
-        return $this->to;
+        return $this->toPost;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function limitTo(Post $to)
+    public function limitTo(Post $post)
     {
-        $this->to = $to;
+        $this->toPost = $post;
         return $this;
     }
 

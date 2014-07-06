@@ -31,6 +31,8 @@ class Instagram extends Service implements ServiceInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @SuppressWarnings(PHPMD.ShortVariable)
      */
     public function getPostById($id)
     {
@@ -58,10 +60,10 @@ class Instagram extends Service implements ServiceInterface
         $qFrom = $query->getFrom();
         $qTo = $query->getTo();
         if (is_null($query->getHashtag())) {
-            if (!empty($qFromDate)) {
+            if (!is_null($qFrom)) {
                 $requestParams['min_timestamp'] = $qFrom->getCreated();
             }
-            if (!empty($qToDate)) {
+            if (!is_null($qTo)) {
                 $requestParams['max_timestamp'] = $qTo->getCreated();
             }
         } else {
