@@ -25,7 +25,7 @@ This library provide an abstracted API for using various social networks APIs.
 Install via [Composer](https://getcomposer.org/):
 ```
     "require": {
-        "evolution7/social-api": "dev-master"
+        "evolution7/social-api": "1.*"
     }
 ```
 
