@@ -2,7 +2,7 @@
     "name": "evolution7/social-api",
     "description": "Social Network API Abstraction Library",
     "keywords": ["php", "social", "api", "twitter", "instagram"],
-    "homepage": "bitbucket.org/evolution7/social_api",
+    "homepage": "http://bitbucket.org/evolution7/social_api",
     "license": "MIT",
     "authors": [
         {
