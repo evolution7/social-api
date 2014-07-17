@@ -16,7 +16,7 @@
         "lusitanian/oauth": "~0.3"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.*"
+        "evolution7/qa-tools": "1.*"
     },
     "autoload": {
         "psr-0": { "": "." }
