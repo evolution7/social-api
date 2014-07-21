@@ -26,7 +26,7 @@ class InstagramParserTest extends Parser
         $this->assertEquals('#Snow', $post->getBody());
         $this->assertEquals('image', $post->getMediaType());
         $this->assertEquals(
-            'http://distillery.s3.amazonaws.com/media/2011/02/02/f9443f3443484c40b4792fa7c76214d5_7.jpg',
+            '//distillery.s3.amazonaws.com/media/2011/02/02/f9443f3443484c40b4792fa7c76214d5_7.jpg',
             $post->getMediaUrl()
         );
         $dateTime = new \DateTime();
@@ -97,7 +97,7 @@ class InstagramParserTest extends Parser
         $this->assertNull($post->getBody());
         $this->assertEquals('image', $post->getMediaType());
         $this->assertEquals(
-            'http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_7.jpg',
+            '//distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_7.jpg',
             $post->getMediaUrl()
         );
         $dateTime = new \DateTime();
@@ -149,7 +149,7 @@ class InstagramParserTest extends Parser
         $this->assertEquals('Hello world', $post->getBody());
         $this->assertEquals('image', $post->getMediaType());
         $this->assertEquals(
-            'http://distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_7.jpg',
+            '//distillery.s3.amazonaws.com/media/2010/07/16/4de37e03aa4b4372843a7eb33fa41cad_7.jpg',
             $post->getMediaUrl()
         );
         $dateTime = new \DateTime();

@@ -24,7 +24,7 @@ class TwitterParserTest extends Parser
         $this->assertEquals('https://twitter.com/theSeanCook', $user->getUrl());
         $this->assertEquals('Sean Cook', $user->getName());
         $this->assertEquals(
-            'https://si0.twimg.com/profile_images/1751506047/dead_sexy_normal.JPG',
+            '//si0.twimg.com/profile_images/1751506047/dead_sexy_normal.JPG',
             $user->getImageUrl()
         );
     }
@@ -84,7 +84,7 @@ class TwitterParserTest extends Parser
         $this->assertEquals('https://twitter.com/bullcityrecords', $user->getUrl());
         $this->assertEquals('Chaz Martenstein', $user->getName());
         $this->assertEquals(
-            'https://si0.twimg.com/profile_images/447958234/Lichtenstein_normal.jpg',
+            '//si0.twimg.com/profile_images/447958234/Lichtenstein_normal.jpg',
             $user->getImageUrl()
         );
     }
@@ -115,7 +115,7 @@ class TwitterParserTest extends Parser
         $this->assertEquals('https://twitter.com/sean_cummings', $user->getUrl());
         $this->assertEquals('Sean Cummings', $user->getName());
         $this->assertEquals(
-            'https://si0.twimg.com/profile_images/2359746665/1v6zfgqo8g0d3mk7ii5s_normal.jpeg',
+            '//si0.twimg.com/profile_images/2359746665/1v6zfgqo8g0d3mk7ii5s_normal.jpeg',
             $user->getImageUrl()
         );
     }

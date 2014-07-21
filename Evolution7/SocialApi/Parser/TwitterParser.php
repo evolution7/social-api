@@ -77,7 +77,10 @@ class TwitterParser extends Parser
         $user->setUrl(
             'https://twitter.com/' . $user->getHandle()
         );
-        $user->setImageUrl($this->getArrayValue('profile_image_url_https', $array));
+        $imageUrl = $this->getArrayValue('profile_image_url_https', $array);
+        if (!is_null($imageUrl)) {
+            $user->setImageUrl(str_replace('https://', '//', $imageUrl));
+        }
         $this->users[$user->getId()] = $user;
         return $user;
     }
@@ -112,7 +115,10 @@ class TwitterParser extends Parser
                 '/status/' . $post->getId()
             );
         }
-        $post->setMediaUrl($this->getArrayValue(array('entities', 'media', 0, 'media_url'), $array));
+        $mediaUrl = $this->getArrayValue(array('entities', 'media', 0, 'media_url'), $array);
+        if (!is_null($mediaUrl)) {
+            $post->setMediaUrl(str_replace(array('http://', 'https://'), '//', $mediaUrl));
+        }
         $this->posts[$post->getId()] = $post;
         return $post;
     }
