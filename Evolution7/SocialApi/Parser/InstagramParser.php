@@ -145,9 +145,13 @@ class InstagramParser extends Parser
         }
         $post->setUrl($this->getArrayValue('link', $array));
         $post->setMediaType($this->getArrayValue('type', $array));
-        $post->setMediaUrl(
-            $this->getArrayValue(array($post->getMediaType().'s', 'standard_resolution', 'url'), $array)
+        $mediaUrl = $this->getArrayValue(
+            array($post->getMediaType().'s', 'standard_resolution', 'url'),
+            $array
         );
+        if (!is_null($mediaUrl)) {
+            $post->setMediaUrl(str_replace(array('http://', 'https://'), '//', $mediaUrl));
+        }
         $this->posts[$post->getId()] = $post;
         return $post;
     }
